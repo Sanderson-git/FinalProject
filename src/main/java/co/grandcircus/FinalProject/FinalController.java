@@ -5,7 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import co.grandcircus.FinalProject.SQL.*;
 import co.grandcircus.FinalProject.services.*;
+
 
 @Controller
 public class FinalController {
@@ -15,6 +17,15 @@ public class FinalController {
 	
 	@Autowired
 	CheapsharkApiService csharkapi;
+	
+	@Autowired
+	UserRepository userrep;
+	
+	@Autowired
+	WishListRepository wishrep;
+	
+	@Autowired
+	GenresRepository genresrep;
 	
 //	@GetMapping("/")
 //	private String index () {
