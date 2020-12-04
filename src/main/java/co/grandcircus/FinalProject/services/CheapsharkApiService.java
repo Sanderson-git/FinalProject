@@ -3,6 +3,7 @@ package co.grandcircus.FinalProject.services;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+
 @Service
 public class CheapsharkApiService {
 
@@ -17,4 +18,16 @@ public class CheapsharkApiService {
 		System.out.println("JSON RESPONSE:");
 		System.out.println(json);
 	}
+	
+	public CheapsharkGame getCheapsharkGameListViaSteamId (String steamId) {
+		RestTemplate restTemplate = new RestTemplate();
+		String url = "https://www.cheapshark.com/api/1.0/games&steamAppID=" + steamId;
+		return restTemplate.getForObject(url, CheapsharkGame[].class)[0];
+	}
+	
+	public CheapsharkGameDetails cheapSharkGame(Integer id) {
+		String url = "https://www.cheapshark.com/api/1.0/games?id=" + id;
+		return restTemplate.getForObject(url, CheapsharkGameDetails.class);
+	}
+	
 }

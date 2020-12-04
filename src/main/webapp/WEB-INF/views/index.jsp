@@ -11,5 +11,7 @@
 </head>
 <body>
 	<h1>ALL YOUR GAMING NEEDS</h1>
+	
+	${cheapsharkList.results.external }
 </body>
 </html>

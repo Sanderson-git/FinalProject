@@ -3,6 +3,8 @@ package co.grandcircus.FinalProject.services;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+
+
 @Service
 public class RawgApiService {
 	
@@ -16,5 +18,13 @@ private RestTemplate restTemplate = new RestTemplate();
 		System.out.println(json);
 	}
 
+	public RawgResponse rawgSearch (String search) {
+		String url = "https://api.rawg.io/api/games?key=e0efad9eb53c4cc093062888db16e142&search=" + search + "&stores=1";
+		return restTemplate.getForObject(url, RawgResponse.class);
+	}
 	
+	public RawgGame rawgGame (Integer gameId) {
+		String url = "https://api.rawg.io/api/games/" + gameId + "?key=e0efad9eb53c4cc093062888db16e142";
+		return restTemplate.getForObject(url, RawgGame.class);
+	}
 }
