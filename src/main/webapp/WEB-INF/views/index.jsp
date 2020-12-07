@@ -11,7 +11,16 @@ td {
 padding-right:20px;
 padding-left:10px;
 }
-
+.buttonstyle {
+display: block;
+    background: #59A7FF;
+    padding: 15px;
+    text-align: center;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    line-height: 50px;
+}
 </style>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cyborg/bootstrap.min.css" integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2" crossorigin="anonymous">
 <meta charset="ISO-8859-1">
@@ -65,7 +74,7 @@ padding-left:10px;
 
 					<c:forEach var="result" items="${ rawglist.getResults()}">
 						<tr>
-							<td>${result.getName()}</td> 
+							<td><a class="buttonstyle" href="/details/${result.getId() }">${result.getName()}</a></td> 
 							<td>${result.getRating()} / 5</td>  
 							<td><img src="${result.getBackground_image() }" style="width:400px;height:auto;border: 5px solid #59A7FF" ></td> 
 							<td><c:forEach var="genre" items="${result.getGenres() }">${genre.getName() }; </c:forEach></td>
