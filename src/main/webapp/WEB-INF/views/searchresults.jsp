@@ -46,7 +46,7 @@
 		
 	<h2>Search Results</h2>
 		<c:forEach var="games" items="${ games }">
-			<a href="/details/${ games.getId()} }">${ games.getName() } <br /><img src=" ${ games.getBackground_image() }" alt="${games.getName()} image " width=20% /><br /></a>
+			<a href="/details/${ games.getId()} }">${ games.getName() } <br /><img src=" ${ games.getBackground_image() }" alt="${games.getName()} image " width=20% height="auto" /><br /></a>
 		</c:forEach>
 </body>
 </html>
