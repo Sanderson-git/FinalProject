@@ -1,12 +1,8 @@
 package co.grandcircus.FinalProject.SQL;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import java.util.Set;
+
+import javax.persistence.*;
 
 @Entity
 @Table (name = "genres")
@@ -18,19 +14,19 @@ public class Genres {
 	private String name;
 	private String slug;
 	private String image_background;
-	@ManyToOne
-	@JoinColumn(name = "wishlistid", nullable = true, updatable = true)
-	private WishList wishlist;
 	
+	@ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable
+    private Set<WishList> wishlists;
+
 	public Genres() {}
 	
-	public Genres(Long genreId, String name, String slug, String image_background, WishList wishlist) {
+	public Genres(Long genreId, String name, String slug, String image_background) {
 		super();
 		this.genreId = genreId;
 		this.name = name;
 		this.slug = slug;
 		this.image_background = image_background;
-		this.wishlist = wishlist;
 	}
 
 	public Long getGenreId() {
@@ -65,13 +61,15 @@ public class Genres {
 		this.image_background = image_background;
 	}
 
-	public WishList getWishlist() {
-		return wishlist;
+	public Set<WishList> getWishlists() {
+		return wishlists;
 	}
 
-	public void setWishlist(WishList wishlist) {
-		this.wishlist = wishlist;
+	public void setWishlists(Set<WishList> wishlists) {
+		this.wishlists = wishlists;
 	}
+
+
 	
 	
 	

@@ -1,6 +1,6 @@
 package co.grandcircus.FinalProject.SQL;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -19,8 +19,10 @@ public class WishList {
 	private Integer rawgId;
 	private Integer csharkId;
 	private Integer steamId;
-	@OneToMany(mappedBy = "genreId")
-	private List<Genres> genres;
+	
+	@ManyToMany(mappedBy = "wishlists")
+    private Set<Genres> genres;
+
 	
 	
 	
