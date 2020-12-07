@@ -7,6 +7,10 @@
 <html>
 <head>
 <style>
+td {
+padding-right:20px;
+padding-left:10px;
+}
 
 </style>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cyborg/bootstrap.min.css" integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2" crossorigin="anonymous">
@@ -46,6 +50,29 @@
   </div>
 </nav>
 	
-	${cheapsharkList.results.external }
+	<h1>Discover</h1>
+		<font size="7">
+			<table>
+				<thead>
+					<tr>
+						<th style="color: #59A7FF;">Game: </th>
+						<th style="color: #59A7FF;">Rating: </th>
+						<th></th>
+						<th style="color: #59A7FF;">Genres: </th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<c:forEach var="result" items="${ rawglist.getResults()}">
+						<tr>
+							<td>${result.getName()}</td> 
+							<td>${result.getRating()} / 5</td>  
+							<td><img src="${result.getBackground_image() }" style="width:400px;height:auto;border: 5px solid #59A7FF" ></td> 
+							<td><c:forEach var="genre" items="${result.getGenres() }">${genre.getName() }; </c:forEach></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</font>
 </body>
 </html>

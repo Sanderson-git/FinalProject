@@ -78,10 +78,10 @@ public class FinalController {
 	}
 	
 	@GetMapping("/")
-	private String index () {
-		
+	private String index (Model model) {
+		RawgResponse rResp = rawgapi.rawgHomeList();
+		model.addAttribute("rawglist", rResp);
 		return "index";
-
 	}
 	
 	@GetMapping("/login")
