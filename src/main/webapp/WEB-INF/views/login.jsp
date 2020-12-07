@@ -4,9 +4,14 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Login</title>
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cyborg/bootstrap.min.css" integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2" crossorigin="anonymous">
+
 </head>
 <body>
+	<h1></h1>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a class="navbar-brand" href="/">HOME</a>
@@ -17,7 +22,7 @@
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Login
+        <a class="nav-link" href="/login">Login
           <span class="sr-only">(current)</span>
         </a>
       </li>
@@ -37,6 +42,13 @@
     </form>
   </div>
 </nav>
+
+		<form method="post" action="/sessiontest">
+			Username:<input type="text" name="username"/><br />
+			Password:<input type="password" name="password"/><br />
+			<input type="submit" />
+		</form>
+		
 
 </body>
 </html>

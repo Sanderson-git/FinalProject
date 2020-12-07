@@ -1,9 +1,12 @@
 package co.grandcircus.FinalProject;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import co.grandcircus.FinalProject.SQL.*;
 import co.grandcircus.FinalProject.services.*;
@@ -26,6 +29,9 @@ public class FinalController {
 	
 	@Autowired
 	GenresRepository genresrep;
+	
+	@Autowired
+	HttpSession session;
 	
 //	@GetMapping("/")
 //	private String index () {
@@ -69,6 +75,7 @@ public class FinalController {
 	private String details(Model model) {
 		
 		return "details";
+	}
 	
 	@GetMapping("/")
 	private String index () {
@@ -77,5 +84,45 @@ public class FinalController {
 
 	}
 	
+	@GetMapping("/login")
+	private String login() {
+		return "login";
+	}
 	
+	@PostMapping("/sessiontest")
+	public String login(String username, String password, Model model) {
+		User user = userrep.findFirstByUsername(username).orElse(null);
+		if (user == null) {
+			return "fail";
+		} else {
+			if (user.getPassword().compareTo(password) == 0) {
+
+				session.setAttribute("user", user);
+				model.addAttribute("user", user);
+				return "sessiontest";
+			} else {
+				return "fail";
+
+			}
+
+		}
+	}
+	
+	@GetMapping("/sessiontest")
+	public String sessionTest(Model model) {
+		User user = (User)session.getAttribute("user");
+		if (user==null) {
+			return "redirect:/";
+		}
+		model.addAttribute("user",user);
+		return "sessiontest";
+	}
+	
+	
+	@GetMapping("/logout")
+	public String logout() {
+		session.invalidate();
+		return "sessiontest";
+	}
 }
+
