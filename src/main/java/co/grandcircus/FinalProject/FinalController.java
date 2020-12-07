@@ -178,5 +178,15 @@ public class FinalController {
 		session.invalidate();
 		return "sessiontest";
 	}
+	
+	@PostMapping("/searchresults")
+	private String searchResults(@RequestParam String search, Model model) {
+		RawgResponse results = rawgapi.rawgSearch(search); //calls function rawgSearch using html search text box parameter "search"
+	    List<RawgGame> games = results.getResults();
+		model.addAttribute("games", games);
+		return "searchresults";
+	}
+	
+	
 }
 
