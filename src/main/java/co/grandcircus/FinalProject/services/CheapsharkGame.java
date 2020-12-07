@@ -2,8 +2,10 @@ package co.grandcircus.FinalProject.services;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
 public class CheapsharkGame {
-	
+
+
 	@JsonProperty("gameID")
 	private String gameID;
 	private String steamAppId;
