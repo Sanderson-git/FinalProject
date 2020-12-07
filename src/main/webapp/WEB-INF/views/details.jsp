@@ -28,7 +28,7 @@ body {
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Login
+        <a class="nav-link" href="/login">Login
           <span class="sr-only">(current)</span>
         </a>
       </li>

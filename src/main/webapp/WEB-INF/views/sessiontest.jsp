@@ -1,26 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-td {
-padding-right:20px;
-padding-left:10px;
-}
-
-</style>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cyborg/bootstrap.min.css" integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2" crossorigin="anonymous">
 <meta charset="ISO-8859-1">
-<title>Index</title>
+<title>Session Test</title>
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cyborg/bootstrap.min.css" integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2" crossorigin="anonymous">
+
 </head>
 <body>
-	<h1>ALL YOUR GAMING NEEDS</h1>
-	
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	<h1></h1>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a class="navbar-brand" href="/">HOME</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -49,30 +42,11 @@ padding-left:10px;
     </form>
   </div>
 </nav>
-	
-	<h1>Discover</h1>
-		<font size="7">
-			<table>
-				<thead>
-					<tr>
-						<th style="color: #59A7FF;">Game: </th>
-						<th style="color: #59A7FF;">Rating: </th>
-						<th></th>
-						<th style="color: #59A7FF;">Genres: </th>
-					</tr>
-				</thead>
-				<tbody>
 
-					<c:forEach var="result" items="${ rawglist.getResults()}">
-						<tr>
-							<td>${result.getName()}</td> 
-							<td>${result.getRating()} / 5</td>  
-							<td><img src="${result.getBackground_image() }" style="width:400px;height:auto;border: 5px solid #59A7FF" ></td> 
-							<td><c:forEach var="genre" items="${result.getGenres() }">${genre.getName() }; </c:forEach></td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</font>
+	<h3>You are logged in as:</h3>
+
+		<p>Username: ${ user.username }</p>
+		<p>Password: ${ user.password }</p>
+
 </body>
 </html>
