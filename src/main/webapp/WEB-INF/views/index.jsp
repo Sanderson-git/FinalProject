@@ -67,7 +67,7 @@ padding-left:10px;
 						<tr>
 							<td>${result.getName()}</td> 
 							<td>${result.getRating()} / 5</td>  
-							<td><img src="${result.getBackground_image() }" style="width:400px;height:auto;border: 5px solid #555" ></td> 
+							<td><img src="${result.getBackground_image() }" style="width:400px;height:auto;border: 5px solid #59A7FF" ></td> 
 							<td><c:forEach var="genre" items="${result.getGenres() }">${genre.getName() }; </c:forEach></td>
 						</tr>
 					</c:forEach>
