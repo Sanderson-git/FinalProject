@@ -39,4 +39,5 @@ private RestTemplate restTemplate = new RestTemplate();
 		String url = "https://api.rawg.io/api/games?stores=1";
 		return restTemplate.getForObject(url, RawgResponse.class);
 	}
+}
 
