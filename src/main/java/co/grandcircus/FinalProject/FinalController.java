@@ -69,12 +69,13 @@ public class FinalController {
 	private String details(Model model) {
 		
 		return "details";
+	}
 	
 	@GetMapping("/")
-	private String index () {
-		
+	private String index (Model model) {
+		RawgResponse rResp = rawgapi.rawgHomeList();
+		model.addAttribute("rawglist", rResp);
 		return "index";
-
 	}
 	
 	
