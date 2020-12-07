@@ -3,6 +3,7 @@ package co.grandcircus.FinalProject.services;
 public class StoreResults {
 	
 	private Store store;
+	private Integer id;
 
 	public Store getStore() {
 		return store;
@@ -18,6 +19,14 @@ public class StoreResults {
 	}
 	
 	public StoreResults() {
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 }

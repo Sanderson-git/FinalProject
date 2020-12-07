@@ -27,4 +27,10 @@ private RestTemplate restTemplate = new RestTemplate();
 		String url = "https://api.rawg.io/api/games/" + gameId + "?key=e0efad9eb53c4cc093062888db16e142";
 		return restTemplate.getForObject(url, RawgGame.class);
 	}
+	
+	public GameStoreResponse rawgStoreLink(String gamepk) {
+		String url = "https://api.rawg.io/api/games/" + gamepk + "/stores?key=e0efad9eb53c4cc093062888db16e142";
+		return restTemplate.getForObject(url,GameStoreResponse.class);
+	}
+	
 }
