@@ -65,6 +65,11 @@ public class FinalController {
 //		return "index";
 //	}
 	
+	@GetMapping("/")
+	private String index () {
+		
+		return "index";
+	}
 	
 	
 }
