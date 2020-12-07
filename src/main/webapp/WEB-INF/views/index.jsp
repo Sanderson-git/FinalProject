@@ -82,7 +82,7 @@ td {
 				<c:forEach var="result" items="${ rawglist.getResults()}">
 					<tr>
 						<td><a class="buttonstyle" href="/details/${result.getId() }">${result.getName()}</a></td>
-						<td>${result.getRating()}/ 5</td>
+						<td style="width: 300px;">${result.getRating()}/ 5</td>
 						<td><img src="${result.getBackground_image() }"
 							style="width: 400px; height: auto; border: 5px solid #59A7FF"></td>
 						<td><c:forEach var="genre" items="${result.getGenres() }">${genre.getName() }; </c:forEach></td>

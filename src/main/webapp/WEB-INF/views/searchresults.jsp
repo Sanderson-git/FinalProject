@@ -7,6 +7,21 @@
 <meta charset="ISO-8859-1">
 <title>The Crypt</title>
 <style type="text/css">
+td {
+	padding-right: 20px;
+	padding-left: 10px;
+}
+
+.buttonstyle {
+	display: block;
+	background: #2a9fd6;
+	padding: 15px;
+	text-align: center;
+	border-radius: 10px;
+	color: white;
+	font-weight: bold;
+	line-height: 50px;
+}
 </style>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cyborg/bootstrap.min.css"
@@ -18,7 +33,6 @@
 	<img
 		src="https://drive.google.com/uc?id=1BmbUr80SogYS3LZdkH3hqBuqZbyyiSkX" />
 
-	<h1>ALL YOUR GAMING NEEDS</h1>
 	<!--********************  Begin Nav Bar ********************-->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 		<a class="navbar-brand" href="/">HOME</a>
@@ -54,12 +68,31 @@
 	<!--******************** End Nav Bar  ********************-->
 
 	<h2>Search Results</h2>
-	<c:forEach var="games" items="${ games }">
-		<a href="/details/${ games.getId()} }">${ games.getName() } <br />
-		<img src=" ${ games.getBackground_image() }"
-			alt="${games.getName()} image " width=20% height="auto" /><br />
-		<br /></a>
-	</c:forEach>
+	
+	<font size="7">
+		<table>
+			<thead>
+				<tr>
+					<th style="color: #2a9fd6;">Game:</th>
+					<th style="color: #2a9fd6;">Rating:</th>
+					<th></th>
+					<th style="color: #2a9fd6;">Genres:</th>
+				</tr>
+			</thead>
+			<tbody>
+
+				<c:forEach var="games" items="${ games }">
+					<tr>
+						<td><a class="buttonstyle" href="/details/${ games.getId()} }">${ games.getName() }</a></td>
+						<td style="width: 300px;">${games.getRating()}/ 5</td>
+						<td><img src="${ games.getBackground_image() }"
+							alt="${games.getName()}" style="width: 400px; height: auto; border: 5px solid #59A7FF"></td>
+						<td><c:forEach var="genre" items="${games.getGenres() }">${genre.getName() }; </c:forEach></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</font>
 
 </body>
 </html>
