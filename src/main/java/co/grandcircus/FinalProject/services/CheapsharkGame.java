@@ -1,8 +1,11 @@
 package co.grandcircus.FinalProject.services;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class CheapsharkGame {
 
-	private String gameId;
+	@JsonProperty("gameID")
+	private String gameID;
 	private String steamAppId;
 	private String cheapest;
 	private String cheapestDealId;
@@ -11,11 +14,11 @@ public class CheapsharkGame {
 	private String thumb;
 	
 	public String getGameId() {
-		return gameId;
+		return gameID;
 	}
 	
-	public void setGameId(String gameId) {
-		this.gameId = gameId;
+	public void setGameId(String gameID) {
+		this.gameID = gameID;
 	}
 	
 	public String getSteamAppId() {
@@ -66,10 +69,10 @@ public class CheapsharkGame {
 		this.thumb = thumb;
 	}
 	
-	public CheapsharkGame(String gameId, String steamAppId, String cheapest, String cheapestDealId, String external,
+	public CheapsharkGame(String gameID, String steamAppId, String cheapest, String cheapestDealId, String external,
 			String internalName, String thumb) {
 		super();
-		this.gameId = gameId;
+		this.gameID = gameID;
 		this.steamAppId = steamAppId;
 		this.cheapest = cheapest;
 		this.cheapestDealId = cheapestDealId;

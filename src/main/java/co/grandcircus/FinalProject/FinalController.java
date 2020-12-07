@@ -116,21 +116,22 @@ public class FinalController {
 	@GetMapping("/details/{id}")
 	private String gameDetails(@PathVariable Integer id, Model model) {
 		
-		
+		System.out.println("1");
 		
 		RawgGame rawgGame = rawgapi.rawgGame(id); //get rawgGame object from api query using rawgId selected by previous api search
 		model.addAttribute("rawgDetails",rawgGame); //add whole rawgGame object for details.jsp 
-		System.out.println("here");
+		System.out.println("2");
 		Integer steamId = null; //initialize steam id variable for later cheapshark api query
 		
 		
 		GameStoreResponse response = rawgapi.rawgStoreLink(id.toString());
+		System.out.println("3");
 		List<GameSpecificStore> stores = response.getResults(); //get list of StoreResults from rawg store call to find the steam Store and thereby the game id on it
 		
 		for(GameSpecificStore str : stores) { //loop through the StoreResults to find the steam Store
 			if(str.getStore_id().compareTo("1") == 0) { //id is saaved as a String so use compareTo which returns an int, a return of 0 means true
 				//if it is the Steam store, find the game Steam Id (there is no UPC (universal product code) listed on either api, the Steam Id for games on each api is used in lieu of this
-				
+				System.out.println("4");
 				URI uri = null;
 				try {
 					uri = new URI(str.getUrl());
@@ -147,9 +148,11 @@ public class FinalController {
 		
 		
 		CheapsharkGame sharkGame = csharkapi.getCheapsharkGameListViaSteamId(steamId); //using the steamId, find the corresponding game on Cheapshark api (contains pricing comparison information)
+		System.out.println(sharkGame.getGameId());
 		
 		CheapsharkGameDetails sharkDetails = csharkapi.cheapSharkGame(sharkGame.getGameId()); //using the game id from the CheapsharkGame object obtained by the steamId, get all Cheapshark game details (this will include all pricing comparison info)
 		
+		System.out.println("6");
 		List<Deal> deals = sharkDetails.getDeals();//pricing from various stores
 		
 		model.addAttribute("deals",deals);
