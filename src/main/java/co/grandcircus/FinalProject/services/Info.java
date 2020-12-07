@@ -4,7 +4,7 @@ public class Info {
 	
 	private String title;
 	
-	private String steamAppId;
+	private String steamAppID;
 
 	public String getTitle() {
 		return title;
@@ -15,17 +15,17 @@ public class Info {
 	}
 
 	public String getSteamAppId() {
-		return steamAppId;
+		return steamAppID;
 	}
 
-	public void setSteamAppId(String steamAppId) {
-		this.steamAppId = steamAppId;
+	public void setSteamAppId(String steamAppID) {
+		this.steamAppID = steamAppID;
 	}
 
-	public Info(String title, String steamAppId) {
+	public Info(String title, String steamAppID) {
 		super();
 		this.title = title;
-		this.steamAppId = steamAppId;
+		this.steamAppID = steamAppID;
 	}
 	
 	public Info() {
