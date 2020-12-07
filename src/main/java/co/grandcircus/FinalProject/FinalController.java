@@ -64,11 +64,17 @@ public class FinalController {
 //		System.out.println(cSharkGameDetails.getInfo().getTitle());
 //		return "index";
 //	}
+
+	@GetMapping("/details")
+	private String details(Model model) {
+		
+		return "details";
 	
 	@GetMapping("/")
 	private String index () {
 		
 		return "index";
+
 	}
 	
 	
