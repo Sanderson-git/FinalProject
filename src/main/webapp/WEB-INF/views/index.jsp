@@ -43,10 +43,10 @@ padding-left:10px;
         <a class="nav-link" href="#">About US!</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search">
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <form class="form-inline my-2 my-lg-0" method="post" action="/searchresults">
+		      <input class="form-control mr-sm-2" type="text" placeholder="Search" name="search" >
+		      <button class="btn btn-secondary my-2 my-sm-0" type="submit" >Search</button>
+		    </form>
   </div>
 </nav>
 	
