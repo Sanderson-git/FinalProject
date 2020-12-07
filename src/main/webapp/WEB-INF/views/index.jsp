@@ -13,7 +13,7 @@ padding-left:10px;
 }
 .buttonstyle {
 display: block;
-    background: #59A7FF;
+    background: #2a9fd6;
     padding: 15px;
     text-align: center;
     border-radius: 10px;
@@ -27,7 +27,7 @@ display: block;
 <title>Index</title>
 </head>
 <body>
-	<h1>ALL YOUR GAMING NEEDS</h1>
+	<img src="https://drive.google.com/uc?id=1BmbUr80SogYS3LZdkH3hqBuqZbyyiSkX"/>
 	
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a class="navbar-brand" href="/">HOME</a>
@@ -64,10 +64,10 @@ display: block;
 			<table>
 				<thead>
 					<tr>
-						<th style="color: #59A7FF;">Game: </th>
-						<th style="color: #59A7FF;">Rating: </th>
+						<th style="color: #2a9fd6;">Game: </th>
+						<th style="color: #2a9fd6;">Rating: </th>
 						<th></th>
-						<th style="color: #59A7FF;">Genres: </th>
+						<th style="color: #2a9fd6;">Genres: </th>
 					</tr>
 				</thead>
 				<tbody>
