@@ -5,7 +5,13 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Details</title>
+<style type="text/css">
 
+body {
+  background-image: url(${rawgGame.background_image});
+}
+
+</style>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cyborg/bootstrap.min.css" integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2" crossorigin="anonymous">
 
@@ -42,6 +48,8 @@
     </form>
   </div>
 </nav>
+
+
 
 
 

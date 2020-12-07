@@ -28,8 +28,15 @@ private RestTemplate restTemplate = new RestTemplate();
 		return restTemplate.getForObject(url, RawgGame.class);
 	}
 	
+
+	public GameStoreResponse rawgStoreLink(String gamepk) {
+		String url = "https://api.rawg.io/api/games/" + gamepk + "/stores?key=e0efad9eb53c4cc093062888db16e142";
+		return restTemplate.getForObject(url,GameStoreResponse.class);
+	}
+	
+
 	public RawgResponse rawgHomeList () {
 		String url = "https://api.rawg.io/api/games?stores=1";
 		return restTemplate.getForObject(url, RawgResponse.class);
 	}
-}
+
