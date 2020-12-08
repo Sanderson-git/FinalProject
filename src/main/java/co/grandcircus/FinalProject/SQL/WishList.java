@@ -19,7 +19,34 @@ public class WishList {
 	private Integer rawgId;
 	private Integer csharkId;
 	private Integer steamId;
+	private String dealId;
+	private String storeId;
+	private String price;
 	
+	public String getDealId() {
+		return dealId;
+	}
+
+	public void setDealId(String dealId) {
+		this.dealId = dealId;
+	}
+
+	public String getStoreId() {
+		return storeId;
+	}
+
+	public void setStoreId(String storeId) {
+		this.storeId = storeId;
+	}
+
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
 	@ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(joinColumns = @JoinColumn(name = "wishlistid"), inverseJoinColumns = @JoinColumn(name = "genre_id")) //each relationship has an owning side --in this case wishlist.  usually you will assign one side, you will be adding genres to wishlist therefore wishlist is owning side
     private Set<Genres> genres;

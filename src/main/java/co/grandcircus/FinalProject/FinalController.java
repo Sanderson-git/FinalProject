@@ -45,6 +45,9 @@ public class FinalController {
 	@Autowired
 	HttpSession session;
 	
+	@Autowired
+	CheapSharkStoreNameRepository csstorerep;
+	
 //	@GetMapping("/")
 //	private String index () {
 //		System.out.println("RAWG API: ");
@@ -291,6 +294,27 @@ public class FinalController {
 				
 		wishrep.save(wishes);
 				
+		return "wishlist";
+	}
+	
+	@GetMapping("/wishlist")
+	public String viewWishlist(Model model) {
+		
+		User user = (User)session.getAttribute("user"); //get user from session
+		
+		List<WishList> wishes = wishrep.findByUserId(user.getId()); //find all wishlist games for a specific user
+		
+		for(WishList wish : wishes) {
+			
+			CheapsharkGameDetails gameDetails = csharkapi.cheapSharkGame(wish.getCsharkId().toString());
+			List<Deal> gameDeals = gameDetails.getDeals();
+			
+			
+			
+			
+		}
+		
+		
 		return "wishlist";
 	}
 	
