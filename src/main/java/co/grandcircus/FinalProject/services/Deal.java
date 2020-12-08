@@ -9,6 +9,16 @@ public class Deal {
 	private String retailPrice;
 	
 	private String savings;
+	
+	private String dealID;
+
+	public String getDealID() {
+		return dealID;
+	}
+
+	public void setDealID(String dealID) {
+		this.dealID = dealID;
+	}
 
 	public String getStoreID() {
 		return storeID;
