@@ -161,6 +161,11 @@ public class FinalController {
 		System.out.println("6");
 		List<Deal> deals = sharkDetails.getDeals();//pricing from various stores
 		
+		List<PrettyDeal> realdeals = new ArrayList<>();
+				// link to deal through cheapshark https://www.cheapshark.com/redirect?dealID={id}
+		
+		
+					
 		model.addAttribute("deals",deals);
 		model.addAttribute("sharkDetails",sharkDetails);
 		
