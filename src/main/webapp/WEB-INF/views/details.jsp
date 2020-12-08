@@ -40,6 +40,10 @@ body {
 	font-weight: bold;
 	line-height: 40px;
 }
+.center {
+	margin-left: auto;
+	margin-right: auto;
+}
 </style>
 
 <link rel="stylesheet"
@@ -92,29 +96,35 @@ body {
 			<thead>
 				<tr>
 					<th></th>
-					<th style="color: #2a9fd6;">Rating: ----</th>
-					<th style="color: #2a9fd6;">Genres: ----</th>
+					<th style="color: #2a9fd6;">Rating: </th>
+					<th style="color: #2a9fd6;">Genres: </th>
 					<th style="color: #2a9fd6;"></th>
-					<th style="color: #2a9fd6;">Average Playtime: ----</th>
-					<th style="color: #2a9fd6;">ESRB Rating: </th>
+					<th style="color: #2a9fd6;">Average Playtime: </th>
+					<th style="color: #2a9fd6;">Retail $/hour: </th>
+					<th style="color: #2a9fd6;">ESRB: </th>
+					<th style="color: #2a9fd6;">Released: </th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<td><img src="${rawgDetails.getBackground_image() }"
 						style="width: 600px; height: auto; border: 5px solid #59A7FF"></td>
-					<td style="width: 300px;">${rawgDetails.getRating()}/ 5</td>
-					<td><c:forEach var="genre" items="${rawgDetails.getGenres() }">${genre.getName() }; </c:forEach></td>
+					<td style="width: 200px;">${rawgDetails.getRating()}/ 5</td>
+					<td style="width: 200px;"><c:forEach var="genre" items="${rawgDetails.getGenres() }">${genre.getName() }; </c:forEach></td>
 					<td></td>		
-					<td>${rawgDetails.getPlaytime() } hrs.</td>
-					<td>${rawgDetails.getEsrb_rating().getName() }</td>
+					<td style="width: 200px;">${rawgDetails.getPlaytime() } hrs.</td>
+					<td style="width: 200px;">$${pricephour }</td>
+					<td style="width: 200px;">${rawgDetails.getEsrb_rating().getName() }</td>
+					<td style="width: 200px;">${rawgDetails.getReleased() }</td>
 				</tr>	
 			</tbody>
 		</table>
 	</font>
 	
-	<font size="5">
-	<table>
+<br />
+	
+	<font size="7">
+	<table class="center">
 		<thead>
 			<th style="color: #2a9fd6;">Stores: </th>
 			<th></th>
@@ -135,7 +145,12 @@ body {
 	</font>
 <br />
 
-<font size="6"><a class="buttonstylethree" href="/add/${rawgDetails.getId() }/${steamid}/${sharkgame.getGameId()}">Add game to Wishlist</a></font>
+<center>
+<font size="7">
+<a class="buttonstylethree" href="/add/${rawgDetails.getId() }/${steamid}/${sharkgame.getGameId()}">Add game to Wishlist</a>
+</font>
+</center>
+
 <br />
 <br />
 <h3 class="buttonstyletwo" >Description: </h3>

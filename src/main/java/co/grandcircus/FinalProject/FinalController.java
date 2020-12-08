@@ -3,6 +3,7 @@ package co.grandcircus.FinalProject;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -174,6 +175,16 @@ public class FinalController {
 			realdeals.add(prettydeal);
 		}
 		
+		String retail = deals.get(0).getRetailPrice(); // pulling retail price
+		Double retaildouble = Double.parseDouble(retail); // changing retail price to double
+		String playtime = rawgGame.getPlaytime(); // pulling average playtime from RAWG
+		Double playtimedouble = Double.parseDouble(playtime); // changing playtime to double
+		Double pricephour = retaildouble / playtimedouble; // price per hour calculation based on average playtime and retail price
+		DecimalFormat twoPlaces = new DecimalFormat("0.00"); // formatting to 2 decimal places
+		String finalpricephour = twoPlaces.format(pricephour); // assigning string the price per hour with 2 decimal place formatting
+		
+		
+		model.addAttribute("pricephour", finalpricephour);
 		model.addAttribute("steamid", steamId);
 		model.addAttribute("sharkgame", sharkGame);		
 		model.addAttribute("deals", realdeals);
