@@ -21,7 +21,7 @@ public class WishList {
 	private Integer steamId;
 	private String dealId;
 	private String storeId;
-	private String price;
+	private Double price;
 	
 	public String getDealId() {
 		return dealId;
@@ -39,11 +39,11 @@ public class WishList {
 		this.storeId = storeId;
 	}
 
-	public String getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 
