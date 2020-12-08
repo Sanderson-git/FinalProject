@@ -7,12 +7,12 @@ import javax.persistence.*;
 public class CheapSharkStoreName {
 	
 	@Id
-	private Long storeid;
+	private String storeid;
 	private String storename;
-	public Long getStoreid() {
+	public String getStoreid() {
 		return storeid;
 	}
-	public void setStoreid(Long storeid) {
+	public void setStoreid(String storeid) {
 		this.storeid = storeid;
 	}
 	public String getStorename() {
