@@ -122,22 +122,22 @@ public class FinalController {
 	@GetMapping("/details/{id}")
 	private String gameDetails(@PathVariable Integer id, Model model) {
 		
-		System.out.println("1");
+		//System.out.println("1");
 		
 		RawgGame rawgGame = rawgapi.rawgGame(id); //get rawgGame object from api query using rawgId selected by previous api search
 		model.addAttribute("rawgDetails",rawgGame); //add whole rawgGame object for details.jsp 
-		System.out.println("2");
+		//System.out.println("2");
 		Integer steamId = null; //initialize steam id variable for later cheapshark api query
 		
 		
 		GameStoreResponse response = rawgapi.rawgStoreLink(id.toString());
-		System.out.println("3");
+		//System.out.println("3");
 		List<GameSpecificStore> stores = response.getResults(); //get list of StoreResults from rawg store call to find the steam Store and thereby the game id on it
 		
 		for(GameSpecificStore str : stores) { //loop through the StoreResults to find the steam Store
 			if(str.getStore_id().compareTo("1") == 0) { //id is saaved as a String so use compareTo which returns an int, a return of 0 means true
 				//if it is the Steam store, find the game Steam Id (there is no UPC (universal product code) listed on either api, the Steam Id for games on each api is used in lieu of this
-				System.out.println("4");
+				//System.out.println("4");
 				URI uri = null;
 				try {
 					uri = new URI(str.getUrl());
@@ -148,17 +148,17 @@ public class FinalController {
 				String idStr = segments[segments.length-1]; //the game-store id is listed on the StoreResults object
 				
 				steamId = Integer.parseInt(idStr); //get steam id
-				System.out.println(steamId);
+				//System.out.println(steamId);
 			}
 		}
 		
 		
 		CheapsharkGame sharkGame = csharkapi.getCheapsharkGameListViaSteamId(steamId); //using the steamId, find the corresponding game on Cheapshark api (contains pricing comparison information)
-		System.out.println(sharkGame.getGameId());
+		//System.out.println(sharkGame.getGameId());
 		
 		CheapsharkGameDetails sharkDetails = csharkapi.cheapSharkGame(sharkGame.getGameId()); //using the game id from the CheapsharkGame object obtained by the steamId, get all Cheapshark game details (this will include all pricing comparison info)
 		
-		System.out.println("6");
+		//System.out.println("6");
 		List<Deal> deals = sharkDetails.getDeals();//pricing from various stores
 		
 		List<PrettyDeal> realdeals = new ArrayList<>();
@@ -168,7 +168,7 @@ public class FinalController {
 			prettydeal.setStoreID(d.getStoreID());
 			prettydeal.setPrice(d.getPrice());
 			prettydeal.setDealID(d.getDealID());
-			System.out.println(prettydeal.getStoreID());
+			//System.out.println(prettydeal.getStoreID());
 			prettydeal.setStoreName(csstorerep.findById(d.getStoreID()).orElse(null).getStorename()); // setting Prettydeal store name equal to cheapsharkstore repo storename, finding by STRING id.
 			
 			realdeals.add(prettydeal);
@@ -189,7 +189,7 @@ public class FinalController {
 	public String sessionTest(Model model) {
 		User user = (User)session.getAttribute("user");
 		if (user==null) {
-			return "redirect:/";
+			return "sessiontest";
 		}
 		model.addAttribute("user",user);
 		return "sessiontest";
@@ -301,7 +301,7 @@ public class FinalController {
 		for(Genre genre : gameGenres) {
 			
 			Genres genres = genresrep.getOne(genre.getId());
-			System.out.println(genres.getName());
+			//System.out.println(genres.getName());
 						
 			wishlistGenres.add(genres);
 			
@@ -311,29 +311,65 @@ public class FinalController {
 				
 		wishrep.save(wishes);
 				
-		return "wishlist";
+		return "redirect:/wishlist";
 	}
 	
 	@GetMapping("/wishlist")
 	public String viewWishlist(Model model) {
 		
 		User user = (User)session.getAttribute("user"); //get user from session
+		System.out.println(user.getId());
 		
 		List<WishList> wishes = wishrep.findByUserId(user.getId()); //find all wishlist games for a specific user
+		System.out.println(wishes);
 		
 		for(WishList wish : wishes) {
 			
 			CheapsharkGameDetails gameDetails = csharkapi.cheapSharkGame(wish.getCsharkId().toString());
 			List<Deal> gameDeals = gameDetails.getDeals();
+			System.out.println(gameDeals);
+			wish.setPrice(Double.parseDouble((gameDeals.get(0).getPrice())));
 			
+						
+			for (Deal g : gameDeals) {
 			
+				Double price = Double.parseDouble(g.getPrice());
+				Double wishPrice = wish.getPrice();
+				
+				//System.out.println(price);
+				//System.out.println(wishPrice);
+				
+				if (wishPrice >= price) {
+					wish.setPrice(Double.parseDouble(g.getPrice()));
+				
+					
+					
+					wish.setStoreId(g.getStoreID());
+					wish.setDealId(g.getDealID());
+					
+					System.out.println(wish.getPrice());
+					System.out.println(wish.getName());
+				
+				}
+			}	
 			
+			model.addAttribute("wish", wish);
 			
 		}
 		
 		
+		
 		return "wishlist";
 	}
+	
+	
+	@GetMapping("/wishlist/{id}")
+	public String deleteFromWishlist(@PathVariable Long id) {
+		wishrep.deleteById(id);
+		return "redirect:/wishlist";
+	}
+	
+	
 	
 	
 }
