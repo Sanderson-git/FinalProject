@@ -2,15 +2,15 @@ package co.grandcircus.FinalProject.services;
 
 public class Genre {
 
-	private Integer id;
+	private Long id;
 	private String name;
 	private String slug;
 	
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 	
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	
@@ -30,7 +30,7 @@ public class Genre {
 		this.slug = slug;
 	}
 
-	public Genre(Integer id, String name, String slug) {
+	public Genre(Long id, String name, String slug) {
 		super();
 		this.id = id;
 		this.name = name;

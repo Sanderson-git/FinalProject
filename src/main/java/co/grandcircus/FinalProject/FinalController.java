@@ -3,7 +3,10 @@ package co.grandcircus.FinalProject;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -188,6 +191,107 @@ public class FinalController {
 	    List<RawgGame> games = results.getResults();
 		model.addAttribute("games", games);
 		return "searchresults";
+	}
+	
+	@GetMapping("/recommendations")
+	private String userRecom(Model model) {
+		
+		User user = (User)session.getAttribute("user");  // get user by session
+		
+		List<WishList> wishGames = wishrep.findByUserId(user.getId()); // get wishlist games by user id
+		
+		List<Genres> wishGenres = new ArrayList<>(); //start list for wishlist genres
+		
+		for(WishList game : wishGames) { // loops through wishlist games to get each game's genres
+			
+			wishGenres.addAll(genresrep.findByWishlistId(game.getWishlistid())); //adds all of each game's genres to genres list
+			
+		}
+		
+		Set<Genres> uniqueGenres = new HashSet<Genres>(wishGenres); //only want to loop through genres that the user has within their wishlist
+		
+		int topG = 0;
+		String topGname = "";
+		int secondG = 0;
+		String secondGname = "";
+		int thirdG = 0;
+		String thirdGname = "";	
+		int total = 0;
+		
+		for(Genres g : uniqueGenres) {
+
+			
+			for(int i=0; i < wishGenres.size(); i++ ) {
+				
+				int match = 0;
+				
+				if(wishGenres.get(i) == g) {
+					
+					match++;
+					total++;
+					
+				} else {}
+				
+				if(match > topG) {
+					topGname = g.getName();
+					topG = match;
+				} else if (match > secondG) {
+					secondGname = g.getName();
+					secondG = match;
+				} else if (match > thirdG) {
+					thirdGname = g.getName();
+					thirdG = match;
+				} else {}
+									
+			}
+			
+		}
+		
+		
+		
+		
+		//top game for genre: search by genre & store & (ordering query rating - may default to this)
+		
+		return "recommendations";
+	}
+	
+	@GetMapping("/add/{rawgid}/{steamid}/{csharkid}")
+	public String addToWishlist(@PathVariable Integer rawgid,@PathVariable Integer steamid,@PathVariable Integer csharkid, Model model) {
+		
+		RawgGame rawgGame = rawgapi.rawgGame(rawgid); //api call to get rawgGame object and genre list
+		
+		model.addAttribute("rawgGame",rawgGame);
+		
+		User user = (User)session.getAttribute("user"); //get user from session
+		
+		WishList wishes = new WishList(); //initial wishlist
+		
+		wishes.setUser(user); //save user object to wishlist for repo mapping
+		System.out.println(user.getId());
+		
+		wishes.setName(rawgGame.getName());
+		wishes.setRawgId(rawgid);
+		wishes.setSteamId(steamid);
+		wishes.setCsharkId(csharkid);
+		
+		List<Genre> gameGenres = rawgGame.getGenres();
+		
+		Set<Genres> wishlistGenres = new HashSet<>();
+		
+		for(Genre genre : gameGenres) {
+			
+			Genres genres = genresrep.getOne(genre.getId());
+			System.out.println(genres.getName());
+						
+			wishlistGenres.add(genres);
+			
+		}
+		
+		wishes.setGenres(wishlistGenres);
+				
+		wishrep.save(wishes);
+				
+		return "wishlist";
 	}
 	
 	

@@ -20,13 +20,22 @@ public class WishList {
 	private Integer csharkId;
 	private Integer steamId;
 	
-	@ManyToMany(mappedBy = "wishlists")
+	@ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(joinColumns = @JoinColumn(name = "wishlistid"), inverseJoinColumns = @JoinColumn(name = "genre_id")) //each relationship has an owning side --in this case wishlist.  usually you will assign one side, you will be adding genres to wishlist therefore wishlist is owning side
     private Set<Genres> genres;
 
 	
 	
 	
 	
+	public Set<Genres> getGenres() {
+		return genres;
+	}
+
+	public void setGenres(Set<Genres> genres) {
+		this.genres = genres;
+	}
+
 	public WishList() {}
 	
 	public WishList(Long wishlistid, User user, String name, Integer rawgId, Integer csharkId, Integer steamId) {

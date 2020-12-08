@@ -19,7 +19,35 @@ public class RawgGame {
 	private List<tag> tags;
 	private List<short_screenshot> short_screenshots;
 	private List<Genre> genres;
+	private String description_raw;
+	private EsrbRating esrb_rating;
 	
+		
+	
+	public String getDescription_raw() {
+		return description_raw;
+	}
+
+	public void setDescription_raw(String description_raw) {
+		this.description_raw = description_raw;
+	}
+
+	public EsrbRating getEsrb_rating() {
+		return esrb_rating;
+	}
+
+	public void setEsrb_rating(EsrbRating esrb_rating) {
+		this.esrb_rating = esrb_rating;
+	}
+
+	public String getDescriptionRaw() {
+		return description_raw;
+	}
+
+	public void setDescriptionRaw(String description_raw) {
+		this.description_raw = description_raw;
+	}
+
 	public String getSlug() {
 		return slug;
 	}
