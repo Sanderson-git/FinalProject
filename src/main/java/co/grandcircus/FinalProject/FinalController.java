@@ -163,10 +163,20 @@ public class FinalController {
 		
 		List<PrettyDeal> realdeals = new ArrayList<>();
 				// link to deal through cheapshark https://www.cheapshark.com/redirect?dealID={id}
+		for (Deal d : deals) {
+			PrettyDeal prettydeal = new PrettyDeal();
+			prettydeal.setStoreID(d.getStoreID());
+			prettydeal.setPrice(d.getPrice());
+			prettydeal.setDealID(d.getDealID());
+			System.out.println(prettydeal.getStoreID());
+			prettydeal.setStoreName(csstorerep.findById(d.getStoreID()).orElse(null).getStorename()); // setting Prettydeal store name equal to cheapsharkstore repo storename, finding by STRING id.
+			
+			realdeals.add(prettydeal);
+		}
 		
-		
-					
-		model.addAttribute("deals",deals);
+		model.addAttribute("steamid", steamId);
+		model.addAttribute("sharkgame", sharkGame);		
+		model.addAttribute("deals", realdeals);
 		model.addAttribute("sharkDetails",sharkDetails);
 		
 		return "details";
@@ -271,7 +281,9 @@ public class FinalController {
 		model.addAttribute("rawgGame",rawgGame);
 		
 		User user = (User)session.getAttribute("user"); //get user from session
-		
+		if (user == null) {
+			return "redirect:/login";
+		}
 		WishList wishes = new WishList(); //initial wishlist
 		
 		wishes.setUser(user); //save user object to wishlist for repo mapping

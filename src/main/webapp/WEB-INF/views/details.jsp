@@ -11,7 +11,7 @@ body {
 	background-image: url(${rawgGame.background_image});
 }
 .buttonstyle {
-	display: block;
+	
 	background: #2a9fd6;
 	padding: 15px;
 	text-align: center;
@@ -19,6 +19,26 @@ body {
 	color: white;
 	font-weight: bold;
 	line-height: 50px;
+}
+.buttonstyletwo {
+	display: block;
+	background: #2a9fd6;
+	padding: 5px;
+	text-align: center;
+	border-radius: 10px;
+	color: white;
+	font-weight: bold;
+	line-height: 40px;
+}
+.buttonstylethree {
+	
+	background: #2a9fd6;
+	padding: 5px;
+	text-align: center;
+	border-radius: 10px;
+	color: white;
+	font-weight: bold;
+	line-height: 40px;
 }
 </style>
 
@@ -72,10 +92,11 @@ body {
 			<thead>
 				<tr>
 					<th></th>
-					<th style="color: #2a9fd6;">Rating:</th>
-					<th style="color: #2a9fd6;">Genres:</th>
+					<th style="color: #2a9fd6;">Rating: ----</th>
+					<th style="color: #2a9fd6;">Genres: ----</th>
 					<th style="color: #2a9fd6;"></th>
-					<th style="color: #2a9fd6;">Average Playtime: </th>
+					<th style="color: #2a9fd6;">Average Playtime: ----</th>
+					<th style="color: #2a9fd6;">ESRB Rating: </th>
 				</tr>
 			</thead>
 			<tbody>
@@ -86,6 +107,7 @@ body {
 					<td><c:forEach var="genre" items="${rawgDetails.getGenres() }">${genre.getName() }; </c:forEach></td>
 					<td></td>		
 					<td>${rawgDetails.getPlaytime() } hrs.</td>
+					<td>${rawgDetails.getEsrb_rating().getName() }</td>
 				</tr>	
 			</tbody>
 		</table>
@@ -94,25 +116,32 @@ body {
 	<font size="5">
 	<table>
 		<thead>
-			<th>Store: </th>
+			<th style="color: #2a9fd6;">Stores: </th>
 			<th></th>
-			<th>Pricing: </th>
+			<th style="color: #2a9fd6;">Pricing: </th>
+			<th></th>
 		</thead>
 		<tbody>
 			<c:forEach var="deal" items="${deals }">
 				<tr>
-					<td>StoreName</td>
+					<td>${deal.getStoreName() }</td>
 					<td></td>
 					<td>$${deal.getPrice() }</td>
+					<td><a class="buttonstyletwo" href="https://www.cheapshark.com/redirect?dealID=${deal.getDealID() }">Purchase</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 	</font>
-	
-<h3>Description: </h3>
-<div><p>${rawgDetails.getDescription_raw() }</p></div>
+<br />
 
+<font size="6"><a class="buttonstylethree" href="/add/${rawgDetails.getId() }/${steamid}/${sharkgame.getGameId()}">Add game to Wishlist</a></font>
+<br />
+<br />
+<h3 class="buttonstyletwo" >Description: </h3>
+<div><font size="4"><p>${rawgDetails.getDescription_raw() }</p></font></div>
+
+<br /><br /><br /><br /><br />
 
 </body>
 </html>

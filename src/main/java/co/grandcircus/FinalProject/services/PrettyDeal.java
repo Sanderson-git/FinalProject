@@ -57,14 +57,15 @@ public class PrettyDeal {
 		this.savings = savings;
 	}
 
-	public Deal(String storeID, String price, String retailPrice, String savings) {
+	public PrettyDeal(String storeID, String price, String retailPrice, String savings, String storeName) {
 		super();
+		this.storeName = storeName;
 		this.storeID = storeID;
 		this.price = price;
 		this.retailPrice = retailPrice;
 		this.savings = savings;
 	}
 	
-	public Deal() {
+	public PrettyDeal() {
 	}
 }
