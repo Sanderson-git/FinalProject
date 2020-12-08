@@ -13,7 +13,7 @@ public class User {
 	private Long id;
 	private String username;
 	private String password;
-	@OneToMany(mappedBy="wishlistid")
+	@OneToMany(mappedBy="user")
 	private List<WishList> wishlist;
 	
 	public User() {}

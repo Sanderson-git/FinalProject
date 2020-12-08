@@ -282,13 +282,6 @@ public class FinalController {
 			
 			Genres genres = genresrep.getOne(genre.getId());
 			System.out.println(genres.getName());
-			
-			//genres.setName(genre.getName());
-			//genres.setSlug(genre.getSlug());
-			
-			//System.out.println(genre.getId()); 
-			
-			//genres.setGenreId(genre.getId());
 						
 			wishlistGenres.add(genres);
 			
@@ -297,9 +290,7 @@ public class FinalController {
 		wishes.setGenres(wishlistGenres);
 				
 		wishrep.save(wishes);
-		
-		
-		
+				
 		return "wishlist";
 	}
 	
