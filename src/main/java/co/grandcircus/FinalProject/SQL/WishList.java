@@ -27,6 +27,14 @@ public class WishList {
 	
 	
 	
+	public Set<Genres> getGenres() {
+		return genres;
+	}
+
+	public void setGenres(Set<Genres> genres) {
+		this.genres = genres;
+	}
+
 	public WishList() {}
 	
 	public WishList(Long wishlistid, User user, String name, Integer rawgId, Integer csharkId, Integer steamId) {
