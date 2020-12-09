@@ -4,7 +4,8 @@ package co.grandcircus.FinalProject;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
+import java.util.*;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -231,11 +232,11 @@ public class FinalController {
 		
 		List<Genres> wishGenres = new ArrayList<>(); //start list for wishlist genres
 		
-		for(WishList game : wishGames) { // loops through wishlist games to get each game's genres
+		//for(WishList game : wishGames) { // loops through wishlist games to get each game's genres
 			
-			wishGenres.addAll(genresrep.findByWishlistId(game.getWishlistid())); //adds all of each game's genres to genres list
+			wishGenres.addAll(genresrep.findByWishlistsIn(wishGames)); //adds all of each game's genres to genres list
 			
-		}
+		//}
 		
 		Set<Genres> uniqueGenres = new HashSet<Genres>(wishGenres); //only want to loop through genres that the user has within their wishlist
 		
@@ -247,12 +248,14 @@ public class FinalController {
 		String thirdGname = "";	
 		int total = 0;
 		
+		Map<String, Integer> genreCount = new HashMap<>();
+		
 		for(Genres g : uniqueGenres) {
 
+			int match = 0;
 			
 			for(int i=0; i < wishGenres.size(); i++ ) {
 				
-				int match = 0;
 				
 				if(wishGenres.get(i) == g) {
 					
@@ -260,21 +263,43 @@ public class FinalController {
 					total++;
 					
 				} else {}
-				
-				if(match > topG) {
-					topGname = g.getName();
-					topG = match;
-				} else if (match > secondG) {
-					secondGname = g.getName();
-					secondG = match;
-				} else if (match > thirdG) {
-					thirdGname = g.getName();
-					thirdG = match;
-				} else {}
-									
+							
 			}
+			genreCount.put(g.getName(), match);
+//			System.out.println(g.getName());
+//			System.out.println(match);
 			
 		}
+		
+		for(Map.Entry<String, Integer> entry : genreCount.entrySet()) {
+			
+			if (entry.getValue() > topG) {
+				topGname = entry.getKey();
+				topG = entry.getValue();
+				}
+		}
+		for(Map.Entry<String, Integer> entry : genreCount.entrySet()) {
+
+			if (entry.getValue() > secondG && entry.getValue() < topG) {
+				secondGname = entry.getKey();
+				secondG = entry.getValue();
+				}
+		}
+		for(Map.Entry<String, Integer> entry : genreCount.entrySet()) {
+			
+			if (entry.getValue() > thirdG && entry.getValue() < secondG) {
+				thirdGname = entry.getKey();
+				thirdG = entry.getValue();
+			}
+						
+			
+			} 
+		System.out.println(topG);
+		System.out.println(secondG);
+		System.out.println(thirdG);
+		
+   
+		
 		
 		
 		
