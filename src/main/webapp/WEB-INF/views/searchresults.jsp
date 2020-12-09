@@ -47,9 +47,9 @@ td {
 				<li class="nav-item active"><a class="nav-link" href="/login">Login
 						<span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Wishlist</a>
+				<li class="nav-item"><a class="nav-link" href="/wishlist">Wishlist</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="#">Recommendations</a>
+				<li class="nav-item"><a class="nav-link" href="/recommendations">Recommendations</a>
 				</li>
 				<li class="nav-item"><a class="nav-link" href="#">About US!</a>
 				</li>
@@ -83,7 +83,9 @@ td {
 
 				<c:forEach var="games" items="${ games }">
 					<tr>
+
 						<td><a class="buttonstyle" href="/details/${ games.getId()}">${ games.getName() }</a></td>
+						
 						<td style="width: 300px;">${games.getRating()}/ 5</td>
 						<td><img src="${ games.getBackground_image() }"
 							alt="${games.getName()}" style="width: 400px; height: auto; border: 5px solid #59A7FF"></td>
