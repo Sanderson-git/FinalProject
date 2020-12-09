@@ -26,16 +26,16 @@ public class WishList {
 	private Double price;
 	private String background_image;
 	private Double rating;
-	private Double desiredprice;
+	private Integer desiredprice;
 	
 	
 	
 	
-	public Double getDesiredprice() {
+	public Integer getDesiredprice() {
 		return desiredprice;
 	}
 
-	public void setDesiredprice(Double desiredprice) {
+	public void setDesiredprice(Integer desiredprice) {
 		this.desiredprice = desiredprice;
 	}
 

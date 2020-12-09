@@ -11,8 +11,8 @@
 body {
 	background-image: url(${rawgGame.background_image});
 }
+
 .buttonstyle {
-	
 	background: #2a9fd6;
 	padding: 15px;
 	text-align: center;
@@ -21,6 +21,7 @@ body {
 	font-weight: bold;
 	line-height: 50px;
 }
+
 .buttonstyletwo {
 	display: block;
 	background: #2a9fd6;
@@ -31,8 +32,8 @@ body {
 	font-weight: bold;
 	line-height: 40px;
 }
+
 .buttonstylethree {
-	
 	background: #2a9fd6;
 	padding: 5px;
 	text-align: center;
@@ -41,6 +42,7 @@ body {
 	font-weight: bold;
 	line-height: 40px;
 }
+
 .center {
 	margin-left: auto;
 	margin-right: auto;
@@ -73,8 +75,8 @@ body {
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="/wishlist">Wishlist</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="/recommendations">Recommendations</a>
-				</li>
+				<li class="nav-item"><a class="nav-link"
+					href="/recommendations">Recommendations</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">About US!</a>
 				</li>
 			</ul>
@@ -89,16 +91,17 @@ body {
 			<!-- **** -->
 		</div>
 	</nav>
-	
-	<font size="7">
+
+	<font size="5">
 		<table>
 			<thead>
 				<tr>
 					<th style="color: #2a9fd6;">Game:</th>
 					<th style="color: #2a9fd6;">Rating:</th>
 					<th></th>
-					<th style="color: #2a9fd6;">Genres:</th>
-					<th style="color: #2a9fd6;">Cheapest Price: </th>
+					<th style="color: #2a9fd6;">Cheapest Price:</th>
+					<th style="color: #2a9fd6;">Desired Price:</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -106,18 +109,33 @@ body {
 				<c:forEach var="games" items="${ games }">
 					<tr>
 
-						<td><a class="buttonstyle" href="/details/${ games.getRawgId()}">${ games.getName() }</a></td>
-						
-						<td style="width: 300px;">${games.getRating()}/ 5</td>
+						<td><a class="buttonstyle"
+							href="/details/${ games.getRawgId()}">${ games.getName() }</a></td>
+
+						<td style="width: 300px;">${games.getRating()}/5</td>
 						<td><img src="${ games.getBackground_image() }"
-							alt="${games.getName()}" style="width: 400px; height: auto; border: 5px solid #59A7FF"></td>
-						<td style="width: 300px;"><c:forEach var="genre" items="${games.getGenres() }">${genre.getName() }; </c:forEach></td>
+							alt="${games.getName()}"
+							style="width: 400px; height: auto; border: 5px solid #59A7FF"></td>
 						<td style="width: 300px;">$${games.getPrice() }</td>
+						<td style="width: 300px;">
+							<form method="post"
+								action="/wishlist/setalert/${ games.getWishlistid() }">
+								<input type="number" placeholder="$${ games.getDesiredprice() }"
+									name="setalert" /> <input type="submit" name="submit" />
+							</form>
+						</td>
+						<td><c:if
+								test="${ games.getDesiredprice() >=  games.getPrice() }">
+								<a
+									href="https://www.cheapshark.com/redirect?dealID=${games.getDealId() }"
+									class="buttonstyletwo">Buy Now!</a>
+							</c:if></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 	</font>
+
 
 </body>
 </html>
