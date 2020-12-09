@@ -47,9 +47,9 @@ td {
 				<li class="nav-item active"><a class="nav-link" href="/login">Login
 						<span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Wishlist</a>
+				<li class="nav-item"><a class="nav-link" href="/wishlist">Wishlist</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="#">Recommendations</a>
+				<li class="nav-item"><a class="nav-link" href="/recommendations">Recommendations</a>
 				</li>
 				<li class="nav-item"><a class="nav-link" href="#">About US!</a>
 				</li>
