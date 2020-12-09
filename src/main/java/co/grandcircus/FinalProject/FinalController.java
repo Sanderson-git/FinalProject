@@ -96,7 +96,7 @@ public class FinalController {
 		return "login";
 	}
 
-	@PostMapping("/sessiontest")
+	@PostMapping("/profile")
 	public String login(String username, String password, Model model) {
 		User user = userrep.findFirstByUsername(username).orElse(null);
 		if (user == null) {
@@ -106,13 +106,32 @@ public class FinalController {
 
 				session.setAttribute("user", user);
 				model.addAttribute("user", user);
-				return "sessiontest";
+				return "profile";
 			} else {
 				return "fail";
 
 			}
 
 		}
+	}
+	
+	@PostMapping("register")
+	public String register(User user) {
+		userrep.save(user);
+		session.setAttribute("user", user);
+		return "register";
+	}
+	
+	@GetMapping("/logout")
+	public String logout() {
+		User user = (User) session.getAttribute("user");
+		
+		if (user == null) {
+			return "redirect:/index";
+		}
+		
+		session.invalidate();
+		return "logout";
 	}
 
 	@GetMapping("/details/{id}")
@@ -219,22 +238,6 @@ public class FinalController {
 
 		return "details";
 
-	}
-
-	@GetMapping("/sessiontest")
-	public String sessionTest(Model model) {
-		User user = (User) session.getAttribute("user");
-		if (user == null) {
-			return "sessiontest";
-		}
-		model.addAttribute("user", user);
-		return "sessiontest";
-	}
-
-	@GetMapping("/logout")
-	public String logout() {
-		session.invalidate();
-		return "sessiontest";
 	}
 
 	@PostMapping("/searchresults")

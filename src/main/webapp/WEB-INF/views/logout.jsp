@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Session Test</title>
+<title>Logout</title>
 
 
 <link rel="stylesheet"
@@ -14,6 +14,9 @@
 
 </head>
 <body>
+	<!-- Logo -->
+	<img
+		src="https://drive.google.com/uc?id=1BmbUr80SogYS3LZdkH3hqBuqZbyyiSkX" />
 	<h1></h1>
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -29,24 +32,30 @@
 				<li class="nav-item active"><a class="nav-link" href="/login">Login
 						<span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><li class="nav-item"><a class="nav-link" href="/wishlist">Wishlist</a>
+				<li class="nav-item"><a class="nav-link" href="/wishlist">Wishlist</a>
 				</li>
-				<li class="nav-item"><a class="nav-link"
-					href="/recommendations">Recommendations</a>
-				</li><li class="nav-item"><a class="nav-link" href="#">About US!</a>
+				<li class="nav-item"><a class="nav-link" href="/recommendations">Recommendations</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="#">About US!</a>
 				</li>
 			</ul>
-			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" type="text" placeholder="Search">
+			<span class="navbar-brand">${ user.username }</span>
+    		<a class="btn navbar-btn btn-default navbar-right pull-right" role="button" href="/logout">Logout</a>
+
+			<!-- Search function -->
+			<form class="form-inline my-2 my-lg-0" method="post"
+				action="/searchresults">
+				<input class="form-control mr-sm-2" type="text" placeholder="Search"
+					name="search">
 				<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
 			</form>
+			<!-- **** -->
 		</div>
 	</nav>
 
-	<h3>You are logged in as:</h3>
+	Logout
 
-	<p>Username: ${ user.username }</p>
-	<p>Password: ${ user.password }</p>
+
 
 </body>
 </html>

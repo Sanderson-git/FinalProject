@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Fail</title>
+<title>Profile</title>
 
 
 <link rel="stylesheet"
@@ -53,7 +53,8 @@
 		</div>
 	</nav>
 
-	<h3>Sorry, your login was invalid</h3>
+	Profile:
+	<p>Username: ${ user.username }</p>
 
 
 </body>

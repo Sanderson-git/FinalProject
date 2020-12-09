@@ -39,6 +39,8 @@
 				<li class="nav-item"><a class="nav-link" href="#">About US!</a>
 				</li>
 			</ul>
+			<span class="navbar-brand">${ user.username }</span>
+    		<a class="btn navbar-btn btn-default navbar-right pull-right" role="button" href="/logout">Logout</a>
 
 			<!-- Search function -->
 			<form class="form-inline my-2 my-lg-0" method="post"
@@ -51,9 +53,20 @@
 		</div>
 	</nav>
 
-	<form method="post" action="/sessiontest">
-		Username:<input type="text" name="username" /><br /> Password:<input
-			type="password" name="password" /><br /> <input type="submit" />
+	Login:
+	<form method="post" action="/profile">
+		Username:<input type="text" name="username" /><br /> 
+		Password:<input type="password" name="password" /><br /> 
+		<input type="submit" />
+	</form>
+	
+	<br /><br />
+	No login? Register below:<br />
+	
+	<form method="post" action="/register">
+		Username:<input type="text" name="username" /><br /> 
+		Password:<input type="password" name="password" /><br /> 
+		<input type="submit" />
 	</form>
 
 
