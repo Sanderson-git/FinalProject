@@ -339,6 +339,7 @@ public class FinalController {
 				resultSet.addAll(resultsThree.getResults());
 			}
 		}
+		
 		model.addAttribute("games", resultSet); // adding Set collection with 3 RAWG api game lists to model
 		return "recommendations";
 	}
@@ -354,7 +355,8 @@ public class FinalController {
 		User user = (User) session.getAttribute("user"); // get user from session
 		if (user == null) {
 			return "redirect:/login";
-		}
+		}	
+		
 		WishList wishes = new WishList(); // initial wishlist
 
 		wishes.setUser(user); // save user object to wishlist for repo mapping
@@ -380,6 +382,7 @@ public class FinalController {
 		}
 
 		wishes.setGenres(wishlistGenres);
+		
 
 		wishrep.save(wishes);
 
@@ -444,6 +447,18 @@ public class FinalController {
 	public String deleteFromWishlist(@PathVariable Long id) {
 		wishrep.deleteById(id);
 		return "redirect:/wishlist";
+	}
+	
+	@GetMapping("/searchresults/{genreid}")
+	public String searchByGenre(@PathVariable Long genreid, Model model) {
+		
+		RawgResponse results = rawgapi.rawgGenreList(genreid.toString()); 
+		
+		List<RawgGame> games = results.getResults();
+		
+		model.addAttribute("games", games);
+		
+		return "searchresults";
 	}
 
 }

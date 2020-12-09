@@ -41,6 +41,16 @@ body {
 	font-weight: bold;
 	line-height: 40px;
 }
+.tagstyle {
+	
+	background: #d3d3d3 ;
+	padding: 2px;
+	text-align: center;
+	border-radius: 5px;
+	color: black;
+	font-weight: bold;
+	line-height: 20px;
+}
 
 .center {
 	margin-left: auto;
@@ -112,8 +122,8 @@ body {
 					<td><img src="${rawgDetails.getBackground_image() }"
 						style="width: 600px; height: auto; border: 5px solid #59A7FF"></td>
 					<td style="width: 200px;">${rawgDetails.getRating()}/5</td>
-					<td style="width: 200px;"><c:forEach var="genre"
-							items="${rawgDetails.getGenres() }">${genre.getName() }; </c:forEach></td>
+					<td style="width: 200px;"><c:forEach var="genre" items="${rawgDetails.getGenres() }"><font size="5"><a class="tagstyle" href="/searchresults/${genre.getId() }">${genre.getName() }</a></font> </c:forEach></td>
+					
 					<td></td>
 					<td style="width: 200px;">${rawgDetails.getPlaytime() }hrs.</td>
 					<td style="width: 200px;">$${pricephour }</td>

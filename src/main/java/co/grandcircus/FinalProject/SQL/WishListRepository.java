@@ -8,4 +8,5 @@ public interface WishListRepository extends JpaRepository<WishList, Long>{
 
 	public List<WishList> findByUserId(Long id);
 	
+	
 }
