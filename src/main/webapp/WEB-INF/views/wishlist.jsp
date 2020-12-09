@@ -42,7 +42,16 @@ body {
 	font-weight: bold;
 	line-height: 40px;
 }
-
+.tagstyle {
+	
+	background: #d3d3d3 ;
+	padding: 2px;
+	text-align: center;
+	border-radius: 5px;
+	color: white;
+	font-weight: bold;
+	line-height: 20px;
+}
 .center {
 	margin-left: auto;
 	margin-right: auto;

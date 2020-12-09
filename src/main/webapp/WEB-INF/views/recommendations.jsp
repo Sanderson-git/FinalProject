@@ -38,6 +38,16 @@ body {
 	font-weight: bold;
 	line-height: 40px;
 }
+.tagstyle {
+	
+	background: #d3d3d3 ;
+	padding: 2px;
+	text-align: center;
+	border-radius: 5px;
+	color: black;
+	font-weight: bold;
+	line-height: 20px;
+}
 .center {
 	margin-left: auto;
 	margin-right: auto;
@@ -107,7 +117,7 @@ body {
 						<td style="width: 300px;">${game.getRating()}/ 5</td>
 						<td><img src="${ game.getBackground_image() }"
 							alt="${game.getName()}" style="width: 400px; height: auto; border: 5px solid #59A7FF"></td>
-						<td><c:forEach var="genre" items="${game.getGenres() }">${genre.getName() }; </c:forEach></td>
+						<td><c:forEach var="genre" items="${game.getGenres() }"><font size="5"><a class="tagstyle" href="/searchresults/${genre.getId() }">${genre.getName() }</a></font> </c:forEach></td>
 					</tr>
 				</c:forEach>
 			</tbody>
