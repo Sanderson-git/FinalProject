@@ -164,9 +164,9 @@ public class FinalController {
 					e.printStackTrace();
 				}
 				String[] segments = uri.getPath().split("/");
-				System.out.println(segments.length);
+				//System.out.println(segments.length);
 				String idStr = segments[2]; // the game-store id is listed on the StoreResults object
-				System.out.println(idStr);
+				//System.out.println(idStr);
 				steamId = Integer.parseInt(idStr); // get steam id
 				// System.out.println(steamId);
 			}
@@ -363,7 +363,7 @@ public class FinalController {
 		WishList wishes = new WishList(); // initial wishlist
 
 		wishes.setUser(user); // save user object to wishlist for repo mapping
-		System.out.println(user.getId());
+		//System.out.println(user.getId());
 
 		wishes.setName(rawgGame.getName());
 		wishes.setRawgId(rawgid);
@@ -401,16 +401,16 @@ public class FinalController {
 			return "redirect:/login";
 		}
 
-		System.out.println(user.getId());
+		//System.out.println(user.getId());
 
 		List<WishList> wishes = wishrep.findByUserId(user.getId()); // find all wishlist games for a specific user
-		System.out.println(wishes);
+		//System.out.println(wishes);
 
 		for (WishList wish : wishes) {
 
 			CheapsharkGameDetails gameDetails = csharkapi.cheapSharkGame(wish.getCsharkId().toString());
 			List<Deal> gameDeals = gameDetails.getDeals();
-			System.out.println(gameDeals);
+			//System.out.println(gameDeals);
 			wish.setPrice(Double.parseDouble((gameDeals.get(0).getPrice())));
 
 			for (Deal g : gameDeals) {
@@ -419,7 +419,7 @@ public class FinalController {
 				Double wishPrice = wish.getPrice();
 
 				// System.out.println(price);
-				// System.out.println(wishPrice);
+				// System.out.println(wishPrice);F
 
 				if (wishPrice >= price) {
 					wish.setPrice(Double.parseDouble(g.getPrice()));
@@ -427,8 +427,8 @@ public class FinalController {
 					wish.setStoreId(g.getStoreID());
 					wish.setDealId(g.getDealID());
 
-					System.out.println(wish.getPrice());
-					System.out.println(wish.getName());
+					//System.out.println(wish.getPrice());
+					//System.out.println(wish.getName());
 
 				}
 			}
@@ -446,9 +446,10 @@ public class FinalController {
 		return "redirect:/wishlist";
 	}
 
-	@GetMapping("/wishlist/{id}")
-	public String deleteFromWishlist(@PathVariable Long id) {
-		wishrep.deleteById(id);
+	@GetMapping("/wishlistdelete/{wishlistid}")
+	public String deleteFromWishlist(@PathVariable Long wishlistid) {
+		wishrep.delete(wishrep.getOne(wishlistid));
+		
 		return "redirect:/wishlist";
 	}
 	
