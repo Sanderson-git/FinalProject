@@ -109,8 +109,7 @@ body {
 				<c:forEach var="games" items="${ games }">
 					<tr>
 
-						<td><a class="buttonstyle"
-							href="/details/${ games.getRawgId()}">${ games.getName() }</a></td>
+						<td><a class="buttonstyle" href="/details/${ games.getRawgId()}">${ games.getName() }</a><a href="/wishlistdelete/${ games.getWishlistid() }" style="font:normal"><br/>delete</a></td>
 
 						<td style="width: 300px;">${games.getRating()}/5</td>
 						<td><img src="${ games.getBackground_image() }"
