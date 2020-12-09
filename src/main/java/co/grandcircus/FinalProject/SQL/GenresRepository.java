@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface GenresRepository extends JpaRepository<Genres, Long>{
 	
-	//public List<Genres> findByWishlistId(Long wishid);
+	public List<Genres> findByWishlistsIn(List<WishList> wishlist);
 
 }
