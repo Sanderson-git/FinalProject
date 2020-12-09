@@ -1,10 +1,57 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Wishlist</title>
+
+<style type="text/css">
+body {
+	background-image: url(${rawgGame.background_image});
+}
+.buttonstyle {
+	
+	background: #2a9fd6;
+	padding: 15px;
+	text-align: center;
+	border-radius: 10px;
+	color: white;
+	font-weight: bold;
+	line-height: 50px;
+}
+.buttonstyletwo {
+	display: block;
+	background: #2a9fd6;
+	padding: 5px;
+	text-align: center;
+	border-radius: 10px;
+	color: white;
+	font-weight: bold;
+	line-height: 40px;
+}
+.buttonstylethree {
+	
+	background: #2a9fd6;
+	padding: 5px;
+	text-align: center;
+	border-radius: 10px;
+	color: white;
+	font-weight: bold;
+	line-height: 40px;
+}
+.center {
+	margin-left: auto;
+	margin-right: auto;
+}
+</style>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cyborg/bootstrap.min.css"
+	integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2"
+	crossorigin="anonymous">
+
 </head>
 <body>
 	<!-- Logo -->
@@ -42,6 +89,35 @@
 			<!-- **** -->
 		</div>
 	</nav>
+	
+	<font size="7">
+		<table>
+			<thead>
+				<tr>
+					<th style="color: #2a9fd6;">Game:</th>
+					<th style="color: #2a9fd6;">Rating:</th>
+					<th></th>
+					<th style="color: #2a9fd6;">Genres:</th>
+					<th style="color: #2a9fd6;">Cheapest Price: </th>
+				</tr>
+			</thead>
+			<tbody>
+
+				<c:forEach var="games" items="${ games }">
+					<tr>
+
+						<td><a class="buttonstyle" href="/details/${ games.getRawgId()}">${ games.getName() }</a></td>
+						
+						<td style="width: 300px;">${games.getRating()}/ 5</td>
+						<td><img src="${ games.getBackground_image() }"
+							alt="${games.getName()}" style="width: 400px; height: auto; border: 5px solid #59A7FF"></td>
+						<td style="width: 300px;"><c:forEach var="genre" items="${games.getGenres() }">${genre.getName() }; </c:forEach></td>
+						<td style="width: 300px;">$${games.getPrice() }</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</font>
 
 </body>
 </html>
