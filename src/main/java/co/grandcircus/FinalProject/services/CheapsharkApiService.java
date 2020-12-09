@@ -19,10 +19,10 @@ public class CheapsharkApiService {
 		System.out.println(json);
 	}
 	
-	public CheapsharkGame getCheapsharkGameListViaSteamId (Integer steamId) {
+	public CheapsharkGame[] getCheapsharkGameListViaSteamId (Integer steamId) {
 		RestTemplate restTemplate = new RestTemplate();
 		String url = "https://www.cheapshark.com/api/1.0/games&steamAppID=" + steamId;
-		return restTemplate.getForObject(url, CheapsharkGame[].class)[0];
+		return restTemplate.getForObject(url, CheapsharkGame[].class);
 	}
 	
 	public CheapsharkGameDetails cheapSharkGame(String id) {
