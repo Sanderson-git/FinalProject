@@ -147,7 +147,7 @@ body {
 
 <center>
 <font size="7">
-<a class="buttonstylethree" href="/add/${rawgDetails.getId() }/${steamid}/${sharkgame.getGameId()}">Add game to Wishlist</a>
+	<a class="buttonstylethree" href="/add/${rawgDetails.getId() }/${steamid}/${sharkgame.getGameId()}">Add game to Wishlist</a>
 </font>
 </center>
 

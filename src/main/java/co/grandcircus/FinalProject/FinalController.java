@@ -227,34 +227,31 @@ public class FinalController {
 	private String userRecom(Model model) {
 		
 		User user = (User)session.getAttribute("user");  // get user by session
+		model.addAttribute("user", user); // add user to session
 		
 		List<WishList> wishGames = wishrep.findByUserId(user.getId()); // get wishlist games by user id
 		
 		List<Genres> wishGenres = new ArrayList<>(); //start list for wishlist genres
-		
-		//for(WishList game : wishGames) { // loops through wishlist games to get each game's genres
 			
 			wishGenres.addAll(genresrep.findByWishlistsIn(wishGames)); //adds all of each game's genres to genres list
-			
-		//}
 		
 		Set<Genres> uniqueGenres = new HashSet<Genres>(wishGenres); //only want to loop through genres that the user has within their wishlist
 		
-		int topG = 0;
-		String topGname = "";
+		int topG = 0; // initializing variables for genre recommendations
+		Long topGid = null;
 		int secondG = 0;
-		String secondGname = "";
+		Long secondGid = null;
 		int thirdG = 0;
-		String thirdGname = "";	
+		Long thirdGid = null;	
 		int total = 0;
 		
-		Map<String, Integer> genreCount = new HashMap<>();
+		Map<Long, Integer> genreCount = new HashMap<>();
 		
-		for(Genres g : uniqueGenres) {
+		for(Genres g : uniqueGenres) { //looping through genres from wishlist
 
 			int match = 0;
 			
-			for(int i=0; i < wishGenres.size(); i++ ) {
+			for(int i=0; i < wishGenres.size(); i++ ) { // adding counts for genres via wishlist
 				
 				
 				if(wishGenres.get(i) == g) {
@@ -265,47 +262,57 @@ public class FinalController {
 				} else {}
 							
 			}
-			genreCount.put(g.getName(), match);
-//			System.out.println(g.getName());
-//			System.out.println(match);
+			genreCount.put(g.getGenreId(), match);
 			
 		}
 		
-		for(Map.Entry<String, Integer> entry : genreCount.entrySet()) {
+		for(Map.Entry<Long, Integer> entry : genreCount.entrySet()) { // establishing genre ranks and adding to map
 			
 			if (entry.getValue() > topG) {
-				topGname = entry.getKey();
+				topGid = entry.getKey();
 				topG = entry.getValue();
 				}
 		}
-		for(Map.Entry<String, Integer> entry : genreCount.entrySet()) {
+		for(Map.Entry<Long, Integer> entry : genreCount.entrySet()) { // establishing genre ranks and adding to map
 
 			if (entry.getValue() > secondG && entry.getValue() < topG) {
-				secondGname = entry.getKey();
+				secondGid = entry.getKey();
 				secondG = entry.getValue();
 				}
 		}
-		for(Map.Entry<String, Integer> entry : genreCount.entrySet()) {
+		for(Map.Entry<Long, Integer> entry : genreCount.entrySet()) { // establishing genre ranks and adding to map
 			
 			if (entry.getValue() > thirdG && entry.getValue() < secondG) {
-				thirdGname = entry.getKey();
+				thirdGid = entry.getKey();
 				thirdG = entry.getValue();
 			}
 						
 			
 			} 
-		System.out.println(topG);
-		System.out.println(secondG);
-		System.out.println(thirdG);
 		
-   
+		Set<RawgGame> resultSet =  new HashSet<>(); // switch to set collection to avoid duplicate game results
+
+		if (topGid != null  ) {
+			RawgResponse resultsOne = rawgapi.rawgGenreList(topGid.toString()); // calling API for top ranked genres
+			if(resultsOne != null) {
+				resultSet.addAll(resultsOne.getResults());
+			}
+		}
 		
+		if (secondGid != null) {
+			RawgResponse resultsTwo = rawgapi.rawgGenreList(secondGid.toString()); // calling API for top ranked genres
+			if(resultsTwo != null) {
+				resultSet.addAll(resultsTwo.getResults());
+			}
+		}
 		
-		
-		
-		
-		//top game for genre: search by genre & store & (ordering query rating - may default to this)
-		
+		if (thirdGid != null ) {
+			RawgResponse resultsThree = rawgapi.rawgGenreList(thirdGid.toString()); // calling API for top ranked genres
+			if(resultsThree != null) {
+				resultSet.addAll(resultsThree.getResults());
+			}
+		}
+		model.addAttribute("games", resultSet); // adding Set collection with 3 RAWG api game lists to model
 		return "recommendations";
 	}
 	
@@ -340,7 +347,6 @@ public class FinalController {
 			//System.out.println(genres.getName());
 						
 			wishlistGenres.add(genres);
-			
 		}
 		
 		wishes.setGenres(wishlistGenres);
