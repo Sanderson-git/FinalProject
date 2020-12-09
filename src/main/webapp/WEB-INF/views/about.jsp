@@ -1,10 +1,57 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>About</title>
+
+<style type="text/css">
+body {
+	background-image: url(${rawgGame.background_image});
+}
+.buttonstyle {
+	
+	background: #2a9fd6;
+	padding: 15px;
+	text-align: center;
+	border-radius: 10px;
+	color: white;
+	font-weight: bold;
+	line-height: 50px;
+}
+.buttonstyletwo {
+	display: block;
+	background: #2a9fd6;
+	padding: 5px;
+	text-align: center;
+	border-radius: 10px;
+	color: white;
+	font-weight: bold;
+	line-height: 40px;
+}
+.buttonstylethree {
+	
+	background: #2a9fd6;
+	padding: 5px;
+	text-align: center;
+	border-radius: 10px;
+	color: white;
+	font-weight: bold;
+	line-height: 40px;
+}
+.center {
+	margin-left: auto;
+	margin-right: auto;
+}
+</style>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cyborg/bootstrap.min.css"
+	integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2"
+	crossorigin="anonymous">
+
 </head>
 <body>
 	<!-- Logo -->

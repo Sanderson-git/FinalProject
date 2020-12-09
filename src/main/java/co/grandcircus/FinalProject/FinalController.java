@@ -336,6 +336,8 @@ public class FinalController {
 		wishes.setRawgId(rawgid);
 		wishes.setSteamId(steamid);
 		wishes.setCsharkId(csharkid);
+		wishes.setBackground_image(rawgGame.getBackground_image());
+		wishes.setRating(rawgGame.getRating());
 		
 		List<Genre> gameGenres = rawgGame.getGenres();
 		
@@ -360,6 +362,11 @@ public class FinalController {
 	public String viewWishlist(Model model) {
 		
 		User user = (User)session.getAttribute("user"); //get user from session
+		
+		if (user == null) {
+			return "redirect:/login";
+		}
+		
 		System.out.println(user.getId());
 		
 		List<WishList> wishes = wishrep.findByUserId(user.getId()); //find all wishlist games for a specific user
@@ -393,13 +400,9 @@ public class FinalController {
 					System.out.println(wish.getName());
 				
 				}
-			}	
-			
-			model.addAttribute("wish", wish);
-			
+			}		
 		}
-		
-		
+		model.addAttribute("games", wishes);
 		
 		return "wishlist";
 	}

@@ -4,6 +4,8 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import co.grandcircus.FinalProject.services.EsrbRating;
+
 
 @Entity
 @Table(name="wishlist")
@@ -22,7 +24,37 @@ public class WishList {
 	private String dealId;
 	private String storeId;
 	private Double price;
+	private String background_image;
+	private Double rating;
+	private Double desiredprice;
 	
+	
+	
+	
+	public Double getDesiredprice() {
+		return desiredprice;
+	}
+
+	public void setDesiredprice(Double desiredprice) {
+		this.desiredprice = desiredprice;
+	}
+
+	public Double getRating() {
+		return rating;
+	}
+
+	public void setRating(Double rating) {
+		this.rating = rating;
+	}
+
+	public String getBackground_image() {
+		return background_image;
+	}
+
+	public void setBackground_image(String background_image) {
+		this.background_image = background_image;
+	}
+
 	public String getDealId() {
 		return dealId;
 	}
