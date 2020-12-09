@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Fail</title>
+<title>Register</title>
 
 
 <link rel="stylesheet"
@@ -53,7 +53,7 @@
 		</div>
 	</nav>
 
-	<h3>Sorry, your login was invalid</h3>
+	<p>Thank you for registering, ${ user.username }</p>
 
 
 </body>
