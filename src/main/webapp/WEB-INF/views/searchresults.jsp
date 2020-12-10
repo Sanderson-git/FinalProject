@@ -61,7 +61,7 @@ td {
 				</li>
 				<li class="nav-item"><a class="nav-link" href="/recommendations">Recommendations</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="#">About US!</a>
+				<li class="nav-item"><a class="nav-link" href="/about">About US!</a>
 				</li>
 			</ul>
 			<span class="navbar-brand">${ user.username }</span>

@@ -82,7 +82,7 @@ body {
 				</li>
 				<li class="nav-item"><a class="nav-link" href="/recommendations">Recommendations</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="#">About US!</a>
+				<li class="nav-item"><a class="nav-link" href="/about">About US!</a>
 				</li>
 			</ul>
 			<span class="navbar-brand">${ user.username }</span>
@@ -103,7 +103,6 @@ body {
 	
 
 	<font size="7">
-	<c:forEach var="list" items="${ listoflists }">
 		<table>
 			<thead>
 				<tr>
@@ -115,7 +114,7 @@ body {
 			</thead>
 			<tbody>
 
-				<c:forEach var="game" items="${ list.getWishlists() }">
+				<c:forEach var="game" items="${ listoflists.getWishlists() }">
 					<tr>
 						<td><a class="buttonstyle" href="/details/${ game.getRawgId()}">${ game.getName() }</a></td>
 						<td><img src="${ game.getBackground_image() }" alt="${game.getName()}" style="width: 400px; height: auto; border: 5px solid #59A7FF"></td>
@@ -125,7 +124,6 @@ body {
 				</c:forEach>
 			</tbody>
 		</table>
-	</c:forEach>
 	</font>
 	
 	

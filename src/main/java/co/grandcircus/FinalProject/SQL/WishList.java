@@ -1,5 +1,6 @@
 package co.grandcircus.FinalProject.SQL;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -9,8 +10,12 @@ import co.grandcircus.FinalProject.services.EsrbRating;
 
 @Entity
 @Table(name="wishlist")
-public class WishList {
+public class WishList implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long wishlistid;
