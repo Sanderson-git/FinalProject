@@ -1,17 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-td {
-	padding-right: 20px;
-	padding-left: 10px;
+<style type="text/css">
+body {
+	background-image: url(${rawgGame.background_image});
 }
-
 .buttonstyle {
 	display: block;
 	background: #2a9fd6;
@@ -21,6 +17,26 @@ td {
 	color: white;
 	font-weight: bold;
 	line-height: 50px;
+}
+.buttonstyletwo {
+	display: block;
+	background: #2a9fd6;
+	padding: 5px;
+	text-align: center;
+	border-radius: 10px;
+	color: white;
+	font-weight: bold;
+	line-height: 40px;
+}
+.buttonstylethree {
+	
+	background: #2a9fd6;
+	padding: 5px;
+	text-align: center;
+	border-radius: 10px;
+	color: white;
+	font-weight: bold;
+	line-height: 40px;
 }
 .tagstyle {
 	
@@ -32,15 +48,20 @@ td {
 	font-weight: bold;
 	line-height: 20px;
 }
+.center {
+	margin-left: auto;
+	margin-right: auto;
+}
 </style>
+<meta charset="ISO-8859-1">
+<title>Recommendations</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cyborg/bootstrap.min.css"
 	integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2"
 	crossorigin="anonymous">
-<meta charset="ISO-8859-1">
-<title>Index</title>
 </head>
 <body>
+	<!-- Logo -->
 	<img
 		src="https://drive.google.com/uc?id=1BmbUr80SogYS3LZdkH3hqBuqZbyyiSkX" />
 
@@ -66,6 +87,7 @@ td {
 			</ul>
 			<span class="navbar-brand">${ user.username }</span>
     		<a class="btn navbar-btn btn-default navbar-right pull-right" role="button" href="/logout">Logout</a>
+
 			<!-- Search function -->
 			<form class="form-inline my-2 my-lg-0" method="post"
 				action="/searchresults">
@@ -76,31 +98,38 @@ td {
 			<!-- **** -->
 		</div>
 	</nav>
+	
+	<h1>Your Best Shopping Lists, ${user.getUsername() }, according to your budget of $${ budget }. </h1>
+	
 
-	<h1>Discover</h1>
 	<font size="7">
+	<c:forEach var="list" items="${ listoflists }">
 		<table>
 			<thead>
 				<tr>
 					<th style="color: #2a9fd6;">Game:</th>
-					<th style="color: #2a9fd6;">Rating:</th>
 					<th></th>
-					<th style="color: #2a9fd6;">Genres:</th>
+					<th style="color: #2a9fd6;">Price:</th>
+					<th style="color: #2a9fd6;"></th>
 				</tr>
 			</thead>
 			<tbody>
 
-				<c:forEach var="result" items="${ rawglist.getResults()}">
+				<c:forEach var="game" items="${ list.getWishlists() }">
 					<tr>
-						<td><a class="buttonstyle" href="/details/${result.getId() }">${result.getName()}</a></td>
-						<td style="width: 300px;">${result.getRating()}/ 5</td>
-						<td><img src="${result.getBackground_image() }"
-							style="width: 400px; height: auto; border: 5px solid #59A7FF"></td>
-						<td><c:forEach var="genre" items="${result.getGenres() }"><font size="5"><a class="tagstyle" href="/searchresults/${genre.getId() }">${genre.getName() }</a></font> </c:forEach></td>
+						<td><a class="buttonstyle" href="/details/${ game.getRawgId()}">${ game.getName() }</a></td>
+						<td><img src="${ game.getBackground_image() }" alt="${game.getName()}" style="width: 400px; height: auto; border: 5px solid #59A7FF"></td>
+						<td style="width: 300px;">${game.getPrice()}</td>
+						<td><a href="https://www.cheapshark.com/redirect?dealID=${games.getDealId() }" class="buttonstyletwo">Buy Now!</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
+	</c:forEach>
 	</font>
+	
+	
+	
+
 </body>
 </html>

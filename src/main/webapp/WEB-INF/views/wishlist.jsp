@@ -13,6 +13,7 @@ body {
 }
 
 .buttonstyle {
+	display: block;
 	background: #2a9fd6;
 	padding: 15px;
 	text-align: center;
@@ -102,7 +103,12 @@ body {
 			<!-- **** -->
 		</div>
 	</nav>
-
+<div>
+	<form method="post" action="/binpacking">
+		Enter Budget: <input type="number" name="budget" /> 
+		<input type="submit" name="submit" />
+	</form>
+</div>
 	<font size="5">
 		<table>
 			<thead>
