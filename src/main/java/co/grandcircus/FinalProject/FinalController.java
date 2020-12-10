@@ -515,34 +515,30 @@ public class FinalController {
 		    }
 		});
 		
-		for(int i=0; i < wishes.size(); i++) { //this is a take on the bin packing method First Fit, combined with a count to determine the best fit(s)
-			Double tempbudget = budget;
-			//System.out.println(wishes.get(i).getName());
 
-			if(tempbudget >= wishes.get(i).getPrice()) { 
 				
 				Set<WishList> bin = new HashSet<>();
-				bin.add(wishes.get(i));
+				Double tempbudget = budget;
 				
-				Double price = wishes.get(i).getPrice();
-				tempbudget = tempbudget-price;
+				if(tempbudget >= wishes.get(0).getPrice()) {
+					bin.add(wishes.get(0));
+					Double price = wishes.get(0).getPrice();
+					tempbudget = tempbudget-price;
 				
 				while(price <= tempbudget) {
 					
-					for(int j=0; j < wishes.size(); j++) {
-						if(i != j) {
-							if(tempbudget >= wishes.get(i).getPrice()) {
+					for(int j=1; j < wishes.size(); j++) {
+					
+							if(tempbudget >= wishes.get(j).getPrice()) {
 								
-								bin.add(wishes.get(j));
+								bin.add(wishes.get(j));//add wish to shopping cart
 								price = wishes.get(j).getPrice();
 								tempbudget = tempbudget-price;
 								
 							} else {
-								break;
+							
 							}
-						} else {}
 					}	
-				}
 				ListContainer binObject = new ListContainer();
 				binObject.setWishlists(bin);
 				binObject.setLength(bin.size());
@@ -553,30 +549,12 @@ public class FinalController {
 		}
 		
 		
-		Collections.sort(listOfItemLists, new Comparator<ListContainer>() {
-		    @Override
-		    public int compare(ListContainer c1, ListContainer c2) {
-		        return c1.getLength()-c2.getLength();
-		    }
-		});
-		
-		Integer maxLength = listOfItemLists.get(listOfItemLists.size()-1).getLength(); //because the list is sorted (above, by length of list), the last entry should always be one of the longest.  There is probably a desc sort, but this works too.
-		//System.out.println(maxLength);
-		
-		List<ListContainer> finallist = new ArrayList<>();
-		
-		for(ListContainer container : listOfItemLists) {
-			
-			if(maxLength <= container.getLength()) { //only keep the lists with the most games on them
-				finallist.add(container);
-				//System.out.println(container.getWishlists().size());
-			}
-			
-		}
-		
 		model.addAttribute("user",user);
 		model.addAttribute("budget",budget);
-		model.addAttribute("listoflists",finallist); //we may have to set this to only pick one or two lists, otherwise the runtime can get excessive.
+		
+			
+		
+		model.addAttribute("listoflists",listOfItemLists.get(0)); //we may have to set this to only pick one or two lists, otherwise the runtime can get excessive.
 		
 		return "autoshoppinglist";
 	}
