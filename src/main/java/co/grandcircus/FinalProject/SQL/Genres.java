@@ -16,7 +16,7 @@ public class Genres {
 	private String image_background;
 	
 	
-	@ManyToMany(mappedBy = "genres")
+	@ManyToMany(mappedBy = "genres", cascade = CascadeType.PERSIST)
     private Set<WishList> wishlists;
 
 	public Genres() {}

@@ -164,9 +164,9 @@ public class FinalController {
 					e.printStackTrace();
 				}
 				String[] segments = uri.getPath().split("/");
-				System.out.println(segments.length);
+				//System.out.println(segments.length);
 				String idStr = segments[2]; // the game-store id is listed on the StoreResults object
-				System.out.println(idStr);
+				//System.out.println(idStr);
 				steamId = Integer.parseInt(idStr); // get steam id
 				// System.out.println(steamId);
 			}
@@ -363,7 +363,7 @@ public class FinalController {
 		WishList wishes = new WishList(); // initial wishlist
 
 		wishes.setUser(user); // save user object to wishlist for repo mapping
-		System.out.println(user.getId());
+		//System.out.println(user.getId());
 
 		wishes.setName(rawgGame.getName());
 		wishes.setRawgId(rawgid);
@@ -401,16 +401,16 @@ public class FinalController {
 			return "redirect:/login";
 		}
 
-		System.out.println(user.getId());
+		//System.out.println(user.getId());
 
 		List<WishList> wishes = wishrep.findByUserId(user.getId()); // find all wishlist games for a specific user
-		System.out.println(wishes);
+		//System.out.println(wishes);
 
 		for (WishList wish : wishes) {
 
 			CheapsharkGameDetails gameDetails = csharkapi.cheapSharkGame(wish.getCsharkId().toString());
 			List<Deal> gameDeals = gameDetails.getDeals();
-			System.out.println(gameDeals);
+			//System.out.println(gameDeals);
 			wish.setPrice(Double.parseDouble((gameDeals.get(0).getPrice())));
 
 			for (Deal g : gameDeals) {
@@ -419,7 +419,7 @@ public class FinalController {
 				Double wishPrice = wish.getPrice();
 
 				// System.out.println(price);
-				// System.out.println(wishPrice);
+				// System.out.println(wishPrice);F
 
 				if (wishPrice >= price) {
 					wish.setPrice(Double.parseDouble(g.getPrice()));
@@ -427,8 +427,8 @@ public class FinalController {
 					wish.setStoreId(g.getStoreID());
 					wish.setDealId(g.getDealID());
 
-					System.out.println(wish.getPrice());
-					System.out.println(wish.getName());
+					//System.out.println(wish.getPrice());
+					//System.out.println(wish.getName());
 
 				}
 			}
@@ -446,9 +446,10 @@ public class FinalController {
 		return "redirect:/wishlist";
 	}
 
-	@GetMapping("/wishlist/{id}")
-	public String deleteFromWishlist(@PathVariable Long id) {
-		wishrep.deleteById(id);
+	@GetMapping("/wishlistdelete/{wishlistid}")
+	public String deleteFromWishlist(@PathVariable Long wishlistid) {
+		wishrep.delete(wishrep.getOne(wishlistid));
+		
 		return "redirect:/wishlist";
 	}
 	
@@ -463,5 +464,122 @@ public class FinalController {
 		
 		return "searchresults";
 	}
+	
+	@PostMapping("/binpacking")
+	public String packBudgetBin(@RequestParam Double budget, Model model) {
+		
+		User user = (User) session.getAttribute("user"); // get user from session
+
+		if (user == null) {
+			return "redirect:/login";
+		}
+
+		//System.out.println(user.getId());
+
+		List<WishList> wishes = wishrep.findByUserId(user.getId()); // find all wishlist games for a specific user
+		//System.out.println(wishes);
+
+		for (WishList wish : wishes) { //this loop gets the current cheapest price for each game, it was copied from the original /wishlist mapping
+
+			CheapsharkGameDetails gameDetails = csharkapi.cheapSharkGame(wish.getCsharkId().toString());
+			List<Deal> gameDeals = gameDetails.getDeals();
+			//System.out.println(gameDeals);
+			wish.setPrice(Double.parseDouble((gameDeals.get(0).getPrice())));
+
+			for (Deal g : gameDeals) {
+
+				Double price = Double.parseDouble(g.getPrice());
+				Double wishPrice = wish.getPrice();
+
+				// System.out.println(price);
+				// System.out.println(wishPrice);F
+
+				if (wishPrice >= price) {
+					wish.setPrice(Double.parseDouble(g.getPrice()));
+
+					wish.setStoreId(g.getStoreID());
+					wish.setDealId(g.getDealID());
+
+					//System.out.println(wish.getPrice());
+					//System.out.println(wish.getName());
+
+				}
+			}
+		}
+		
+		List<ListContainer> listOfItemLists = new ArrayList<>();
+		Collections.sort(wishes, new Comparator<WishList>() { //sort the array on price so that the lowest price is always first.  This should guaruntee that a best fit is found for the budget.
+		    @Override
+		    public int compare(WishList c1, WishList c2) {
+		        return Double.compare(c1.getPrice(), c2.getPrice());
+		    }
+		});
+		
+		for(int i=0; i < wishes.size(); i++) { //this is a take on the bin packing method First Fit, combined with a count to determine the best fit(s)
+			Double tempbudget = budget;
+			//System.out.println(wishes.get(i).getName());
+
+			if(tempbudget >= wishes.get(i).getPrice()) { 
+				
+				Set<WishList> bin = new HashSet<>();
+				bin.add(wishes.get(i));
+				
+				Double price = wishes.get(i).getPrice();
+				tempbudget = tempbudget-price;
+				
+				while(price <= tempbudget) {
+					
+					for(int j=0; j < wishes.size(); j++) {
+						if(i != j) {
+							if(tempbudget >= wishes.get(i).getPrice()) {
+								
+								bin.add(wishes.get(j));
+								price = wishes.get(j).getPrice();
+								tempbudget = tempbudget-price;
+								
+							} else {
+								break;
+							}
+						} else {}
+					}	
+				}
+				ListContainer binObject = new ListContainer();
+				binObject.setWishlists(bin);
+				binObject.setLength(bin.size());
+				
+				listOfItemLists.add(binObject);
+				
+			}	
+		}
+		
+		
+		Collections.sort(listOfItemLists, new Comparator<ListContainer>() {
+		    @Override
+		    public int compare(ListContainer c1, ListContainer c2) {
+		        return c1.getLength()-c2.getLength();
+		    }
+		});
+		
+		Integer maxLength = listOfItemLists.get(listOfItemLists.size()-1).getLength(); //because the list is sorted (above, by length of list), the last entry should always be one of the longest.  There is probably a desc sort, but this works too.
+		//System.out.println(maxLength);
+		
+		List<ListContainer> finallist = new ArrayList<>();
+		
+		for(ListContainer container : listOfItemLists) {
+			
+			if(maxLength <= container.getLength()) { //only keep the lists with the most games on them
+				finallist.add(container);
+				//System.out.println(container.getWishlists().size());
+			}
+			
+		}
+		
+		model.addAttribute("user",user);
+		model.addAttribute("budget",budget);
+		model.addAttribute("listoflists",finallist); //we may have to set this to only pick one or two lists, otherwise the runtime can get excessive.
+		
+		return "autoshoppinglist";
+	}
+
 
 }

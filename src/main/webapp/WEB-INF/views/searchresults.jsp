@@ -97,12 +97,10 @@ td {
 					<tr>
 
 						<td><a class="buttonstyle" href="/details/${ games.getId()}">${ games.getName() }</a></td>
-						
 						<td style="width: 300px;">${games.getRating()}/ 5</td>
 						<td><img src="${ games.getBackground_image() }"
 							alt="${games.getName()}" style="width: 400px; height: auto; border: 5px solid #59A7FF"></td>
 						<td><c:forEach var="genre" items="${games.getGenres() }"><font size="5"><a class="tagstyle" href="/searchresults/${genre.getId() }">${genre.getName() }</a></font> </c:forEach></td>
-
 					</tr>
 				</c:forEach>
 			</tbody>

@@ -13,6 +13,7 @@ body {
 }
 
 .buttonstyle {
+	display: block;
 	background: #2a9fd6;
 	padding: 15px;
 	text-align: center;
@@ -102,7 +103,12 @@ body {
 			<!-- **** -->
 		</div>
 	</nav>
-
+<div>
+	<form method="post" action="/binpacking">
+		Enter Budget: <input type="number" name="budget" /> 
+		<input type="submit" name="submit" />
+	</form>
+</div>
 	<font size="5">
 		<table>
 			<thead>
@@ -120,8 +126,7 @@ body {
 				<c:forEach var="games" items="${ games }">
 					<tr>
 
-						<td><a class="buttonstyle"
-							href="/details/${ games.getRawgId()}">${ games.getName() }</a></td>
+						<td><a class="buttonstyle" href="/details/${ games.getRawgId()}">${ games.getName() }</a><a href="/wishlistdelete/${ games.getWishlistid() }" style="font:normal"><br/>delete</a></td>
 
 						<td style="width: 300px;">${games.getRating()}/5</td>
 						<td><img src="${ games.getBackground_image() }"
