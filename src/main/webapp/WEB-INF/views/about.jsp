@@ -130,10 +130,10 @@ p {
 			</thead>
 			<tbody>
 					<tr class="r1">
-						<td class="r1"><a href="https://www.linkedin.com/in/schuyler-bishop/">Skye B</a><br/>Developer<br /></td>
-						<td class="r1"><a href="https://www.linkedin.com/in/sean-anderson-2b5b9b1b9/">Sean A</a><br/>Developer<br /></td>
-						<td class="r1"><a href="https://www.linkedin.com/in/jayme-ipema-b5846619/">Jayme I</a><br/>Developer<br /></td>
-						<td class="r1"><a href="https://www.linkedin.com/in/michaelmedling/">Michael M</a><br/>Developer<br /></td>
+						<td class="r1"><a href="https://www.linkedin.com/in/schuyler-bishop/">Skye B</a><br/><a href="https://github.com/skyebishop">Developer</a><br /></td>
+						<td class="r1"><a href="https://www.linkedin.com/in/sean-anderson-2b5b9b1b9/">Sean A</a><br/><a href="https://github.com/Sanderson-git">Developer</a></td>
+						<td class="r1"><a href="https://www.linkedin.com/in/jayme-ipema-b5846619/">Jayme I</a><br/><a href="https://github.com/teacuptrex">Developer</a></td>
+						<td class="r1"><a href="https://www.linkedin.com/in/michaelmedling/">Michael M</a><br/><a href="https://github.com/mikeymedling31">Developer</a></td>
 					</tr>
 					<tr >
 						<td><p>Blah Blah Blah Blah</p></td><!-- Skye -->
