@@ -464,5 +464,122 @@ public class FinalController {
 		
 		return "searchresults";
 	}
+	
+	@PostMapping("/binpacking")
+	public String packBudgetBin(@RequestParam Double budget, Model model) {
+		
+		User user = (User) session.getAttribute("user"); // get user from session
+
+		if (user == null) {
+			return "redirect:/login";
+		}
+
+		//System.out.println(user.getId());
+
+		List<WishList> wishes = wishrep.findByUserId(user.getId()); // find all wishlist games for a specific user
+		//System.out.println(wishes);
+
+		for (WishList wish : wishes) { //this loop gets the current cheapest price for each game, it was copied from the original /wishlist mapping
+
+			CheapsharkGameDetails gameDetails = csharkapi.cheapSharkGame(wish.getCsharkId().toString());
+			List<Deal> gameDeals = gameDetails.getDeals();
+			//System.out.println(gameDeals);
+			wish.setPrice(Double.parseDouble((gameDeals.get(0).getPrice())));
+
+			for (Deal g : gameDeals) {
+
+				Double price = Double.parseDouble(g.getPrice());
+				Double wishPrice = wish.getPrice();
+
+				// System.out.println(price);
+				// System.out.println(wishPrice);F
+
+				if (wishPrice >= price) {
+					wish.setPrice(Double.parseDouble(g.getPrice()));
+
+					wish.setStoreId(g.getStoreID());
+					wish.setDealId(g.getDealID());
+
+					//System.out.println(wish.getPrice());
+					//System.out.println(wish.getName());
+
+				}
+			}
+		}
+		
+		List<ListContainer> listOfItemLists = new ArrayList<>();
+		Collections.sort(wishes, new Comparator<WishList>() { //sort the array on price so that the lowest price is always first.  This should guaruntee that a best fit is found for the budget.
+		    @Override
+		    public int compare(WishList c1, WishList c2) {
+		        return Double.compare(c1.getPrice(), c2.getPrice());
+		    }
+		});
+		
+		for(int i=0; i < wishes.size(); i++) { //this is a take on the bin packing method First Fit, combined with a count to determine the best fit(s)
+			Double tempbudget = budget;
+			//System.out.println(wishes.get(i).getName());
+
+			if(tempbudget >= wishes.get(i).getPrice()) { 
+				
+				Set<WishList> bin = new HashSet<>();
+				bin.add(wishes.get(i));
+				
+				Double price = wishes.get(i).getPrice();
+				tempbudget = tempbudget-price;
+				
+				while(price <= tempbudget) {
+					
+					for(int j=0; j < wishes.size(); j++) {
+						if(i != j) {
+							if(tempbudget >= wishes.get(i).getPrice()) {
+								
+								bin.add(wishes.get(j));
+								price = wishes.get(j).getPrice();
+								tempbudget = tempbudget-price;
+								
+							} else {
+								break;
+							}
+						} else {}
+					}	
+				}
+				ListContainer binObject = new ListContainer();
+				binObject.setWishlists(bin);
+				binObject.setLength(bin.size());
+				
+				listOfItemLists.add(binObject);
+				
+			}	
+		}
+		
+		
+		Collections.sort(listOfItemLists, new Comparator<ListContainer>() {
+		    @Override
+		    public int compare(ListContainer c1, ListContainer c2) {
+		        return c1.getLength()-c2.getLength();
+		    }
+		});
+		
+		Integer maxLength = listOfItemLists.get(listOfItemLists.size()-1).getLength(); //because the list is sorted (above, by length of list), the last entry should always be one of the longest.  There is probably a desc sort, but this works too.
+		//System.out.println(maxLength);
+		
+		List<ListContainer> finallist = new ArrayList<>();
+		
+		for(ListContainer container : listOfItemLists) {
+			
+			if(maxLength <= container.getLength()) { //only keep the lists with the most games on them
+				finallist.add(container);
+				//System.out.println(container.getWishlists().size());
+			}
+			
+		}
+		
+		model.addAttribute("user",user);
+		model.addAttribute("budget",budget);
+		model.addAttribute("listoflists",finallist); //we may have to set this to only pick one or two lists, otherwise the runtime can get excessive.
+		
+		return "autoshoppinglist";
+	}
+
 
 }

@@ -9,7 +9,7 @@ body {
 	background-image: url(${rawgGame.background_image});
 }
 .buttonstyle {
-	
+	display: block;
 	background: #2a9fd6;
 	padding: 15px;
 	text-align: center;
