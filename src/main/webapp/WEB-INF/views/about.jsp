@@ -99,7 +99,7 @@ p {
 				</li>
 				<li class="nav-item"><a class="nav-link" href="/recommendations">Recommendations</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="/about">About US!</a>
+				<li class="nav-item"><a class="nav-link" href="/about">The Crypt Keepers</a>
 				</li>
 			</ul>
 			<span class="navbar-brand">${ user.username }</span>
@@ -136,8 +136,8 @@ p {
 						<td class="r1"><a href="https://www.linkedin.com/in/michaelmedling/">Michael M</a><br/><a href="https://github.com/mikeymedling31">Developer</a></td>
 					</tr>
 					<tr >
-						<td><p>Blah Blah Blah Blah</p></td><!-- Skye -->
-						<td><p>"The only time I set the bar low<br />is for limbo" <br />-Michael Scott</p></td><!-- Sean -->
+						<td><p>Moon or quit, man.</p></td><!-- Skye -->
+						<td><p>"The only time I set the bar low<br />is for limbo." <br />-Michael Scott</p></td><!-- Sean -->
 						<td><p>My flogic is lawless.</p></td><!-- Jayme -->
 						<td><p>Steam? never heard of it...</p></td><!-- Mike -->
 					</tr>
