@@ -386,7 +386,8 @@ public class FinalController {
 
 		wishes.setUser(user); // save user object to wishlist for repo mapping
 		//System.out.println(user.getId());
-
+		
+		wishes.setDesiredprice(0);
 		wishes.setName(rawgGame.getName());
 		wishes.setRawgId(rawgid);
 		wishes.setSteamId(steamid);
@@ -455,6 +456,13 @@ public class FinalController {
 				}
 			}
 		}
+		Collections.sort(wishes, new Comparator<WishList>() { //sort the array on price so that the lowest price is always first.  This should guaruntee that a best fit is found for the budget.
+		    @Override
+		    public int compare(WishList c1, WishList c2) {
+		        return Double.compare((c2.getDesiredprice() - c2.getPrice()), (c1.getDesiredprice() - c1.getPrice()));
+		    }
+		});
+		
 		model.addAttribute("games", wishes);
 
 		return "wishlist";
