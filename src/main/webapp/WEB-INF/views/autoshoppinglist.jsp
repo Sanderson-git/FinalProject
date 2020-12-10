@@ -8,6 +8,10 @@
 body {
 	background-image: url(${rawgGame.background_image});
 }
+td {
+	padding-right: 20px;
+	padding-left: 10px;
+}
 .buttonstyle {
 	display: block;
 	background: #2a9fd6;
@@ -117,9 +121,9 @@ body {
 				<c:forEach var="game" items="${ listoflists.getWishlists() }">
 					<tr>
 						<td><a class="buttonstyle" href="/details/${ game.getRawgId()}">${ game.getName() }</a></td>
-						<td><img src="${ game.getBackground_image() }" alt="${game.getName()}" style="width: 400px; height: auto; border: 5px solid #59A7FF"></td>
+						<td style="width: 200px;"><img src="${ game.getBackground_image() }" alt="${game.getName()}" style="width: 400px; height: auto; border: 5px solid #59A7FF"></td>
 						<td style="width: 300px;">${game.getPrice()}</td>
-						<td><a href="https://www.cheapshark.com/redirect?dealID=${game.getDealId() }" class="buttonstyletwo">Buy Now!</a></td>
+						<td style="width: 200px;"><a href="https://www.cheapshark.com/redirect?dealID=${game.getDealId() }" class="buttonstyletwo">Buy Now!</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
