@@ -132,13 +132,13 @@ p {
 					<tr class="r1">
 						<td class="r1"><a href="https://www.linkedin.com/in/schuyler-bishop/">Skye B</a><br/>Developer<br /></td>
 						<td class="r1"><a href="https://www.linkedin.com/in/sean-anderson-2b5b9b1b9/">Sean A</a><br/>Developer<br /></td>
-						<td class="r1"><a href="https://www.linkedin.com/in/jayme-ipema-b5846619/">Jayme I</a><br/>Developer<br /></td>
+						<td class="r1"><a href="https://www.linkedin.com/in/jayme-ipema-b5846619/">Jayme I</a><br/><a href="https://github.com/teacuptrex">Developer</a><br /></td>
 						<td class="r1"><a href="https://www.linkedin.com/in/michaelmedling/">Michael M</a><br/>Developer<br /></td>
 					</tr>
 					<tr >
 						<td><p>Blah Blah Blah Blah</p></td><!-- Skye -->
 						<td><p>Blah Blah Blah Blah</p></td><!-- Sean -->
-						<td><p>Blah Blah Blah Blah</p></td><!-- Jayme -->
+						<td><p>My flogic is lawless.</p></td><!-- Jayme -->
 						<td><p>Steam? never heard of it...</p></td><!-- Mike -->
 					</tr>
 			</tbody>
