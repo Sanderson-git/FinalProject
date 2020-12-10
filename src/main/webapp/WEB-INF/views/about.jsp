@@ -138,7 +138,7 @@ p {
 					<tr >
 						<td><p>Blah Blah Blah Blah</p></td><!-- Skye -->
 						<td><p>Blah Blah Blah Blah</p></td><!-- Sean -->
-						<td><p>Blah Blah Blah Blah</p></td><!-- Jayme -->
+						<td><p>My flogic is lawless.</p></td><!-- Jayme -->
 						<td><p>Steam? never heard of it...</p></td><!-- Mike -->
 					</tr>
 			</tbody>
