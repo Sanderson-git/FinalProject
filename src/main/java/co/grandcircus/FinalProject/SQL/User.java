@@ -1,13 +1,18 @@
 package co.grandcircus.FinalProject.SQL;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="user")
-public class User {
+public class User implements Serializable{ //Implements serializable saves the user session to the Dish.
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
