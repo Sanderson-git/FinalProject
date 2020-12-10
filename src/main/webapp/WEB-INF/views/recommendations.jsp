@@ -8,6 +8,10 @@
 body {
 	background-image: url(${rawgGame.background_image});
 }
+td {
+	padding-right: 20px;
+	padding-left: 10px;
+}
 .buttonstyle {
 	display: block;
 	background: #2a9fd6;
