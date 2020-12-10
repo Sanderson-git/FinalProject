@@ -181,7 +181,9 @@ public class FinalController {
 		CheapsharkGame sharkGame;
 
 		if (sharkGames.length == 0) {
-			return "redirect:/";
+			String errormsg = "It looks like the game you've selected is a free game.";
+			model.addAttribute("errormessage", errormsg);
+			return "error";
 		} else {
 			sharkGame = sharkGames[0];
 		}
@@ -579,6 +581,11 @@ public class FinalController {
 		model.addAttribute("listoflists",finallist); //we may have to set this to only pick one or two lists, otherwise the runtime can get excessive.
 		
 		return "autoshoppinglist";
+	}
+	
+	@GetMapping("/error")
+	public String errorpage() {
+		return "error";
 	}
 
 
