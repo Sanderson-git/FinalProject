@@ -119,7 +119,7 @@ body {
 						<td><a class="buttonstyle" href="/details/${ game.getRawgId()}">${ game.getName() }</a></td>
 						<td><img src="${ game.getBackground_image() }" alt="${game.getName()}" style="width: 400px; height: auto; border: 5px solid #59A7FF"></td>
 						<td style="width: 300px;">${game.getPrice()}</td>
-						<td><a href="https://www.cheapshark.com/redirect?dealID=${games.getDealId() }" class="buttonstyletwo">Buy Now!</a></td>
+						<td><a href="https://www.cheapshark.com/redirect?dealID=${game.getDealId() }" class="buttonstyletwo">Buy Now!</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
