@@ -124,7 +124,7 @@ p {
 					<th style= "padding: 20px 0px 20px 70px; "><img class="img1" src="https://media-exp1.licdn.com/dms/image/C4E03AQEvY6jYIOUNhg/profile-displayphoto-shrink_800_800/0/1602263500660?e=1613001600&v=beta&t=Z2vECuXIdDQ8dwksz70wod7aF6aNFCcAHa2opdAFm3U" width="300px"/></th>
 					<th style= "padding: 20px 0px 20px 70px;"><img class="img1" src="https://media-exp1.licdn.com/dms/image/C4E35AQG6XMXDx7x2Hg/profile-framedphoto-shrink_800_800/0/1604064742009?e=1607706000&v=beta&t=ZZ_OsBwRnCq4r5L5KSQEYdgyXBdvU4wNOAI8VDbhR1M" width="300px" /></th>
 					<th style= "padding: 20px 0px 20px 70px;"><img class="img1" src="https://media-exp1.licdn.com/dms/image/C4E03AQGhJY4HELmlog/profile-displayphoto-shrink_800_800/0/1606831490520?e=1613001600&v=beta&t=w_eQ92QBk2DDl_pcPehp1jBP-0tF5jaeN_8QGJGZuRA" width="300px" /></th>
-					<th style= "padding: 20px 0px 20px 70px;"><img class="img1" src="https://media-exp1.licdn.com/dms/image/C4D35AQGoL23Tk9E6xg/profile-framedphoto-shrink_200_200/0/1604066490107?e=1607706000&v=beta&t=VZ31uUZAoWKhDvOarsWIHZvK8tYbKD6CJ7cogbmUuog" width="300px" />
+					<th style= "padding: 20px 0px 20px 70px;"><img class="img1" src="https://media-exp1.licdn.com/dms/image/C4D03AQF0zfpIBjTadQ/profile-displayphoto-shrink_200_200/0/1607627453802?e=1613001600&v=beta&t=zfODTeM_EwIl8Y8Wfw8P8N0KPul0B6IwSbyBqyLhlsc" width="300px" />
 			</th>
 				</tr>
 			</thead>
