@@ -137,7 +137,7 @@ p {
 					</tr>
 					<tr >
 						<td><p>Blah Blah Blah Blah</p></td><!-- Skye -->
-						<td><p>Blah Blah Blah Blah</p></td><!-- Sean -->
+						<td><p>"The only time I set the bar low<br />is for limbo" <br />-Michael Scott</p></td><!-- Sean -->
 						<td><p>My flogic is lawless.</p></td><!-- Jayme -->
 						<td><p>Steam? never heard of it...</p></td><!-- Mike -->
 					</tr>
@@ -145,8 +145,9 @@ p {
 		</table>
 		<br />
 		<div>
-			<p>We are just a few broke game players looking to save a buck and continue on gamin, so we made Crypt to help everyone Game On while being on a budget!<br />Hurray for the nerds!</p>
+			<p>We are just a few broke game players looking to save a buck and continue on gaming, so we made Crypt to help everyone game-on while being on a budget!<br />Hurray for the nerds!</p>
 			<img src="https://i.imgflip.com/4puq2v.jpg" style=" padding-left: 35%"/>
 		</div>
+		<br /><br /><br /><br /><br /><br />
 </body>
 </html>
