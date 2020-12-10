@@ -182,7 +182,9 @@ public class FinalController {
 		CheapsharkGame sharkGame;
 
 		if (sharkGames.length == 0) {
-			String errormsg = "It looks like the game you've selected is a free game.";
+			String errormsg = "It looks like the game you've selected is a free game. Please click this link to claim your free game!";
+			String errorurl = "http://store.steampowered.com/app/"+ steamId + "/";
+			model.addAttribute("errorurl", errorurl);
 			model.addAttribute("errormessage", errormsg);
 			return "error";
 		} else {
@@ -345,6 +347,15 @@ public class FinalController {
 				resultSet.addAll(resultsThree.getResults());
 			}
 		}
+		Set<RawgGame> finalset = new HashSet<>(resultSet);
+		
+		for (WishList wishgame : wishGames) { // loop through wishlist games
+			for (RawgGame resultset : finalset) {
+				if (wishgame.getRawgId().equals(resultset.getId())) { // comparing id's using .equals checks values of objects outside of memory
+					resultSet.remove(resultset); //removing duplicate items from recommendations
+				}
+			}
+		}
 		
 		model.addAttribute("games", resultSet); // adding Set collection with 3 RAWG api game lists to model
 		return "recommendations";
@@ -361,7 +372,16 @@ public class FinalController {
 		User user = (User) session.getAttribute("user"); // get user from session
 		if (user == null) {
 			return "redirect:/login";
-		}	
+		}
+		
+		List<WishList> wishGames = wishrep.findByUserId(user.getId()); // get wishlist games by user id
+		for (WishList wishgame : wishGames) { // loop through wishlist games
+			if (wishgame.getSteamId().equals(steamid)) { // comparing id's using .equals checks values of objects outside of memory
+				return "redirect:/wishlist";
+			}
+		}
+		
+		
 		
 		WishList wishes = new WishList(); // initial wishlist
 

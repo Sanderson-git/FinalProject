@@ -106,7 +106,7 @@ body {
 	<!--******************** End Nav Bar  ********************-->
 
 
-	<h1>Uh oh! We've encountered an error.</h1>
-	<h2> ${errormessage }</h2>
+	
+	<h2><a href="${errorurl }">${errormessage }</a></h2>
 </body>
 </html>
