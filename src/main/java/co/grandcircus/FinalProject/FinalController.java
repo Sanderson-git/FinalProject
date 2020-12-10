@@ -437,8 +437,6 @@ public class FinalController {
 			}
 		}
 		model.addAttribute("games", wishes);
-		System.out.println("test");
-		System.out.println("test 2");
 		return "wishlist";
 	}
 
@@ -552,6 +550,11 @@ public class FinalController {
 	@GetMapping("/error")
 	public String errorpage() {
 		return "error";
+	}
+	
+	@GetMapping("/about")
+	public String about() {
+		return "about";
 	}
 
 
