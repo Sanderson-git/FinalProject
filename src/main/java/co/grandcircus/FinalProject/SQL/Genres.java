@@ -1,13 +1,18 @@
 package co.grandcircus.FinalProject.SQL;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.*;
 
 @Entity
 @Table (name = "genres")
-public class Genres {
+public class Genres implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 //	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long genreId;

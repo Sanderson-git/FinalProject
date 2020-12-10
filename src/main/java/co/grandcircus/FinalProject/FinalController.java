@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -436,7 +437,8 @@ public class FinalController {
 			}
 		}
 		model.addAttribute("games", wishes);
-
+		System.out.println("test");
+		System.out.println("test 2");
 		return "wishlist";
 	}
 
@@ -476,35 +478,21 @@ public class FinalController {
 			return "redirect:/login";
 		}
 
-		//System.out.println(user.getId());
-
 		List<WishList> wishes = wishrep.findByUserId(user.getId()); // find all wishlist games for a specific user
-		//System.out.println(wishes);
 
 		for (WishList wish : wishes) { //this loop gets the current cheapest price for each game, it was copied from the original /wishlist mapping
-
 			CheapsharkGameDetails gameDetails = csharkapi.cheapSharkGame(wish.getCsharkId().toString());
 			List<Deal> gameDeals = gameDetails.getDeals();
-			//System.out.println(gameDeals);
 			wish.setPrice(Double.parseDouble((gameDeals.get(0).getPrice())));
 
 			for (Deal g : gameDeals) {
-
 				Double price = Double.parseDouble(g.getPrice());
 				Double wishPrice = wish.getPrice();
 
-				// System.out.println(price);
-				// System.out.println(wishPrice);F
-
 				if (wishPrice >= price) {
 					wish.setPrice(Double.parseDouble(g.getPrice()));
-
 					wish.setStoreId(g.getStoreID());
 					wish.setDealId(g.getDealID());
-
-					//System.out.println(wish.getPrice());
-					//System.out.println(wish.getName());
-
 				}
 			}
 		}
