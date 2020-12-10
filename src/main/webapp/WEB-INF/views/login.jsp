@@ -11,7 +11,14 @@
 	href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cyborg/bootstrap.min.css"
 	integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2"
 	crossorigin="anonymous">
-
+<style>
+.login {
+	position: fixed; /* or absolute */
+	padding-top: 10px;
+  	left: 40%;
+  	font-size: 20px;
+  }
+</style>
 </head>
 <body>
 	<!-- Logo -->
@@ -52,23 +59,23 @@
 			<!-- **** -->
 		</div>
 	</nav>
-
-	Login:
+	<div class="login" >
+	<h4>Login:</h4>
 	<form method="post" action="/profile">
-		Username:<input type="text" name="username" /><br /> 
-		Password:<input type="password" name="password" /><br /> 
+		Username: <input type="text" name="username" /><br /><br /> 
+		Password: <input type="password" name="password" /><br /> <br />
 		<input type="submit" />
 	</form>
 	
 	<br /><br />
-	No login? Register below:<br />
+	<h4>No login?<br /> Register below:<br /></h4>
 	
 	<form method="post" action="/register">
-		Username:<input type="text" name="username" /><br /> 
-		Password:<input type="password" name="password" /><br /> 
+		Username: <input type="text" name="username" /><br /><br /> 
+		Password: <input type="password" name="password" /><br /> <br />
 		<input type="submit" />
 	</form>
-
+	</div>
 
 </body>
 </html>
