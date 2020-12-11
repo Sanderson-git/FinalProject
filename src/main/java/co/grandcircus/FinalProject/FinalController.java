@@ -537,38 +537,6 @@ public class FinalController {
 
 		Set<WishList> bin = new HashSet<>();
 		
-//		<<===== Start Stored changes =====>>
-//		Double tempbudget = budget;
-//
-//		if (tempbudget >= wishes.get(0).getPrice()) {
-//			bin.add(wishes.get(0));
-//			Double price = wishes.get(0).getPrice();
-//			tempbudget = tempbudget - price;
-//
-//			while (price <= tempbudget) {
-//
-//				for (int j = 1; j < wishes.size(); j++) {
-//
-//					if (tempbudget >= wishes.get(j).getPrice()) {
-//
-//						bin.add(wishes.get(j));// add wish to shopping cart
-//						price = wishes.get(j).getPrice();
-//						tempbudget = tempbudget - price;
-//
-//					} else {
-//
-//					}
-//				}
-//				ListContainer binObject = new ListContainer();
-//				binObject.setWishlists(bin);
-//				binObject.setLength(bin.size());
-//
-//				listOfItemLists.add(binObject);
-//
-//			}
-//		}
-//		<<====== End Stored Changes ======>>
-
 //		<<===== Start Sean B Changes =====>>
 		Double price = 0.0;
 		for (int j = 0; j < wishes.size(); j++) {
