@@ -115,22 +115,22 @@ public class FinalController {
 
 		}
 	}
-	
+
 	@PostMapping("register")
 	public String register(User user) {
 		userrep.save(user);
 		session.setAttribute("user", user);
 		return "register";
 	}
-	
+
 	@GetMapping("/logout")
 	public String logout() {
 		User user = (User) session.getAttribute("user");
-		
+
 		if (user == null) {
 			return "redirect:/index";
 		}
-		
+
 		session.invalidate();
 		return "logout";
 	}
@@ -165,9 +165,9 @@ public class FinalController {
 					e.printStackTrace();
 				}
 				String[] segments = uri.getPath().split("/");
-				//System.out.println(segments.length);
+				// System.out.println(segments.length);
 				String idStr = segments[2]; // the game-store id is listed on the StoreResults object
-				//System.out.println(idStr);
+				// System.out.println(idStr);
 				steamId = Integer.parseInt(idStr); // get steam id
 				// System.out.println(steamId);
 			}
@@ -183,7 +183,7 @@ public class FinalController {
 
 		if (sharkGames.length == 0) {
 			String errormsg = "It looks like the game you've selected is a free game. Please click this link to claim your free game!";
-			String errorurl = "http://store.steampowered.com/app/"+ steamId + "/";
+			String errorurl = "http://store.steampowered.com/app/" + steamId + "/";
 			model.addAttribute("errorurl", errorurl);
 			model.addAttribute("errormessage", errormsg);
 			return "error";
@@ -348,15 +348,16 @@ public class FinalController {
 			}
 		}
 		Set<RawgGame> finalset = new HashSet<>(resultSet);
-		
+
 		for (WishList wishgame : wishGames) { // loop through wishlist games
 			for (RawgGame resultset : finalset) {
-				if (wishgame.getRawgId().equals(resultset.getId())) { // comparing id's using .equals checks values of objects outside of memory
-					resultSet.remove(resultset); //removing duplicate items from recommendations
+				if (wishgame.getRawgId().equals(resultset.getId())) { // comparing id's using .equals checks values of
+																		// objects outside of memory
+					resultSet.remove(resultset); // removing duplicate items from recommendations
 				}
 			}
 		}
-		
+
 		model.addAttribute("games", resultSet); // adding Set collection with 3 RAWG api game lists to model
 		return "recommendations";
 	}
@@ -373,21 +374,20 @@ public class FinalController {
 		if (user == null) {
 			return "redirect:/login";
 		}
-		
+
 		List<WishList> wishGames = wishrep.findByUserId(user.getId()); // get wishlist games by user id
 		for (WishList wishgame : wishGames) { // loop through wishlist games
-			if (wishgame.getSteamId().equals(steamid)) { // comparing id's using .equals checks values of objects outside of memory
+			if (wishgame.getSteamId().equals(steamid)) { // comparing id's using .equals checks values of objects
+															// outside of memory
 				return "redirect:/wishlist";
 			}
 		}
-		
-		
-		
+
 		WishList wishes = new WishList(); // initial wishlist
 
 		wishes.setUser(user); // save user object to wishlist for repo mapping
-		//System.out.println(user.getId());
-		
+		// System.out.println(user.getId());
+
 		wishes.setDesiredprice(0);
 		wishes.setName(rawgGame.getName());
 		wishes.setRawgId(rawgid);
@@ -409,7 +409,6 @@ public class FinalController {
 		}
 
 		wishes.setGenres(wishlistGenres);
-		
 
 		wishrep.save(wishes);
 
@@ -425,16 +424,16 @@ public class FinalController {
 			return "redirect:/login";
 		}
 
-		//System.out.println(user.getId());
+		// System.out.println(user.getId());
 
 		List<WishList> wishes = wishrep.findByUserId(user.getId()); // find all wishlist games for a specific user
-		//System.out.println(wishes);
+		// System.out.println(wishes);
 
 		for (WishList wish : wishes) {
 
 			CheapsharkGameDetails gameDetails = csharkapi.cheapSharkGame(wish.getCsharkId().toString());
 			List<Deal> gameDeals = gameDetails.getDeals();
-			//System.out.println(gameDeals);
+			// System.out.println(gameDeals);
 			wish.setPrice(Double.parseDouble((gameDeals.get(0).getPrice())));
 
 			for (Deal g : gameDeals) {
@@ -451,19 +450,21 @@ public class FinalController {
 					wish.setStoreId(g.getStoreID());
 					wish.setDealId(g.getDealID());
 
-					//System.out.println(wish.getPrice());
-					//System.out.println(wish.getName());
+					// System.out.println(wish.getPrice());
+					// System.out.println(wish.getName());
 
 				}
 			}
 		}
-		Collections.sort(wishes, new Comparator<WishList>() { //sort the array on price so that the lowest price is always first.  This should guaruntee that a best fit is found for the budget.
-		    @Override
-		    public int compare(WishList c1, WishList c2) {
-		        return Double.compare((c2.getDesiredprice() - c2.getPrice()), (c1.getDesiredprice() - c1.getPrice()));
-		    }
+		Collections.sort(wishes, new Comparator<WishList>() { // sort the array on price so that the lowest price is
+																// always first. This should guaruntee that a best fit
+																// is found for the budget.
+			@Override
+			public int compare(WishList c1, WishList c2) {
+				return Double.compare((c2.getDesiredprice() - c2.getPrice()), (c1.getDesiredprice() - c1.getPrice()));
+			}
 		});
-		
+
 		model.addAttribute("games", wishes);
 		return "wishlist";
 	}
@@ -479,25 +480,25 @@ public class FinalController {
 	@GetMapping("/wishlistdelete/{wishlistid}")
 	public String deleteFromWishlist(@PathVariable Long wishlistid) {
 		wishrep.delete(wishrep.getOne(wishlistid));
-		
+
 		return "redirect:/wishlist";
 	}
-	
+
 	@GetMapping("/searchresults/{genreid}")
 	public String searchByGenre(@PathVariable Long genreid, Model model) {
-		
-		RawgResponse results = rawgapi.rawgGenreList(genreid.toString()); 
-		
+
+		RawgResponse results = rawgapi.rawgGenreList(genreid.toString());
+
 		List<RawgGame> games = results.getResults();
-		
+
 		model.addAttribute("games", games);
-		
+
 		return "searchresults";
 	}
-	
+
 	@PostMapping("/binpacking")
 	public String packBudgetBin(@RequestParam Double budget, Model model) {
-		
+
 		User user = (User) session.getAttribute("user"); // get user from session
 
 		if (user == null) {
@@ -506,7 +507,8 @@ public class FinalController {
 
 		List<WishList> wishes = wishrep.findByUserId(user.getId()); // find all wishlist games for a specific user
 
-		for (WishList wish : wishes) { //this loop gets the current cheapest price for each game, it was copied from the original /wishlist mapping
+		for (WishList wish : wishes) { // this loop gets the current cheapest price for each game, it was copied from
+										// the original /wishlist mapping
 			CheapsharkGameDetails gameDetails = csharkapi.cheapSharkGame(wish.getCsharkId().toString());
 			List<Deal> gameDeals = gameDetails.getDeals();
 			wish.setPrice(Double.parseDouble((gameDeals.get(0).getPrice())));
@@ -522,68 +524,87 @@ public class FinalController {
 				}
 			}
 		}
-		
-		List<ListContainer> listOfItemLists = new ArrayList<>();
-		Collections.sort(wishes, new Comparator<WishList>() { //sort the array on price so that the lowest price is always first.  This should guaruntee that a best fit is found for the budget.
-		    @Override
-		    public int compare(WishList c1, WishList c2) {
-		        return Double.compare(c1.getPrice(), c2.getPrice());
-		    }
-		});
-		
 
-				
-				Set<WishList> bin = new HashSet<>();
-				Double tempbudget = budget;
-				
-				if(tempbudget >= wishes.get(0).getPrice()) {
-					bin.add(wishes.get(0));
-					Double price = wishes.get(0).getPrice();
-					tempbudget = tempbudget-price;
-				
-				while(price <= tempbudget) {
-					
-					for(int j=1; j < wishes.size(); j++) {
-					
-							if(tempbudget >= wishes.get(j).getPrice()) {
-								
-								bin.add(wishes.get(j));//add wish to shopping cart
-								price = wishes.get(j).getPrice();
-								tempbudget = tempbudget-price;
-								
-							} else {
-							
-							}
-					}	
-				ListContainer binObject = new ListContainer();
-				binObject.setWishlists(bin);
-				binObject.setLength(bin.size());
-				
-				listOfItemLists.add(binObject);
-				
-			}	
+		List<ListContainer> listOfItemLists = new ArrayList<>();
+		Collections.sort(wishes, new Comparator<WishList>() { // sort the array on price so that the lowest price is
+																// always first. This should guaruntee that a best fit
+																// is found for the budget.
+			@Override
+			public int compare(WishList c1, WishList c2) {
+				return Double.compare(c1.getPrice(), c2.getPrice());
+			}
+		});
+
+		Set<WishList> bin = new HashSet<>();
+		
+//		<<===== Start Stored changes =====>>
+//		Double tempbudget = budget;
+//
+//		if (tempbudget >= wishes.get(0).getPrice()) {
+//			bin.add(wishes.get(0));
+//			Double price = wishes.get(0).getPrice();
+//			tempbudget = tempbudget - price;
+//
+//			while (price <= tempbudget) {
+//
+//				for (int j = 1; j < wishes.size(); j++) {
+//
+//					if (tempbudget >= wishes.get(j).getPrice()) {
+//
+//						bin.add(wishes.get(j));// add wish to shopping cart
+//						price = wishes.get(j).getPrice();
+//						tempbudget = tempbudget - price;
+//
+//					} else {
+//
+//					}
+//				}
+//				ListContainer binObject = new ListContainer();
+//				binObject.setWishlists(bin);
+//				binObject.setLength(bin.size());
+//
+//				listOfItemLists.add(binObject);
+//
+//			}
+//		}
+//		<<====== End Stored Changes ======>>
+
+//		<<===== Start Sean B Changes =====>>
+		Double price = 0.0;
+		for (int j = 0; j < wishes.size(); j++) {
+			if (budget >= price + wishes.get(j).getPrice()) {
+				bin.add(wishes.get(j));// add wish to shopping cart
+				price += wishes.get(j).getPrice();
+			}
 		}
+		//You may want to put some handling for empty lists if you haven't already.
+		//In addition, this is formatted to deal with the list you have inputed where the lowest price comes in first.
+		//If you ordered it High to low, it would possibly give you a better result.
+//		<<====== End Sean B Changes ======>>
 		
-		
-		model.addAttribute("user",user);
-		model.addAttribute("budget",budget);
-		
-			
-		
-		model.addAttribute("listoflists",listOfItemLists.get(0)); //we may have to set this to only pick one or two lists, otherwise the runtime can get excessive.
-		
+		ListContainer binObject = new ListContainer();
+		binObject.setWishlists(bin);
+		binObject.setLength(bin.size());
+
+		listOfItemLists.add(binObject);
+
+		model.addAttribute("user", user);
+		model.addAttribute("budget", budget);
+
+		model.addAttribute("listoflists", listOfItemLists.get(0)); // we may have to set this to only pick one or two
+																	// lists, otherwise the runtime can get excessive.
+
 		return "autoshoppinglist";
 	}
-	
+
 	@GetMapping("/error")
 	public String errorpage() {
 		return "error";
 	}
-	
+
 	@GetMapping("/about")
 	public String about() {
 		return "about";
 	}
-
 
 }
