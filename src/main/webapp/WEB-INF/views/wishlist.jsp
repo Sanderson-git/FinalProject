@@ -92,7 +92,7 @@ td {
 				<li class="nav-item"><a class="nav-link" href="/about">The Crypt Keepers</a>
 				</li>
 			</ul>
-			<span class="navbar-brand">${ user.username }</span>
+				<span class="navbar-brand">${ user.username }</span>
     		<a class="btn navbar-btn btn-default navbar-right pull-right" role="button" href="/logout">Logout</a>
 
 			<!-- Search function -->
