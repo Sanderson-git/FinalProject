@@ -102,9 +102,9 @@ p {
 				<li class="nav-item"><a class="nav-link" href="/about">The Crypt Keepers</a>
 				</li>
 			</ul>
-			<span class="navbar-brand">${ user.username }</span>
-    		<a class="btn navbar-btn btn-default navbar-right pull-right" role="button" href="/logout">Logout</a>
-
+				<span class="navbar-brand">${ user.username }</span>
+    		<a class="btn navbar-btn btn-default navbar-right pull-right" role="button" href="/logout">Logout</a> 
+	
 			<!-- Search function -->
 			<form class="form-inline my-2 my-lg-0" method="post"
 				action="/searchresults">
@@ -136,7 +136,7 @@ p {
 						<td class="r1"><a href="https://www.linkedin.com/in/michaelmedling/">Michael M</a><br/><a href="https://github.com/mikeymedling31">Developer</a></td>
 					</tr>
 					<tr >
-						<td><p>Moon or quit, man.</p></td><!-- Skye -->
+						<td><p>It's a feature not a bug.</p></td><!-- Skye -->
 						<td><p>"The only time I set the bar low<br />is for limbo." <br />-Michael Scott</p></td><!-- Sean -->
 						<td><p>My flogic is lawless.</p></td><!-- Jayme -->
 						<td><p>Steam? never heard of it...</p></td><!-- Mike -->

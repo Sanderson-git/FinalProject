@@ -90,7 +90,7 @@ td {
 				</li>
 			</ul>
 			<span class="navbar-brand">${ user.username }</span>
-    		<a class="btn navbar-btn btn-default navbar-right pull-right" role="button" href="/logout">Logout</a>
+    	<a class="btn navbar-btn btn-default navbar-right pull-right" role="button" href="/logout">Logout</a>
 
 			<!-- Search function -->
 			<form class="form-inline my-2 my-lg-0" method="post"

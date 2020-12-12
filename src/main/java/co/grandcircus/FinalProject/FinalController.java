@@ -13,6 +13,7 @@ import javax.persistence.CascadeType;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import co.grandcircus.FinalProject.SQL.*;
 import co.grandcircus.FinalProject.services.*;
+
 
 @Controller
 public class FinalController {
@@ -46,6 +48,8 @@ public class FinalController {
 
 	@Autowired
 	CheapSharkStoreNameRepository csstorerep;
+	
+	public static BCryptPasswordEncoder pwEncoder = new BCryptPasswordEncoder(); // create an instance of BCryptPasswordEncoder
 
 //	@GetMapping("/")
 //	private String index () {
@@ -99,28 +103,35 @@ public class FinalController {
 
 	@PostMapping("/profile")
 	public String login(String username, String password, Model model) {
-		User user = userrep.findFirstByUsername(username).orElse(null);
+		
+		User user = userrep.findFirstByUsername(username).orElse(null); // locate user by username
 		if (user == null) {
-			return "fail";
+			session.invalidate(); // if user isn't found, invalidate session just in case
+			return "fail"; // go to failed login page
 		} else {
-			if (user.getPassword().compareTo(password) == 0) {
-
-				session.setAttribute("user", user);
+			if (pwEncoder.matches(password, user.getPassword())) {
+				session.setAttribute("user", user); // if passwords match, create session
 				model.addAttribute("user", user);
-				return "profile";
-			} else {
-				return "fail";
-
-			}
-
-		}
+				return "profile"; // go to profile page
+			   }
+				
+			} 
+		
+		session.invalidate(); // login failed
+		return "fail"; // go to failed login page
+		
 	}
 
 	@PostMapping("register")
-	public String register(User user) {
-		userrep.save(user);
-		session.setAttribute("user", user);
-		return "register";
+	public String register(User user, Model model) {
+		
+		String pw = user.getPassword(); // get user's password
+		pw = pwEncoder.encode(pw); // encode password
+		user.setPassword(pw); // save pw back to user
+		userrep.save(user); // save user to database
+		model.addAttribute("user", user);
+		session.setAttribute("user", user); // create session 
+		return "register"; // go to registration confirmation page
 	}
 
 	@GetMapping("/logout")
