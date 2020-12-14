@@ -4,10 +4,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.text.DecimalFormat;
 import java.util.*;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.servlet.http.HttpSession;
@@ -92,11 +88,29 @@ public class FinalController {
 		
 	}
 
-	@PostMapping("register")
+	@PostMapping("/register")
 	public String register(User user, Model model) {
 		
 		String pw = user.getPassword(); // get user's password
 		pw = pwEncoder.encode(pw); // encode password
+
+		List<User> userList = userrep.findAll();
+		for (User usernames : userList) {
+			if (usernames.getUsername().equals(user.getUsername()) || user.getUsername() == "") {
+				System.out.println("Login Error");
+				model.addAttribute("errorurl", "/login");
+					if (usernames.getUsername().equals(user.getUsername())) {
+						model.addAttribute("errormessage", "Sorry, that Username is taken.");
+					} else if (user.getUsername() == ""){
+						model.addAttribute("errormessage", "Sorry, your Username can not be blank.");
+					} else if (user.getPassword() == "") {
+						model.addAttribute("errormessage", "Sorry, your password can not be blank.");
+					}
+				return "error";
+			}
+		}
+		
+		
 		user.setPassword(pw); // save pw back to user
 		userrep.save(user); // save user to database
 		model.addAttribute("user", user);
