@@ -80,7 +80,7 @@ text-align: left;
 	<a href="/"><img src="https://drive.google.com/uc?id=1BmbUr80SogYS3LZdkH3hqBuqZbyyiSkX" style=" padding-left: 35%"/></a>
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-		<a class="navbar-brand" href="/" style="font-size: 20px;">Home</a>
+		<a class="navbar-brand" href="/" style="font-size: 16px;">Home</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarColor01" aria-controls="navbarColor01"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -89,16 +89,16 @@ text-align: left;
 
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item" style="font-size: 20px;"><a class="nav-link" href="/login">Login		
+				<li class="nav-item" style="font-size: 16px;"><a class="nav-link" href="/login">Login		
 				</a></li>
-				<li class="nav-item active" style="font-size: 20px;"><a class="nav-link" href="/wishlist">Wishlist</a>
+				<li class="nav-item active" style="font-size: 16px;"><a class="nav-link" href="/wishlist">Wishlist</a>
 				</li>
 
-				<li class="nav-item" style="font-size: 20px;"><a class="nav-link"
+				<li class="nav-item" style="font-size: 16px;"><a class="nav-link"
 					href="/recommendations">Recommendations</a></li>
-				<li class="nav-item" style="font-size: 20px;"><a class="nav-link" href="/about">The
+				<li class="nav-item" style="font-size: 16px;"><a class="nav-link" href="/about">The
 						Crypt Keepers</a></li>
-      		<li class="nav-item" style="font-size: 20px;"><a class="nav-link" href="/popular2019">Most
+      		<li class="nav-item" style="font-size: 16px;"><a class="nav-link" href="/popular2019">Most
 						popular of 2019</a></li>
 			</ul>
 				<span class="navbar-brand">${ user.username }</span>
@@ -125,17 +125,17 @@ text-align: left;
 	<font size="5">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-4 left" style="color: #2a9fd6;">Game:</div>
 				<div class="col-lg-4" style="color: #2a9fd6;"></div>
+				<div class="col-lg-4 left" style="color: #2a9fd6;">Game:</div>
 				<div class="col-lg-2 left" style="color: #2a9fd6;">Price:</div>
 				<div class="col-lg-1" style="color: #2a9fd6;"></div>
 			</div>
 		</div>
 	<c:forEach var="game" items="${ listoflists.getWishlists() }">
 		<div class="container">
-			<div class="row">
+			<div class="row">		
+				<div class="col-lg-4 padded"><a href="/details/${ game.getRawgId()}"><img src="${ game.getBackground_image() }" alt="${game.getName()}" style="width: 100%; height: auto; border: 5px solid #59A7FF"></a></div>
 				<div class="col-lg-4 padded"><a class="buttonstyle" href="/details/${ game.getRawgId()}" data-toggle="tooltip" data-placement="right" title="View game details">${ game.getName() }</a></div>
-				<div class="col-lg-4 padded"><img src="${ game.getBackground_image() }" alt="${game.getName()}" style="width: 100%; height: auto; border: 5px solid #59A7FF"></div>
 				<div class="col-lg-2">$${game.getPrice()}</div>
 				<div class="col-lg-2"><a href="https://www.cheapshark.com/redirect?dealID=${game.getDealId() }" class="buttonstyletwo" data-toggle="tooltip" data-placement="right" title="Open purchase link in new tab" target="_blank">Buy Now!</a></div>
 			</div>
