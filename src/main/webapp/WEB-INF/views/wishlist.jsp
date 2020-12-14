@@ -5,10 +5,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Wishlist</title>
+<title>Crypt/Wishlist</title>
 
 <style type="text/css">
-
 td {
 	padding-right: 20px;
 	padding-left: 10px;
@@ -45,9 +44,9 @@ td {
 	font-weight: bold;
 	line-height: 40px;
 }
+
 .tagstyle {
-	
-	background: #d3d3d3 ;
+	background: #d3d3d3;
 	padding: 2px;
 	text-align: center;
 	border-radius: 5px;
@@ -55,10 +54,15 @@ td {
 	font-weight: bold;
 	line-height: 20px;
 }
+
 .center {
 	margin-left: auto;
 	margin-right: auto;
 }
+
+li {
+	font-size: 20px;
+  }
 .centered {
 	text-align: center;
 }
@@ -104,12 +108,13 @@ td {
 				</li>
 				<li class="nav-item"><a class="nav-link"
 					href="/recommendations">Recommendations</a></li>
-				<li class="nav-item"><a class="nav-link" href="/about">The Crypt Keepers</a>
-				</li>
+				<li class="nav-item"><a class="nav-link" href="/about">The
+						Crypt Keepers</a></li>
+      <li class="nav-item"><a class="nav-link" href="/popular2019">Most
+						popular of 2019</a></li>
 			</ul>
 				<span class="navbar-brand">${ user.username }</span>
     		<a class="btn navbar-btn btn-default navbar-right pull-right" role="button" href="/logout">Logout</a>
-
 			<!-- Search function -->
 			<form class="form-inline my-2 my-lg-0" method="post"
 				action="/searchresults">
@@ -117,7 +122,6 @@ td {
 					name="search">
 				<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
 			</form>
-			<!-- **** -->
 		</div>
 	</nav>
 <div class="container">
@@ -156,6 +160,7 @@ td {
 							</c:if></div>
 			</div>
 		</div>
+
 				</c:forEach>
 	</font>
 

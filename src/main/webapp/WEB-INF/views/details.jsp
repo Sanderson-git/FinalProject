@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Details</title>
+<title>Crypt/Details</title>
 <style type="text/css">
 
 .buttonstyle {
@@ -54,6 +54,11 @@
 	margin-left: auto;
 	margin-right: auto;
 }
+
+li {
+	font-size: 20px;
+}
+
 .padded {
   margin-top: 10px;
   margin-bottom: 15px;
@@ -62,6 +67,7 @@
 .centered {
   text-align: center;
 }	
+
 </style>
 
 <link rel="stylesheet"
@@ -72,10 +78,12 @@
 </head>
 <body>
 	<!-- Logo -->
+
 	<a href="/"><img src="https://drive.google.com/uc?id=1BmbUr80SogYS3LZdkH3hqBuqZbyyiSkX" style=" padding-left: 35%"/></a>
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 		<a class="navbar-brand" href="/">Home</a>
+
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarColor01" aria-controls="navbarColor01"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -84,29 +92,35 @@
 
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="/login">Login
-						
+
+				<li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
+				<li class="nav-item"><a class="nav-link" href="/login">Login		
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="/wishlist">Wishlist</a>
 				</li>
+
 				<li class="nav-item"><a class="nav-link"
 					href="/recommendations">Recommendations</a></li>
-				<li class="nav-item"><a class="nav-link" href="/about">The Crypt Keepers</a>
-				</li>
+				<li class="nav-item"><a class="nav-link" href="/about">The
+						Crypt Keepers</a></li>
+      		<li class="nav-item"><a class="nav-link" href="/popular2019">Most
+						popular of 2019</a></li>
 			</ul>
+
 				<span class="navbar-brand">${ user.username }</span>
     		<a class="btn navbar-btn btn-default navbar-right pull-right" role="button" href="/logout">Logout</a>
 
 			<!-- Search function -->
+
 			<form class="form-inline my-2 my-lg-0" method="post"
 				action="/searchresults">
 				<input class="form-control mr-sm-2" type="text" placeholder="Search"
 					name="search">
 				<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
 			</form>
-			<!-- **** -->
 		</div>
 	</nav>
+
 <div class="container">
 		<div class="row">
 			<div class="col-lg-12 buttonstyle padded"><h1>${rawgDetails.getName() }</h1></div>

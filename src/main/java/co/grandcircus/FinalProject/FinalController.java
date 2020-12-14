@@ -51,49 +51,18 @@ public class FinalController {
 	
 	public static BCryptPasswordEncoder pwEncoder = new BCryptPasswordEncoder(); // create an instance of BCryptPasswordEncoder
 
-//	@GetMapping("/")
-//	private String index () {
-//		System.out.println("RAWG API: ");
-//		rawgapi.rawgTestApiCall();
-//		System.out.println("CHEAP SHARK API: ");
-//		csharkapi.cheapSharkTestApiCall();
-//		return "index";
-//	}
-
-//	@GetMapping("/")
-//	private String index (String titleName, Model model) {
-//		CheapsharkGame csharkGame = csharkapi.getCheapsharkGameListViaSteamId("35140");
-//		model.addAttribute("cheapsharkGame", csharkGame);
-//		System.out.println(csharkGame.getExternal());
-//		return "index";
-//	}
-
-//	@GetMapping("/")
-//	private String index () {
-//		RawgResponse rResp = rawgapi.rawgSearch("Batman");
-//		System.out.println(rResp.getNext());
-//		return "index";
-//	}
-
-//	@GetMapping("/")
-//	private String index () {
-//		RawgGame rGame = rawgapi.rawgGame(2235);
-//		System.out.println(rGame.getName());
-//		return "index";
-//	}
-
-//	@GetMapping("/")
-//	private String index () {
-//		CheapsharkGameDetails cSharkGameDetails = csharkapi.cheapSharkGame(612);
-//		System.out.println(cSharkGameDetails.getInfo().getTitle());
-//		return "index";
-//	}
-
 	@GetMapping("/")
 	private String index(Model model) {
 		RawgResponse rResp = rawgapi.rawgHomeList();
 		model.addAttribute("rawglist", rResp);
 		return "index";
+	}
+	
+	@GetMapping("/popular2019")
+	private String popular2019(Model model) {
+		RawgResponse rResp = rawgapi.popular2019();
+		model.addAttribute("rawglist", rResp);
+		return "popular2019";
 	}
 
 	@GetMapping("/login")
@@ -109,6 +78,7 @@ public class FinalController {
 			session.invalidate(); // if user isn't found, invalidate session just in case
 			return "fail"; // go to failed login page
 		} else {
+
 			if (pwEncoder.matches(password, user.getPassword())) {
 				session.setAttribute("user", user); // if passwords match, create session
 				model.addAttribute("user", user);
@@ -137,7 +107,6 @@ public class FinalController {
 	@GetMapping("/logout")
 	public String logout() {
 		User user = (User) session.getAttribute("user");
-
 		if (user == null) {
 			return "redirect:/index";
 		}
@@ -148,27 +117,19 @@ public class FinalController {
 
 	@GetMapping("/details/{id}")
 	private String gameDetails(@PathVariable Integer id, Model model) {
-
-		// System.out.println("1");
-
 		RawgGame rawgGame = rawgapi.rawgGame(id); // get rawgGame object from api query using rawgId selected by
 													// previous api search
 		model.addAttribute("rawgDetails", rawgGame); // add whole rawgGame object for details.jsp
-		// System.out.println("2");
 		Integer steamId = null; // initialize steam id variable for later cheapshark api query
-
 		GameStoreResponse response = rawgapi.rawgStoreLink(id.toString());
-		// System.out.println("3");
 		List<GameSpecificStore> stores = response.getResults(); // get list of StoreResults from rawg store call to find
 																// the steam Store and thereby the game id on it
-
 		for (GameSpecificStore str : stores) { // loop through the StoreResults to find the steam Store
 			if (str.getStore_id().compareTo("1") == 0) { // id is saaved as a String so use compareTo which returns an
 															// int, a return of 0 means true
 				// if it is the Steam store, find the game Steam Id (there is no UPC (universal
 				// product code) listed on either api, the Steam Id for games on each api is
 				// used in lieu of this
-				// System.out.println("4");
 				URI uri = null;
 				try {
 					uri = new URI(str.getUrl());
@@ -176,11 +137,8 @@ public class FinalController {
 					e.printStackTrace();
 				}
 				String[] segments = uri.getPath().split("/");
-				// System.out.println(segments.length);
 				String idStr = segments[2]; // the game-store id is listed on the StoreResults object
-				// System.out.println(idStr);
 				steamId = Integer.parseInt(idStr); // get steam id
-				// System.out.println(steamId);
 			}
 		}
 
@@ -202,12 +160,13 @@ public class FinalController {
 			sharkGame = sharkGames[0];
 		}
 
+
 		CheapsharkGameDetails sharkDetails = csharkapi.cheapSharkGame(sharkGame.getGameId()); // using the game id from the CheapsharkGame object obtained by the steamId, get all
 																								// Cheapshark game details (this will include all pricing comparison info)
 								
 		DecimalFormat twoPlaces = new DecimalFormat("0.00"); // formatting to 2 decimal places
 		DecimalFormat noPlaces = new DecimalFormat("0");
-		// System.out.println("6");
+
 		List<Deal> deals = sharkDetails.getDeals();// pricing from various stores
 
 		List<PrettyDeal> realdeals = new ArrayList<>();
@@ -219,11 +178,12 @@ public class FinalController {
 			prettydeal.setPrice(d.getPrice());
 			prettydeal.setDealID(d.getDealID());
 			prettydeal.setSavings(noPlaces.format(Double.parseDouble(d.getSavings())));
-			// System.out.println(prettydeal.getStoreID());
+
+
 			prettydeal.setStoreName(csstorerep.findById(d.getStoreID()).orElse(null).getStorename()); // setting Prettydeal store name equal to cheapsharkstore repo storename, finding by STRING id.
 
 			realdeals.add(prettydeal);
-		}
+			}
 
 		String retail = deals.get(0).getRetailPrice(); // pulling retail price
 		Double retaildouble = Double.parseDouble(retail); // changing retail price to double
@@ -234,6 +194,7 @@ public class FinalController {
 
 		String finalpricephour = twoPlaces.format(pricephour); // assigning string the price per hour with 2 decimal
 																// place formatting
+
 		String finalreldate = rawgGame.getReleased().substring(0, 4);
 		
 		model.addAttribute("releaseDate",finalreldate);
@@ -242,9 +203,7 @@ public class FinalController {
 		model.addAttribute("sharkgame", sharkGame);
 		model.addAttribute("deals", realdeals);
 		model.addAttribute("sharkDetails", sharkDetails);
-
 		return "details";
-
 	}
 
 	@PostMapping("/searchresults")
@@ -258,23 +217,17 @@ public class FinalController {
 
 	@GetMapping("/recommendations")
 	private String userRecom(Model model) {
-
 		User user = (User) session.getAttribute("user"); // get user by session
 		model.addAttribute("user", user); // add user to session
-
 		if (user == null) {
 			return "redirect:/login";
 		}
 
 		List<WishList> wishGames = wishrep.findByUserId(user.getId()); // get wishlist games by user id
-
 		List<Genres> wishGenres = new ArrayList<>(); // start list for wishlist genres
-
 		wishGenres.addAll(genresrep.findByWishlistsIn(wishGames)); // adds all of each game's genres to genres list
-
 		Set<Genres> uniqueGenres = new HashSet<Genres>(wishGenres); // only want to loop through genres that the user
 																	// has within their wishlist
-
 		int topG = 0; // initializing variables for genre recommendations
 		Long topGid = null;
 		int secondG = 0;
@@ -386,10 +339,7 @@ public class FinalController {
 		}
 
 		WishList wishes = new WishList(); // initial wishlist
-
-		wishes.setUser(user); // save user object to wishlist for repo mapping
-		// System.out.println(user.getId());
-
+		wishes.setUser(user); // save user object to wishlist for repo mappin
 		wishes.setDesiredprice(0);
 		wishes.setName(rawgGame.getName());
 		wishes.setRawgId(rawgid);
@@ -399,62 +349,39 @@ public class FinalController {
 		wishes.setRating(rawgGame.getRating());
 
 		List<Genre> gameGenres = rawgGame.getGenres();
-
 		Set<Genres> wishlistGenres = new HashSet<>();
 
 		for (Genre genre : gameGenres) {
-
 			Genres genres = genresrep.getOne(genre.getId());
-			// System.out.println(genres.getName());
-
 			wishlistGenres.add(genres);
 		}
 
 		wishes.setGenres(wishlistGenres);
-
 		wishrep.save(wishes);
-
 		return "redirect:/wishlist";
 	}
 
 	@GetMapping("/wishlist")
 	public String viewWishlist(Model model) {
-
 		User user = (User) session.getAttribute("user"); // get user from session
-
 		if (user == null) {
 			return "redirect:/login";
 		}
 
-		// System.out.println(user.getId());
-
 		List<WishList> wishes = wishrep.findByUserId(user.getId()); // find all wishlist games for a specific user
-		// System.out.println(wishes);
 
 		for (WishList wish : wishes) {
-
 			CheapsharkGameDetails gameDetails = csharkapi.cheapSharkGame(wish.getCsharkId().toString());
 			List<Deal> gameDeals = gameDetails.getDeals();
-			// System.out.println(gameDeals);
 			wish.setPrice(Double.parseDouble((gameDeals.get(0).getPrice())));
-
 			for (Deal g : gameDeals) {
-
 				Double price = Double.parseDouble(g.getPrice());
 				Double wishPrice = wish.getPrice();
-
-				// System.out.println(price);
-				// System.out.println(wishPrice);F
-
+				
 				if (wishPrice >= price) {
 					wish.setPrice(Double.parseDouble(g.getPrice()));
-
 					wish.setStoreId(g.getStoreID());
 					wish.setDealId(g.getDealID());
-
-					// System.out.println(wish.getPrice());
-					// System.out.println(wish.getName());
-
 				}
 			}
 		}

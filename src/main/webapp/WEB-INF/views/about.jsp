@@ -5,7 +5,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+
 <title>About the Cryptkeepers</title>
+
 
 <style type="text/css">
 
@@ -41,7 +43,7 @@
 }
 
 .img1 {
-	border-radius: 45%;
+	border-radius: 50%;
 	}
 
 table {
@@ -55,7 +57,7 @@ td {
 }
 
 .r1 {
-	font-size: 30px;
+	font-size: 40px;
 	
 	}
 	
@@ -70,6 +72,14 @@ p {
   padding: 15px;
 }	
 
+li{
+  	font-size:20px;
+  }
+  
+ .about {
+ border: solid; 
+ color:  #2a9fd6;
+ }
 
 </style>
 
@@ -84,6 +94,7 @@ p {
 	<a href="/"><img src="https://drive.google.com/uc?id=1BmbUr80SogYS3LZdkH3hqBuqZbyyiSkX" style=" padding-left: 35%"/></a>
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
 		<a class="navbar-brand" href="/">Home</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarColor01" aria-controls="navbarColor01"
@@ -93,8 +104,11 @@ p {
 
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav mr-auto">
+
+				<li class="nav-item"><a class="nav-link" href="/">Home</a>
+				</li>
 				<li class="nav-item"><a class="nav-link" href="/login">Login
-						
+
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="/wishlist">Wishlist</a>
 				</li>
@@ -103,6 +117,8 @@ p {
 				<li class="nav-item active"><a class="nav-link" href="/about">The Crypt Keepers
 				<span class="sr-only">(current)</span>
 				</a></li>
+				<li class="nav-item"><a class="nav-link" href="/popular2019">Most popular of 2019</a>
+				</li>
 			</ul>
 				<span class="navbar-brand">${ user.username }</span>
     		<a class="btn navbar-btn btn-default navbar-right pull-right" role="button" href="/logout">Logout</a> 
@@ -120,6 +136,7 @@ p {
 		
 		
 		
+
 <div class="container">
 			<div class="row">
 

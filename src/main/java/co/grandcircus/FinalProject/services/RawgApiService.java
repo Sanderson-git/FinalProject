@@ -1,5 +1,7 @@
 package co.grandcircus.FinalProject.services;
 
+import java.util.Random;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -35,8 +37,17 @@ private RestTemplate restTemplate = new RestTemplate();
 	}
 	
 
-	public RawgResponse rawgHomeList () {
-		String url = "https://api.rawg.io/api/games?stores=1";
+	public RawgResponse rawgHomeList() {	
+		// create instance of Random class 
+        Random rand = new Random(); 
+        // Generate random integers in range 0 to 498
+        int pageNumber = (rand.nextInt(498)+1);
+		String url = "https://api.rawg.io/api/games?page=" + pageNumber + "&stores=1";
+		return restTemplate.getForObject(url, RawgResponse.class);
+	}
+	
+	public RawgResponse popular2019() {	
+		String url = "https://api.rawg.io/api/games?dates=2019-01-01,2019-12-31&ordering=-added&store=1";
 		return restTemplate.getForObject(url, RawgResponse.class);
 	}
 	

@@ -56,6 +56,10 @@ body {
 	margin-left: auto;
 	margin-right: auto;
 }
+
+.oop {
+	padding-left: 30%;
+}
 </style>
 
 <link rel="stylesheet"
@@ -64,8 +68,8 @@ body {
 	crossorigin="anonymous">
 </head>
 <body>
-
 <!-- Logo -->
+
 	<a href="/"><img src="https://drive.google.com/uc?id=1BmbUr80SogYS3LZdkH3hqBuqZbyyiSkX" style=" padding-left: 35%"/></a>
 
 	<!--********************  Begin Nav Bar ********************-->
@@ -79,6 +83,8 @@ body {
 
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav mr-auto">
+
+				<li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
 				<li class="nav-item"><a class="nav-link" href="/login">Login
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="/wishlist">Wishlist</a>
@@ -87,24 +93,22 @@ body {
 				</li>
 				<li class="nav-item"><a class="nav-link" href="/about">The Crypt Keepers</a>
 				</li>
+    <li class="nav-item"><a class="nav-link" href="/popular2019">Most
+						popular of 2019</a></li>
 			</ul>
 				<span class="navbar-brand">${ user.username }</span>
     		<a class="btn navbar-btn btn-default navbar-right pull-right" role="button" href="/logout">Logout</a>
 
-			<!-- Search function -->
 			<form class="form-inline my-2 my-lg-0" method="post"
 				action="/searchresults">
 				<input class="form-control mr-sm-2" type="text" placeholder="Search"
 					name="search">
 				<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
 			</form>
-			<!-- **** -->
 		</div>
 	</nav>
-	<!--******************** End Nav Bar  ********************-->
 
-
-	
 	<h2><a href="${errorurl }">${errormessage }</a></h2>
+	<img class="oop" src="https://csshint.com/wp-content/uploads/2019/06/HTML-Funny-404-Pages.gif"/>
 </body>
 </html>
