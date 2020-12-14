@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>About</title>
+<title>Crypt/Keepers</title>
 
 <style type="text/css">
 body {
@@ -47,7 +47,7 @@ body {
 }
 
 .img1 {
-	border-radius: 45%;
+	border-radius: 50%;
 	}
 
 table {
@@ -61,7 +61,7 @@ td {
 }
 
 .r1 {
-	font-size: 30px;
+	font-size: 40px;
 	
 	}
 	
@@ -70,6 +70,15 @@ p {
 	font-size: 20px;
 	font-weight: bold;
 }	
+
+li{
+  	font-size:20px;
+  }
+  
+ .about {
+ border: solid; 
+ color:  #2a9fd6;
+ }
 </style>
 
 <link rel="stylesheet"
@@ -83,7 +92,6 @@ p {
 	<img src="https://drive.google.com/uc?id=1BmbUr80SogYS3LZdkH3hqBuqZbyyiSkX"/>
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-		<a class="navbar-brand" href="/">HOME</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarColor01" aria-controls="navbarColor01"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -92,14 +100,18 @@ p {
 
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="/login">Login
+				<li class="nav-item"><a class="nav-link" href="/">Home</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="/popular2019">Most popular of 2019</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="/login">Login
 						<span class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="/wishlist">Wishlist</a>
 				</li>
 				<li class="nav-item"><a class="nav-link" href="/recommendations">Recommendations</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="/about">The Crypt Keepers</a>
+				<li class="nav-item active"><a class="nav-link" href="/about">The Crypt Keepers</a>
 				</li>
 			</ul>
 			<span class="navbar-brand">${ user.username }</span>
@@ -122,9 +134,9 @@ p {
 			<thead>
 				<tr>
 					<th style= "padding: 20px 0px 20px 70px; "><img class="img1" src="https://media-exp1.licdn.com/dms/image/C4E03AQEvY6jYIOUNhg/profile-displayphoto-shrink_800_800/0/1602263500660?e=1613001600&v=beta&t=Z2vECuXIdDQ8dwksz70wod7aF6aNFCcAHa2opdAFm3U" width="300px"/></th>
-					<th style= "padding: 20px 0px 20px 70px;"><img class="img1" src="https://media-exp1.licdn.com/dms/image/C4E35AQG6XMXDx7x2Hg/profile-framedphoto-shrink_800_800/0/1604064742009?e=1607706000&v=beta&t=ZZ_OsBwRnCq4r5L5KSQEYdgyXBdvU4wNOAI8VDbhR1M" width="300px" /></th>
+					<th style= "padding: 20px 0px 20px 70px;"><img class="img1" src="https://media-exp1.licdn.com/dms/image/C4E35AQG6XMXDx7x2Hg/profile-framedphoto-shrink_800_800/0/1604064742009?e=1607896800&v=beta&t=V4gH8AAu6peymiwQFQVpV5H_lf_lbu9b6YaEbi5t62k" width="300px" /></th>
 					<th style= "padding: 20px 0px 20px 70px;"><img class="img1" src="https://media-exp1.licdn.com/dms/image/C4E03AQGhJY4HELmlog/profile-displayphoto-shrink_800_800/0/1606831490520?e=1613001600&v=beta&t=w_eQ92QBk2DDl_pcPehp1jBP-0tF5jaeN_8QGJGZuRA" width="300px" /></th>
-					<th style= "padding: 20px 0px 20px 70px;"><img class="img1" src="https://media-exp1.licdn.com/dms/image/C4D03AQF0zfpIBjTadQ/profile-displayphoto-shrink_200_200/0/1607627453802?e=1613001600&v=beta&t=zfODTeM_EwIl8Y8Wfw8P8N0KPul0B6IwSbyBqyLhlsc" width="300px" />
+					<th style= "padding: 20px 0px 20px 70px;"><img class="img1" src="https://avatars2.githubusercontent.com/u/67446356?s=400&u=f90e819f3220acb3530d7f90719a33615eef99b3&v=4" width="300px" />
 			</th>
 				</tr>
 			</thead>
@@ -144,8 +156,10 @@ p {
 			</tbody>
 		</table>
 		<br />
-		<div>
+		<div class="about">
+			<br />
 			<p>We are just a few broke game players looking to save a buck and continue on gaming, so we made Crypt to help everyone game-on while being on a budget!<br />Hurray for the nerds!</p>
+			<br />
 			<img src="https://i.imgflip.com/4puq2v.jpg" style=" padding-left: 35%"/>
 		</div>
 		<br /><br /><br /><br /><br /><br />
