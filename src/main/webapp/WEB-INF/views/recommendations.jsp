@@ -77,6 +77,7 @@ td {
 h2{
 	padding-left:25%;
 }
+
 </style>
 <meta charset="ISO-8859-1">
 <title>Recommendations</title>
@@ -84,19 +85,18 @@ h2{
 	href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cyborg/bootstrap.min.css"
 	integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2"
 	crossorigin="anonymous">
-head>
 <meta charset="ISO-8859-1">
 <title>Crypt/Recommended</title>
 </head>
 
 <body>
 
-	<!-- Logo -->
+<!-- Logo -->
 	<a href="/"><img src="https://drive.google.com/uc?id=1BmbUr80SogYS3LZdkH3hqBuqZbyyiSkX" style=" padding-left: 35%"/></a>
 
 <!-- Nav Bar-->		
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-		<a class="navbar-brand" href="/">Home</a>
+		<a class="navbar-brand" href="/" style="font-size: 20px;">Home</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarColor01" aria-controls="navbarColor01"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -105,16 +105,15 @@ head>
 
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="/login">Login
-						
+				<li class="nav-item" style="font-size: 20px;"><a class="nav-link" href="/login">Login	
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="/wishlist">Wishlist</a>
+				<li class="nav-item" style="font-size: 20px;"><a class="nav-link" href="/wishlist">Wishlist</a>
 				</li>
-				<li class="nav-item" active><a class="nav-link" href="/recommendations">Recommendations<span class="sr-only">(current)</span></a>
+				<li class="nav-item active" style="font-size: 20px;"><a class="nav-link" href="/recommendations">Recommendations<span class="sr-only">(current)</span></a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="/about">The Crypt Keepers</a>
+				<li class="nav-item" style="font-size: 20px;"><a class="nav-link" href="/about">The Crypt Keepers</a>
 				</li>
-     <li class="nav-item"><a class="nav-link" href="/popular2019">Most
+    			<li class="nav-item" style="font-size: 20px;"><a class="nav-link" href="/popular2019">Most
 						popular of 2019</a></li>
 			</ul>
 			<span class="navbar-brand">${ user.username }</span>
@@ -138,7 +137,7 @@ head>
 	</div>
 
 
-	<font size="5">
+	<font size="6">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-4" style="color: #2a9fd6;"></div>
