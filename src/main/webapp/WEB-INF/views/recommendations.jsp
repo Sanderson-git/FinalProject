@@ -52,6 +52,23 @@ td {
 	font-weight: bold;
 	line-height: 20px;
 }
+.tagstylelg {
+	
+	background: #d3d3d3 ;
+	padding: 20px;
+	text-align: center;
+	border-radius: 10px;
+	color: black;
+	font-weight: bold;
+	line-height: 25px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.padded {
+  padding-top: 5px;
+  padding-bottom: 5px;
+   float: right;
+}
 .center {
 	margin-left: auto;
 	margin-right: auto;
@@ -66,11 +83,10 @@ td {
 </head>
 <body>
 	<!-- Logo -->
-	<img
-		src="https://drive.google.com/uc?id=1BmbUr80SogYS3LZdkH3hqBuqZbyyiSkX" />
+	<a href="/"><img src="https://drive.google.com/uc?id=1BmbUr80SogYS3LZdkH3hqBuqZbyyiSkX" style=" padding-left: 35%"/></a>
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-		<a class="navbar-brand" href="/">HOME</a>
+		<a class="navbar-brand" href="/">Home</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarColor01" aria-controls="navbarColor01"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -79,12 +95,12 @@ td {
 
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="/login">Login
-						<span class="sr-only">(current)</span>
+				<li class="nav-item"><a class="nav-link" href="/login">Login
+						
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="/wishlist">Wishlist</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="/recommendations">Recommendations</a>
+				<li class="nav-item" active><a class="nav-link" href="/recommendations">Recommendations<span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item"><a class="nav-link" href="/about">The Crypt Keepers</a>
 				</li>
@@ -102,33 +118,34 @@ td {
 			<!-- **** -->
 		</div>
 	</nav>
-	
-	<h1>Recommendations for you, ${user.getUsername() } </h1>
-	
-	<font size="7">
-		<table>
-			<thead>
-				<tr>
-					<th style="color: #2a9fd6;">Game:</th>
-					<th style="color: #2a9fd6;">Rating:</th>
-					<th></th>
-					<th style="color: #2a9fd6;">Genres:</th>
-				</tr>
-			</thead>
-			<tbody>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 tagstylelg"><font size="7">Recommendations for you, ${user.getUsername() } </font></div>
+		</div>
+	</div>
 
-				<c:forEach var="game" items="${ games }">
-					<tr>
-						<td><a class="buttonstyle" href="/details/${ game.getId()}">${ game.getName() }</a></td>
-						<td style="width: 300px;">${game.getRating()}/ 5</td>
-						<td><img src="${ game.getBackground_image() }"
-							alt="${game.getName()}" style="width: 400px; height: auto; border: 5px solid #59A7FF"></td>
-						<td><c:forEach var="genre" items="${game.getGenres() }"><font size="5"><a class="tagstyle" href="/searchresults/${genre.getId() }">${genre.getName() }</a></font> </c:forEach></td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-	</font>
+
+	<font size="5">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4" style="color: #2a9fd6;">Game:</div>
+				<div class="col-lg-1" style="color: #2a9fd6;">Rating:</div>
+				<div class="col-lg-4" style="color: #2a9fd6;"></div>
+				<div class="col-lg-3" style="color: #2a9fd6;">Genres:</div>
+			</div>
+		</div>
+	<c:forEach var="game" items="${ games }">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 padded"><a class="buttonstyle" href="/details/${ game.getId()}" data-toggle="tooltip" data-placement="right" title="View Game Details">${ game.getName() }</a></div>
+				<div class="col-lg-1" style="color: #2a9fd6;">${game.getRating()}/5</div>
+				<div class="col-lg-4 padded"><img src="${ game.getBackground_image() }"	alt="${game.getName()}" style="width: 100%; height: auto; border: 5px solid #59A7FF"></div>
+				<div class="col-lg-3"><c:forEach var="genre" items="${game.getGenres() }"><font size="5"><a class="tagstyle" href="/searchresults/${genre.getId() }" data-toggle="tooltip" data-placement="right" title="Search for ${genre.getName() } games">${genre.getName() }</a></font> </c:forEach></div>
+			</div>
+		</div>
+	</c:forEach>
+	</font>	
+
 
 </body>
 </html>
