@@ -165,11 +165,11 @@ public class FinalController {
 		CheapsharkGame sharkGame;
 
 		if (sharkGames.length == 0) {
-			String errormsg = "It looks like the game you've selected is a free game. Please click this link to claim your free game!";
-			String errorurl = "http://store.steampowered.com/app/" + steamId + "/";
-			model.addAttribute("errorurl", errorurl);
-			model.addAttribute("errormessage", errormsg);
-			return "error";
+			String freemsg = "It looks like the game you've selected is a free game. Please click this link to claim your free game!";
+			String freeurl = "http://store.steampowered.com/app/" + steamId + "/";
+			model.addAttribute("freemsg", freemsg);
+			model.addAttribute("freeurl", freeurl);
+			return "freegame";
 		} else {
 			sharkGame = sharkGames[0];
 		}
