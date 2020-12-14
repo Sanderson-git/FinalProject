@@ -106,7 +106,7 @@ body {
 		</div>
 	</nav>
 
-	<h4><a href="${ freeurl }">${ freemsg }</a></h4>
+	<h5><a href="${ freeurl }">${ freemsg }</a></h5>
 
 </body>
 </html>
