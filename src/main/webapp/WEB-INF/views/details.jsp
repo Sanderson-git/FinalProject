@@ -66,7 +66,27 @@ li {
 
 .centered {
   text-align: center;
+}
+.left {
+
+	text-align: left;
+
+}
+.right {
+
+	text-align: right;
+
 }	
+.sidepad{
+
+	margin-right: 10px;
+
+}
+.xtrapad{
+
+	margin-right: 15px;
+
+}
 
 </style>
 
@@ -131,9 +151,9 @@ li {
 					<div class="col-lg-1 centered" style="color: #2a9fd6;">Rating</div>
 					<div class="col-lg-2 centered" style="color: #2a9fd6;">Genres</div>
 					<div class="col-lg-2 centered" style="color: #2a9fd6;">Average Playtime:</div>
-					<div class="col-lg-1" style="color: #2a9fd6;">Retail ($/hr):</div>
-					<div class="col-lg-1 centered" style="color: #2a9fd6;">ESRB:</div>
-					<div class="col-lg-2" style="color: #2a9fd6;">Released:</div>
+					<div class="col-lg-1 centered sidepad" style="color: #2a9fd6;">Retail ($/hr):</div>
+					<div class="col-lg-1 centered xtrapad" style="color: #2a9fd6;">ESRB:</div>
+					<div class="col-lg-1 centered" style="color: #2a9fd6;">Released:</div>
 
 				</div>
 			</div>
@@ -146,9 +166,9 @@ li {
 					<div class="col-lg-1 centered">${rawgDetails.getRating()}/5</div>
 					<div class="col-lg-2 centered"><c:forEach var="genre" items="${rawgDetails.getGenres() }"><font size="5"><a class="tagstyle" href="/searchresults/${genre.getId() }" data-toggle="tooltip" data-placement="right" title="Search for ${genre.getName() } games">${genre.getName() }</a></font> </c:forEach></div>
 					<div class="col-lg-2 centered">${rawgDetails.getPlaytime() }hrs.</div>
-					<div class="col-lg-1 centered">$${pricephour }</div>
-					<div class="col-lg-1 centered">${rawgDetails.getEsrb_rating().getName() }</div>
-					<div class="col-lg-2 centered">${releaseDate}</div>
+					<div class="col-lg-1 centered sidepad">$${pricephour }  </div>
+					<div class="col-lg-1 centered xtrapad">  ${rawgDetails.getEsrb_rating().getName() }</div>
+					<div class="col-lg-1 centered">${releaseDate}</div>
 
 				</div>
 			</div>
