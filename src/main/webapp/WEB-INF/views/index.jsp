@@ -128,18 +128,18 @@ td {
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-1" style="color: #2a9fd6;"></div>
+				<div class="col-lg-4" style="color: #2a9fd6;"></div>
 				<div class="col-lg-4" style="color: #2a9fd6;">Game:</div>
 				<div class="col-lg-1" style="color: #2a9fd6;">Rating:</div>
-				<div class="col-lg-4" style="color: #2a9fd6;"></div>
 				<div class="col-lg-1" style="color: #2a9fd6;">Genres:</div>
 				<div class="col-lg-1" style="color: #2a9fd6;"></div>
 			</div>
 				<c:forEach var="result" items="${ rawglist.getResults()}">
 					<div class="row">
 						<div class="col-lg-1" style="color: #2a9fd6;"></div>
+						<div class="col-lg-4 padded" > <img src="${result.getBackground_image() }"	style="width:100%; height:auto; border: 5px solid #59A7FF"></div>
 						<div class="col-lg-4" style="color: #2a9fd6;"><a class="buttonstyle" href="/details/${result.getId() }" data-toggle="tooltip" data-placement="right" title="View Prices">${result.getName()}</a></div>
 						<div class="col-lg-1" >${result.getRating()}/5</div>
-						<div class="col-lg-4 padded" > <img src="${result.getBackground_image() }"	style="width:100%; height:auto; border: 5px solid #59A7FF"></div>
 						<div class="col-lg-2" ><c:forEach var="genre" items="${result.getGenres() }"><font size="5"><a class="tagstyle" href="/searchresults/${genre.getId() }" data-toggle="tooltip" data-placement="right" title="Search for ${genre.getName() } games">${genre.getName() }</a></font> </c:forEach></div>
 					</div>
 				</c:forEach>

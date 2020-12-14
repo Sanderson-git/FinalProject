@@ -48,6 +48,11 @@ td {
 	font-weight: bold;
 	line-height: 20px;
 }
+.padded {
+  padding-top: 5px;
+  padding-bottom: 5px;
+   float: right;
+}
 </style>
 
 <!-- Bootstrap link -->
@@ -74,6 +79,7 @@ td {
 
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav mr-auto">
+
 				<li class="nav-item" style="font-size: 20px;"><a class="nav-link" href="/login">Login		
 				</a></li>
 				<li class="nav-item" style="font-size: 20px;"><a class="nav-link" href="/wishlist">Wishlist</a>
@@ -85,6 +91,7 @@ td {
 						Crypt Keepers</a></li>
       		<li class="nav-item active" style="font-size: 20px;"><a class="nav-link" href="/popular2019">Most
 						popular of 2019</a></li>
+
 			</ul>
 			<span class="navbar-brand">${ user.username }</span> <a
 				class="btn navbar-btn btn-default navbar-right pull-right"
@@ -99,37 +106,38 @@ td {
 			</form>
 		</div>
 	</nav>
-
-	<h2>Most popular games of 2019!</h2>
-	<font size="7">
-		<table>
-			<thead>
-				<tr>
-					<th></th>
-					<th style="color: #2a9fd6; font-size: 30px;">Games:</th>
-					<th style="color: #2a9fd6; font-size: 30px;">Rating:</th>
-
-					<th style="color: #2a9fd6; font-size: 30px;">Genres:</th>
-				</tr>
-			</thead>
-			<tbody>
-
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-1">
+			</div>
+			<div class="col-lg-10 center">
+				<h2>Most popular games of 2019!</h2>
+			</div>
+			<div class="col-lg-1">
+			</div>
+		</div>
+	</div>
+<font size="5">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-1" style="color: #2a9fd6;"></div>
+				<div class="col-lg-4" style="color: #2a9fd6;"></div>
+				<div class="col-lg-4" style="color: #2a9fd6;">Game:</div>
+				<div class="col-lg-1" style="color: #2a9fd6;">Rating:</div>
+				<div class="col-lg-1" style="color: #2a9fd6;">Genres:</div>
+				<div class="col-lg-1" style="color: #2a9fd6;"></div>
+			</div>
 				<c:forEach var="result" items="${ rawglist.getResults()}">
-					<tr>
-						<td style="width: 35%;"><img
-							src="${result.getBackground_image() }"
-							style="width: 600px; height: 350; border: 5px solid #59A7FF"></td>
-						<td><a class="buttonstyle" href="/details/${result.getId() }">${result.getName()}</a></td>
-						<td style="width: 10%;">${result.getRating()}/5</td>
-
-						<td><c:forEach var="genre" items="${result.getGenres() }">
-								<font size="5"><a class="tagstyle"
-									href="/searchresults/${genre.getId() }">${genre.getName() }</a></font>
-							</c:forEach></td>
-					</tr>
+					<div class="row">
+						<div class="col-lg-1" style="color: #2a9fd6;"></div>
+						<div class="col-lg-4 padded" > <a href="/details/${result.getId() }" data-toggle="tooltip" data-placement="right" title="View Game Details"><img src="${result.getBackground_image() }"	style="width:100%; height:auto; border: 5px solid #59A7FF"></a></div>
+						<div class="col-lg-4" style="color: #2a9fd6;"><a class="buttonstyle" href="/details/${result.getId() }" data-toggle="tooltip" data-placement="right" title="View Game Details">${result.getName()}</a></div>
+						<div class="col-lg-1" >${result.getRating()}/5</div>
+						<div class="col-lg-2" ><c:forEach var="genre" items="${result.getGenres() }"><font size="5"><a class="tagstyle" href="/searchresults/${genre.getId() }" data-toggle="tooltip" data-placement="right" title="Search for ${genre.getName() } games">${genre.getName() }</a></font> </c:forEach></div>
+					</div>
 				</c:forEach>
-			</tbody>
-		</table>
+			</div>
 	</font>
+
 </body>
 </html>
