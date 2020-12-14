@@ -5,9 +5,7 @@
 <html>
 <head>
 <style type="text/css">
-body {
-	background-image: url(${rawgGame.background_image});
-}
+
 td {
 	padding-right: 20px;
 	padding-left: 10px;
@@ -45,20 +43,32 @@ td {
 .tagstyle {
 	
 	background: #d3d3d3 ;
-	padding: 2px;
+	padding: 20px;
 	text-align: center;
-	border-radius: 5px;
+	border-radius: 10px;
 	color: black;
 	font-weight: bold;
-	line-height: 20px;
+	line-height: 25px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 .center {
 	margin-left: auto;
 	margin-right: auto;
+	
+}
+.padded {
+  padding-top: 5px;
+  padding-bottom: 5px;
+   float: right;
+}
+.left {
+
+text-align: left;
 }
 </style>
 <meta charset="ISO-8859-1">
-<title>Recommendations</title>
+<title>Crypt - Shopping List</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cyborg/bootstrap.min.css"
 	integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2"
@@ -66,11 +76,10 @@ td {
 </head>
 <body>
 	<!-- Logo -->
-	<img
-		src="https://drive.google.com/uc?id=1BmbUr80SogYS3LZdkH3hqBuqZbyyiSkX" />
+	<a href="/"><img src="https://drive.google.com/uc?id=1BmbUr80SogYS3LZdkH3hqBuqZbyyiSkX" style=" padding-left: 35%"/></a>
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-		<a class="navbar-brand" href="/">HOME</a>
+		<a class="navbar-brand" href="/">Home</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarColor01" aria-controls="navbarColor01"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -79,17 +88,17 @@ td {
 
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="/login">Login
-						<span class="sr-only">(current)</span>
+				<li class="nav-item"><a class="nav-link" href="/login">Login
+						
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="/wishlist">Wishlist</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="/recommendations">Recommendations</a>
+				<li class="nav-item active"><a class="nav-link" href="/recommendations">Recommendations<span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item"><a class="nav-link" href="/about">The Crypt Keepers</a>
 				</li>
 			</ul>
-			<span class="navbar-brand">${ user.username }</span>
+				<span class="navbar-brand">${ user.username }</span>
     		<a class="btn navbar-btn btn-default navbar-right pull-right" role="button" href="/logout">Logout</a>
 
 			<!-- Search function -->
@@ -102,32 +111,33 @@ td {
 			<!-- **** -->
 		</div>
 	</nav>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 tagstyle"><font size="7">Best Shopping List for $${ budget } </font></div>
+		</div>
+	</div>
 	
-	<h1>Your Best Shopping Lists, ${user.getUsername() }, according to your budget of $${ budget }. </h1>
 	
 
-	<font size="7">
-		<table>
-			<thead>
-				<tr>
-					<th style="color: #2a9fd6;">Game:</th>
-					<th></th>
-					<th style="color: #2a9fd6;">Price:</th>
-					<th style="color: #2a9fd6;"></th>
-				</tr>
-			</thead>
-			<tbody>
-
-				<c:forEach var="game" items="${ listoflists.getWishlists() }">
-					<tr>
-						<td><a class="buttonstyle" href="/details/${ game.getRawgId()}">${ game.getName() }</a></td>
-						<td style="width: 200px;"><img src="${ game.getBackground_image() }" alt="${game.getName()}" style="width: 400px; height: auto; border: 5px solid #59A7FF"></td>
-						<td style="width: 300px;">${game.getPrice()}</td>
-						<td style="width: 200px;"><a href="https://www.cheapshark.com/redirect?dealID=${game.getDealId() }" class="buttonstyletwo">Buy Now!</a></td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+	<font size="5">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 left" style="color: #2a9fd6;">Game:</div>
+				<div class="col-lg-4" style="color: #2a9fd6;"></div>
+				<div class="col-lg-2 left" style="color: #2a9fd6;">Price:</div>
+				<div class="col-lg-1" style="color: #2a9fd6;"></div>
+			</div>
+		</div>
+	<c:forEach var="game" items="${ listoflists.getWishlists() }">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 padded"><a class="buttonstyle" href="/details/${ game.getRawgId()}" data-toggle="tooltip" data-placement="right" title="View game details">${ game.getName() }</a></div>
+				<div class="col-lg-4 padded"><img src="${ game.getBackground_image() }" alt="${game.getName()}" style="width: 100%; height: auto; border: 5px solid #59A7FF"></div>
+				<div class="col-lg-2">$${game.getPrice()}</div>
+				<div class="col-lg-2"><a href="https://www.cheapshark.com/redirect?dealID=${game.getDealId() }" class="buttonstyletwo" data-toggle="tooltip" data-placement="right" title="Open purchase link in new tab" target="_blank">Buy Now!</a></div>
+			</div>
+		</div>
+	</c:forEach>
 	</font>
 	
 	

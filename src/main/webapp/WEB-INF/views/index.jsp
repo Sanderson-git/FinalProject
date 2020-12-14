@@ -48,6 +48,16 @@ td {
 	font-weight: bold;
 	line-height: 20px;
 }
+.padded {
+  padding-top: 5px;
+  padding-bottom: 5px;
+   float: right;
+}
+.center {
+  text-align: center;
+  padding: 15px;
+}
+
 </style>
 
 <!-- Bootstrap link -->
@@ -56,16 +66,18 @@ td {
 	integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2"
 	crossorigin="anonymous">
 <meta charset="ISO-8859-1">
+
 <title>Crypt</title>
+
 </head>
 
 <body>
-<!-- Logo -->
-	<img
-		src="https://drive.google.com/uc?id=1BmbUr80SogYS3LZdkH3hqBuqZbyyiSkX"
-		style="padding-left: 35%" />
-<!-- Nav Bar-->
+
+	<a href="/"><img src="https://drive.google.com/uc?id=1BmbUr80SogYS3LZdkH3hqBuqZbyyiSkX" style=" padding-left: 35%"/></a>
+	
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+		<a class="navbar-brand" href="/">Home</a>
+
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarColor01" aria-controls="navbarColor01"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -74,20 +86,22 @@ td {
 
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
-				<li class="nav-item"><a class="nav-link" href="/popular2019">Most
+				<li class="nav-item"><a class="nav-link" href="/login">Login
+				</a></li>
+				<li class="nav-item"><a class="nav-link" href="/wishlist">Wishlist</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="/recommendations">Recommendations</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="/about">The Crypt Keepers</a>
+				</li>
+    		<li class="nav-item"><a class="nav-link" href="/popular2019">Most
 						popular of 2019</a></li>
-				<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
-				<li class="nav-item"><a class="nav-link" href="/wishlist">Wishlist</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="/recommendations">Recommendations</a></li>
-				<li class="nav-item"><a class="nav-link" href="/about">The
-						Crypt Keepers</a></li>
 			</ul>
-			<span class="navbar-brand">${ user.username }</span> <a
-				class="btn navbar-btn btn-default navbar-right pull-right"
-				role="button" href="/logout">Logout</a>
-<!-- Search function -->
+				<span class="navbar-brand">${ user.username }</span>
+    		<a class="btn navbar-btn btn-default navbar-right pull-right" role="button" href="/logout">Logout</a> 
+
+			<!-- Search function -->
+
 			<form class="form-inline my-2 my-lg-0" method="post"
 				action="/searchresults">
 				<input class="form-control mr-sm-2" type="text" placeholder="Search"
@@ -97,33 +111,38 @@ td {
 		</div>
 	</nav>
 
-	<h2>Discover games from our collection of over 10,000 titles!</h2>
-	<font size="7">
-		<table>
-			<thead>
-				<tr>
-					<th></th>
-					<th style="color: #2a9fd6; font-size: 30px;">Games:</th>
-					<th style="color: #2a9fd6; font-size: 30px;">Rating:</th>
-					<th style="color: #2a9fd6; font-size: 30px;">Genres:</th>
-				</tr>
-			</thead>
-			<tbody>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-1">
+			</div>
+			<div class="col-lg-10 center">
+				<h2>Discover games from our collection of over 10,000 titles!</h2>
+			</div>
+			<div class="col-lg-1">
+			</div>
+		</div>
+	</div>
+	
+	<font size="5">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-1" style="color: #2a9fd6;"></div>
+				<div class="col-lg-4" style="color: #2a9fd6;">Game:</div>
+				<div class="col-lg-1" style="color: #2a9fd6;">Rating:</div>
+				<div class="col-lg-4" style="color: #2a9fd6;"></div>
+				<div class="col-lg-1" style="color: #2a9fd6;">Genres:</div>
+				<div class="col-lg-1" style="color: #2a9fd6;"></div>
+			</div>
 				<c:forEach var="result" items="${ rawglist.getResults()}">
-					<tr>
-						<td style="width: 35%;"><img
-							src="${result.getBackground_image() }"
-							style="width: 600px; height: 350px; border: 5px solid #59A7FF"></td>
-						<td><a class="buttonstyle" href="/details/${result.getId() }">${result.getName()}</a></td>
-						<td style="width: 10%;">${result.getRating()}/5</td>
-						<td><c:forEach var="genre" items="${result.getGenres() }">
-								<font size="5"><a class="tagstyle"
-									href="/searchresults/${genre.getId() }">${genre.getName() }</a></font>
-							</c:forEach></td>
-					</tr>
+					<div class="row">
+						<div class="col-lg-1" style="color: #2a9fd6;"></div>
+						<div class="col-lg-4" style="color: #2a9fd6;"><a class="buttonstyle" href="/details/${result.getId() }" data-toggle="tooltip" data-placement="right" title="View Prices">${result.getName()}</a></div>
+						<div class="col-lg-1" >${result.getRating()}/5</div>
+						<div class="col-lg-4 padded" > <img src="${result.getBackground_image() }"	style="width:100%; height:auto; border: 5px solid #59A7FF"></div>
+						<div class="col-lg-2" ><c:forEach var="genre" items="${result.getGenres() }"><font size="5"><a class="tagstyle" href="/searchresults/${genre.getId() }" data-toggle="tooltip" data-placement="right" title="Search for ${genre.getName() } games">${genre.getName() }</a></font> </c:forEach></div>
+					</div>
 				</c:forEach>
-			</tbody>
-		</table>
+			</div>
 	</font>
 </body>
 </html>

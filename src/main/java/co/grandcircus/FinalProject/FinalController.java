@@ -13,6 +13,7 @@ import javax.persistence.CascadeType;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import co.grandcircus.FinalProject.SQL.*;
 import co.grandcircus.FinalProject.services.*;
+
 
 @Controller
 public class FinalController {
@@ -46,6 +48,8 @@ public class FinalController {
 
 	@Autowired
 	CheapSharkStoreNameRepository csstorerep;
+	
+	public static BCryptPasswordEncoder pwEncoder = new BCryptPasswordEncoder(); // create an instance of BCryptPasswordEncoder
 
 	@GetMapping("/")
 	private String index(Model model) {
@@ -68,25 +72,36 @@ public class FinalController {
 
 	@PostMapping("/profile")
 	public String login(String username, String password, Model model) {
-		User user = userrep.findFirstByUsername(username).orElse(null);
+		
+		User user = userrep.findFirstByUsername(username).orElse(null); // locate user by username
 		if (user == null) {
-			return "fail";
+			session.invalidate(); // if user isn't found, invalidate session just in case
+			return "fail"; // go to failed login page
 		} else {
-			if (user.getPassword().compareTo(password) == 0) {
-				session.setAttribute("user", user);
+
+			if (pwEncoder.matches(password, user.getPassword())) {
+				session.setAttribute("user", user); // if passwords match, create session
 				model.addAttribute("user", user);
-				return "profile";
-			} else {
-				return "fail";
-			}
-		}
+				return "profile"; // go to profile page
+			   }
+				
+			} 
+		
+		session.invalidate(); // login failed
+		return "fail"; // go to failed login page
+		
 	}
 
 	@PostMapping("register")
-	public String register(User user) {
-		userrep.save(user);
-		session.setAttribute("user", user);
-		return "register";
+	public String register(User user, Model model) {
+		
+		String pw = user.getPassword(); // get user's password
+		pw = pwEncoder.encode(pw); // encode password
+		user.setPassword(pw); // save pw back to user
+		userrep.save(user); // save user to database
+		model.addAttribute("user", user);
+		session.setAttribute("user", user); // create session 
+		return "register"; // go to registration confirmation page
 	}
 
 	@GetMapping("/logout")
@@ -145,14 +160,13 @@ public class FinalController {
 			sharkGame = sharkGames[0];
 		}
 
-		CheapsharkGameDetails sharkDetails = csharkapi.cheapSharkGame(sharkGame.getGameId()); // using the game id from
-																								// the CheapsharkGame
-																								// object obtained by
-																								// the steamId, get all
-																								// Cheapshark game
-																								// details (this will
-																								// include all pricing
-																								// comparison info)
+
+		CheapsharkGameDetails sharkDetails = csharkapi.cheapSharkGame(sharkGame.getGameId()); // using the game id from the CheapsharkGame object obtained by the steamId, get all
+																								// Cheapshark game details (this will include all pricing comparison info)
+								
+		DecimalFormat twoPlaces = new DecimalFormat("0.00"); // formatting to 2 decimal places
+		DecimalFormat noPlaces = new DecimalFormat("0");
+
 		List<Deal> deals = sharkDetails.getDeals();// pricing from various stores
 
 		List<PrettyDeal> realdeals = new ArrayList<>();
@@ -163,16 +177,11 @@ public class FinalController {
 			prettydeal.setStoreID(d.getStoreID());
 			prettydeal.setPrice(d.getPrice());
 			prettydeal.setDealID(d.getDealID());
-			// System.out.println(prettydeal.getStoreID());
-			prettydeal.setStoreName(csstorerep.findById(d.getStoreID()).orElse(null).getStorename()); // setting
-																										// Prettydeal
-																										// store name
-																										// equal to
-																										// cheapsharkstore
-																										// repo
-																										// storename,
-																										// finding by
-																										// STRING id.
+			prettydeal.setSavings(noPlaces.format(Double.parseDouble(d.getSavings())));
+
+
+			prettydeal.setStoreName(csstorerep.findById(d.getStoreID()).orElse(null).getStorename()); // setting Prettydeal store name equal to cheapsharkstore repo storename, finding by STRING id.
+
 			realdeals.add(prettydeal);
 			}
 
@@ -182,9 +191,13 @@ public class FinalController {
 		Double playtimedouble = Double.parseDouble(playtime); // changing playtime to double
 		Double pricephour = retaildouble / playtimedouble; // price per hour calculation based on average playtime and
 															// retail price
-		DecimalFormat twoPlaces = new DecimalFormat("0.00"); // formatting to 2 decimal places
+
 		String finalpricephour = twoPlaces.format(pricephour); // assigning string the price per hour with 2 decimal
 																// place formatting
+
+		String finalreldate = rawgGame.getReleased().substring(0, 4);
+		
+		model.addAttribute("releaseDate",finalreldate);
 		model.addAttribute("pricephour", finalpricephour);
 		model.addAttribute("steamid", steamId);
 		model.addAttribute("sharkgame", sharkGame);
@@ -466,6 +479,9 @@ public class FinalController {
 		//If you ordered it High to low, it would possibly give you a better result.
 //		<<====== End Sean B Changes ======>>
 		
+		DecimalFormat twoPlaces = new DecimalFormat("0.00"); // formatting to 2 decimal places
+		String formattedBudget = twoPlaces.format(budget);
+		
 		ListContainer binObject = new ListContainer();
 		binObject.setWishlists(bin);
 		binObject.setLength(bin.size());
@@ -473,7 +489,7 @@ public class FinalController {
 		listOfItemLists.add(binObject);
 
 		model.addAttribute("user", user);
-		model.addAttribute("budget", budget);
+		model.addAttribute("budget", formattedBudget);
 
 		model.addAttribute("listoflists", listOfItemLists.get(0)); // we may have to set this to only pick one or two
 																	// lists, otherwise the runtime can get excessive.

@@ -21,10 +21,10 @@ h2 {
 </style>
 </head>
 <body>
-<!-- Logo -->
-	<img
-		src="https://drive.google.com/uc?id=1BmbUr80SogYS3LZdkH3hqBuqZbyyiSkX"
-		style="padding-left: 35%" />
+
+	<!-- Logo -->
+	<a href="/"><img src="https://drive.google.com/uc?id=1BmbUr80SogYS3LZdkH3hqBuqZbyyiSkX" style=" padding-left: 35%"/></a>
+
 	<h1></h1>
 <!-- Nav Bar-->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -46,9 +46,9 @@ h2 {
 				<li class="nav-item"><a class="nav-link" href="/about">The
 						Crypt Keepers</a></li>
 			</ul>
-			<span class="navbar-brand">${ user.username }</span> <a
-				class="btn navbar-btn btn-default navbar-right pull-right"
-				role="button" href="/logout">Logout</a>
+				<span class="navbar-brand">${ user.username }</span>
+    		<a class="btn navbar-btn btn-default navbar-right pull-right" role="button" href="/logout">Logout</a>
+
 
 <!-- Search function -->
 			<form class="form-inline my-2 my-lg-0" method="post"

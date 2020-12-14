@@ -62,6 +62,20 @@ td {
 
 li {
 	font-size: 20px;
+  }
+.centered {
+	text-align: center;
+}
+.padded {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.paddedsm {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.right {
+	text-align: right;
 }
 </style>
 
@@ -73,11 +87,10 @@ li {
 </head>
 <body>
 	<!-- Logo -->
-	<img
-		src="https://drive.google.com/uc?id=1BmbUr80SogYS3LZdkH3hqBuqZbyyiSkX"
-		style="padding-left: 35%" />
-	<!-- Nav Bar-->
+	<a href="/"><img src="https://drive.google.com/uc?id=1BmbUr80SogYS3LZdkH3hqBuqZbyyiSkX" style=" padding-left: 35%"/></a>
+
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+		<a class="navbar-brand" href="/">Home</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarColor01" aria-controls="navbarColor01"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -86,19 +99,22 @@ li {
 
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
-				<li class="nav-item"><a class="nav-link" href="/popular2019">Most
-						popular of 2019</a></li>
-				<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
-				<li class="nav-item"><a class="nav-link" href="/wishlist">Wishlist</a></li>
+				<li class="nav-item"><a class="nav-link" href="/login">Login
+						
+				</a></li>
+				<li class="nav-item active"><a class="nav-link" href="/wishlist">Wishlist
+				<span class="sr-only">(current)</span>
+				</a>
+				</li>
 				<li class="nav-item"><a class="nav-link"
 					href="/recommendations">Recommendations</a></li>
 				<li class="nav-item"><a class="nav-link" href="/about">The
 						Crypt Keepers</a></li>
+      <li class="nav-item"><a class="nav-link" href="/popular2019">Most
+						popular of 2019</a></li>
 			</ul>
-			<span class="navbar-brand">${ user.username }</span> <a
-				class="btn navbar-btn btn-default navbar-right pull-right"
-				role="button" href="/logout">Logout</a>
+				<span class="navbar-brand">${ user.username }</span>
+    		<a class="btn navbar-btn btn-default navbar-right pull-right" role="button" href="/logout">Logout</a>
 			<!-- Search function -->
 			<form class="form-inline my-2 my-lg-0" method="post"
 				action="/searchresults">
@@ -108,56 +124,44 @@ li {
 			</form>
 		</div>
 	</nav>
-	<div style="font-size: 20px; font-weight:bold; padding-left: 35%; padding-top: 20px; padding-bottom:30px;">
-		<form method="post" action="/binpacking">
-			Enter Budget: <input type="number" name="budget" /> <input
-				type="submit" name="submit" value="Calculate" />
-		</form>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12 centered padded">
+			<form method="post" action="/binpacking">
+			Enter Budget: <input type="number" name="budget" /> 
+			<input type="submit" name="submit" data-toggle="tooltip" data-placement="right" title="Generate Shopping List" />
+			</form>
+		</div>
 	</div>
+	
+</div>
 	<font size="5">
-		<table>
-			<thead>
-				<tr>
-					<th></th>
-					<th style="color: #2a9fd6;">Game:</th>
-					<th style="color: #2a9fd6; padding-left: 60px;">Rating:</th>
-					<th style="color: #2a9fd6;">Cheapest Price:</th>
-					<th style="color: #2a9fd6;">Desired Price:</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3" style="color: #2a9fd6;">Game:</div>
+				<div class="col-lg-3" style="color: #2a9fd6;"></div>
+				<div class="col-lg-1" style="color: #2a9fd6;">Price:</div>
+				<div class="col-lg-3" style="color: #2a9fd6;">Desired Price:</div>
+				<div class="col-lg-2" style="color: #2a9fd6;"></div>
+			</div>
+		</div>
+	</font>
+	<font size="4">			
+	<c:forEach var="games" items="${ games }">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 paddedsm"><a class="buttonstyle" href="/details/${ games.getRawgId()}" data-toggle="tooltip" data-placement="right" title="View Game Details">${ games.getName() }</a><a href="/wishlistdelete/${ games.getWishlistid() }" style="font:normal" data-toggle="tooltip" data-placement="right" title="Remove from Wishlist">delete</a></div>
+				<div class="col-lg-3 paddedsm"><img src="${ games.getBackground_image() }" alt="${games.getName()}" style="width: 100%; height: auto; border: 5px solid #59A7FF"></div>
+				<div class="col-lg-1" >$${games.getPrice() }</div>
+				<div class="col-lg-3"><form method="post" action="/wishlist/setalert/${ games.getWishlistid() }">
+								<input type="number" placeholder="$${ games.getDesiredprice() }" name="setalert" /> <input type="submit" name="submit" data-toggle="tooltip" data-placement="right" title="Get alerted at this price" />
+							</form></div>
+				<div class="col-lg-2" ><c:if test="${ games.getDesiredprice() >=  games.getPrice() }"><a href="https://www.cheapshark.com/redirect?dealID=${games.getDealId() }" class="buttonstyletwo" target="_blank" data-toggle="tooltip" data-placement="right" title="Open store link in new tab">Buy Now!</a>
+							</c:if></div>
+			</div>
+		</div>
 
-				<c:forEach var="games" items="${ games }">
-					<tr>
-						<td><img src="${ games.getBackground_image() }"
-							alt="${games.getName()}"
-							style="width: 500px; height: auto; border: 5px solid #59A7FF"></td>
-						<td><a class="buttonstyle"
-							href="/details/${ games.getRawgId()}">${ games.getName() }</a><a
-							href="/wishlistdelete/${ games.getWishlistid() }"
-							style="font: normal"><br />delete</a></td>
-
-						<td style="width: 200px; padding-left: 60px;">${games.getRating()}/5</td>
-
-						<td style="width: 200px;padding-left: 60px;">$${games.getPrice() }</td>
-						<td style="width: 300px;">
-							<form method="post"
-								action="/wishlist/setalert/${ games.getWishlistid() }">
-								<input type="number" placeholder="$${ games.getDesiredprice() }"
-									name="setalert" /> <input type="submit" name="submit" />
-							</form>
-						</td>
-						<td><c:if
-								test="${ games.getDesiredprice() >=  games.getPrice() }">
-								<a
-									href="https://www.cheapshark.com/redirect?dealID=${games.getDealId() }"
-									class="buttonstyletwo">Buy Now!</a>
-							</c:if></td>
-					</tr>
 				</c:forEach>
-			</tbody>
-		</table>
 	</font>
 
 
