@@ -137,7 +137,7 @@ h2{
 	</div>
 
 
-	<font size="6">
+	<font size="5">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-4" style="color: #2a9fd6;"></div>
