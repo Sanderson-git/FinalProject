@@ -89,6 +89,7 @@ li {
 	<!-- Logo -->
 	<a href="/"><img src="https://drive.google.com/uc?id=1BmbUr80SogYS3LZdkH3hqBuqZbyyiSkX" style=" padding-left: 35%"/></a>
 
+<!-- Nav Bar-->		
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 		<a class="navbar-brand" href="/">Home</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"

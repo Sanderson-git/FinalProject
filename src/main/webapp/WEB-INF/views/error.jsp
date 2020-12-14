@@ -73,6 +73,7 @@ body {
 	<a href="/"><img src="https://drive.google.com/uc?id=1BmbUr80SogYS3LZdkH3hqBuqZbyyiSkX" style=" padding-left: 35%"/></a>
 
 	<!--********************  Begin Nav Bar ********************-->
+
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 		<a class="navbar-brand" href="/">Home</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -83,8 +84,6 @@ body {
 
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav mr-auto">
-
-				<li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
 				<li class="nav-item"><a class="nav-link" href="/login">Login
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="/wishlist">Wishlist</a>
