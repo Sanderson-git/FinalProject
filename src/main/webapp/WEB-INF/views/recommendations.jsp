@@ -77,12 +77,19 @@ td {
 h2{
 	padding-left:25%;
 }
+
+.centerednopad {
+  text-align: center;
+}
+
+
 .footer{ 
        position: fixed;     
        text-align: left;    
        bottom: 0px; 
        width: 100%;
 } 
+
 </style>
 <meta charset="ISO-8859-1">
 <title>Recommendations</title>
@@ -97,7 +104,12 @@ h2{
 <body>
 
 <!-- Logo -->
-	<a href="/"><img src="https://drive.google.com/uc?id=1fPjNndqQhYAMUy6HG5YUGc0MUmmhZncH" style=" padding-left: 35%"/></a>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12 centerednopad"><a href="/"><img src="https://drive.google.com/uc?id=1fPjNndqQhYAMUy6HG5YUGc0MUmmhZncH" /></a></div>
+	</div>
+</div>
+
 
 <!-- Nav Bar-->		
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
