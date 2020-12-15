@@ -1,3 +1,4 @@
+  
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -8,7 +9,6 @@
 <meta charset="ISO-8859-1">
 <title>Crypt/Details</title>
 <style type="text/css">
-
 .buttonstyle {
 	background: #2a9fd6;
 	padding: 15px;
@@ -18,7 +18,6 @@
 	font-weight: bold;
 	line-height: 50px;
 }
-
 .buttonstyletwo {
 	display: block;
 	background: #2a9fd6;
@@ -29,7 +28,6 @@
 	font-weight: bold;
 	line-height: 40px;
 }
-
 .buttonstylethree {
 	background: #2a9fd6;
 	padding: 5px;
@@ -49,47 +47,37 @@
 	font-weight: bold;
 	line-height: 20px;
 }
-
 .center {
 	margin-left: auto;
 	margin-right: auto;
 }
-
 .padded {
   margin-top: 10px;
   margin-bottom: 15px;
 }
-
 .centered {
   text-align: center;
 }
 .left {
-
 	text-align: left;
-
 }
 .right {
-
 	text-align: right;
-
 }	
 .sidepad{
-
 	margin-right: 10px;
-
 }
 .xtrapad{
-
 	margin-right: 15px;
-
 }
-
 </style>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cyborg/bootstrap.min.css"
 	integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2"
 	crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 </head>
 <body>
@@ -213,16 +201,17 @@
 
 	<br />
 	<br />
-	<div class="container">
+<div class="container">
 			<div class="row">
-				<div class="col-lg-12"><h3 class="buttonstyletwo">Description:</h3></div>
+				<div class="col-lg-12 dropdown centered">
+				<button onclick="myFunction()" class="btn btn-outline-secondary"><h3>View Game Description</h3></button>
+    <div id="Demo" class="dropdown-menu tagstyle w3-animate-zoom">
+							<p><font size="4">${rawgDetails.getDescription_raw() }</font></p>
+					</div>
+					</div>
 			</div>
 		</div>
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12"><font size="4"><p>${rawgDetails.getDescription_raw() }</p></font></div>
-		</div>
-	</div>
+
 
 	<br />
 	<br />
