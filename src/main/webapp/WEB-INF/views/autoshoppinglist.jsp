@@ -77,6 +77,17 @@ text-align: left;
        bottom: 0px; 
        width: 100%;
 } 
+.zoom {
+
+  transition: transform .2s; /* Animation */
+
+}
+
+.zoom:hover {
+  transform: scale(1.05); /* (110% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  position:relative;
+  z-index:2;
+}
 
 </style>
 <meta charset="ISO-8859-1">
@@ -153,9 +164,9 @@ text-align: left;
 		<div class="container">
 			<div class="row">		
 				<div class="col-lg-4 padded"><a href="/details/${ game.getRawgId()}"><img src="${ game.getBackground_image() }" alt="${game.getName()}" style="width: 100%; height: auto; border: 5px solid #59A7FF"></a></div>
-				<div class="col-lg-4 padded"><a class="buttonstyle" href="/details/${ game.getRawgId()}" data-toggle="tooltip" data-placement="right" title="View game details">${ game.getName() }</a></div>
+				<div class="col-lg-4 padded zoom zoom:hover"><a class="buttonstyle" href="/details/${ game.getRawgId()}" data-toggle="tooltip" data-placement="right" title="View game details">${ game.getName() }</a></div>
 				<div class="col-lg-2">$${game.getPrice()}</div>
-				<div class="col-lg-2"><a href="https://www.cheapshark.com/redirect?dealID=${game.getDealId() }" class="buttonstyletwo" data-toggle="tooltip" data-placement="right" title="Open purchase link in new tab" target="_blank">Buy Now!</a></div>
+				<div class="col-lg-2 zoom zoom:hover"><a href="https://www.cheapshark.com/redirect?dealID=${game.getDealId() }" class="buttonstyletwo" data-toggle="tooltip" data-placement="right" title="Open purchase link in new tab" target="_blank">Buy Now!</a></div>
 			</div>
 		</div>
 	</c:forEach>

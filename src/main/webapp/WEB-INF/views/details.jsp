@@ -21,7 +21,19 @@
 }
 
 .zoom:hover {
-  transform: scale(1.25); /* (125% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  transform: scale(1.1); /* (125% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  position:relative;
+  z-index:2;
+}
+
+.zoomt {
+
+  transition: transform .2s; /* Animation */
+
+}
+
+.zoomt:hover {
+  transform: scale(1.05); /* (110% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
   position:relative;
   z-index:2;
 }
@@ -294,7 +306,7 @@
 					
 				
 					<div class="col-lg-2 centered xtrapad">${rawgDetails.getRating()}/5</div>
-					<div class="col-lg-2 centered"><c:forEach var="genre" items="${rawgDetails.getGenres() }"><font size="5"><a class="tagstyle" href="/searchresults/${genre.getId() }" data-toggle="tooltip" data-placement="right" title="Search for ${genre.getName() } games">${genre.getName() }</a></font> </c:forEach></div>
+					<div class="col-lg-2 centered zoomt zoomt:hover"><c:forEach var="genre" items="${rawgDetails.getGenres() }"><font size="5"><a class="tagstyle" href="/searchresults/${genre.getId() }" data-toggle="tooltip" data-placement="right" title="Search for ${genre.getName() } games">${genre.getName() }</a></font> </c:forEach></div>
 					<div class="col-lg-2 centered">${rawgDetails.getPlaytime() }hrs.</div>
 					<div class="col-lg-2 centered">$${pricephour }</div>
 					<div class="col-lg-2 centered xtrapad">  ${rawgDetails.getEsrb_rating().getName() }</div>
@@ -309,7 +321,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-2"></div>
-				<div class="col-lg-8 centered">
+				<div class="col-lg-8 zoom zoom:hover centered">
 					<font size="7">
 						<a class="buttonstylethree" href="/add/${rawgDetails.getId() }/${steamid}/${sharkgame.getGameId()}">Add game to Wishlist
 						</a>
@@ -338,7 +350,7 @@
 				<div class="col-lg-1 centered"></div>
 				<div class="col-lg-5">${deal.getStoreName() }</div>
 				<div class="col-lg-2 centered">$${deal.getPrice() }</div>
-				<div class="col-lg-3 centered"><a class="buttonstyletwo" href="https://www.cheapshark.com/redirect?dealID=${deal.getDealID() }" target="_blank" data-toggle="tooltip" data-placement="right" title="Buy now for ${deal.getSavings() }% off">Purchase</a></td></div>
+				<div class="col-lg-3 centered zoomt zoomt:hover"><a class="buttonstyletwo" href="https://www.cheapshark.com/redirect?dealID=${deal.getDealID() }" target="_blank" data-toggle="tooltip" data-placement="right" title="Buy now for ${deal.getSavings() }% off">Purchase</a></td></div>
 				<div class="col-lg-1 centered"></div>
 			</div>
 		</div>

@@ -85,7 +85,17 @@ td {
        bottom: 0px; 
        width: 100%;
 } 
+.zoom {
 
+  transition: transform .2s; /* Animation */
+
+}
+
+.zoom:hover {
+  transform: scale(1.1); /* (110% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  position:relative;
+  z-index:2;
+}
 </style>
 
 <link rel="stylesheet"
@@ -159,7 +169,7 @@ td {
 			</form>
 		</div>
 		<div class="col-lg-6 right dropdown">
-			<button onclick="myFunction()" class="btn btn-outline-secondary">Get Share Link</button>
+			<button onclick="myFunction()" class="btn btn-outline-secondary zoom zoom:hover">Get Share Link</button>
    				 <div id="Demo" class="dropdown-menu tagstyle w3-animate-zoom">
 							<p><font size="2"><a href="/wishlist/${ user.id}/${user.username}">http://crypt-env.eba-96hebjqt.us-east-2.elasticbeanstalk.com/wishlist/${ user.id }/${user.username }</a></font></p>
 					</div>
@@ -183,7 +193,7 @@ td {
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3 paddedsm"><a href="/details/${ games.getRawgId()}"><img src="${ games.getBackground_image() }" alt="${games.getName()}" style="width: 100%; height: auto; border: 5px solid #59A7FF"></a></div>
-				<div class="col-lg-3 paddedsm"><a class="buttonstyle" href="/details/${ games.getRawgId()}" data-toggle="tooltip" data-placement="right" title="View Game Details">${ games.getName() }</a><a href="/wishlistdelete/${ games.getWishlistid() }" style="font:normal" data-toggle="tooltip" data-placement="right" title="Remove from Wishlist">delete</a></div>
+				<div class="col-lg-3 paddedsm"><a class="buttonstyle zoom zoom:hover" href="/details/${ games.getRawgId()}" data-toggle="tooltip" data-placement="right" title="View Game Details">${ games.getName() }</a><a href="/wishlistdelete/${ games.getWishlistid() }" style="font:normal" data-toggle="tooltip" data-placement="right" title="Remove from Wishlist">delete</a></div>
 				<div class="col-lg-1" >$${games.getPrice() }</div>
 				<div class="col-lg-3"><form method="post" action="/wishlist/setalert/${ games.getWishlistid() }">
 								<input type="number" placeholder="$${ games.getDesiredprice() }" name="setalert" /> <input type="submit" name="submit" data-toggle="tooltip" data-placement="right" title="Get alerted at this price" />
