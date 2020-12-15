@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<!DOCTYPE html>
+<!DOCTYPE html lang=en>
 <html>
 <head>
 
@@ -74,7 +74,7 @@ td {
 <body>
 <!-- Logo -->
 
-	<a href="/"><img src="https://drive.google.com/uc?id=1fPjNndqQhYAMUy6HG5YUGc0MUmmhZncH" style=" padding-left: 35%"/></a>
+	<a href="/"><img src="https://drive.google.com/uc?id=1fPjNndqQhYAMUy6HG5YUGc0MUmmhZncH" alt="Company Logo" style=" padding-left: 35%"/></a>
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 		<a class="navbar-brand" href="/" style="font-size: 16px;">Home</a>
@@ -111,7 +111,7 @@ td {
 			</form>
 		</div>
 	</nav>
-
+	
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-1">
@@ -123,10 +123,9 @@ td {
 			</div>
 		</div>
 	</div>
-	
-	<font size="5">
+		
 		<div class="container">
-			<div class="row">
+			<div class="row" style="font-size: 26px">
 				<div class="col-lg-1" style="color: #2a9fd6;"></div>
 				<div class="col-lg-4" style="color: #2a9fd6;"></div>
 				<div class="col-lg-4" style="color: #2a9fd6;"></div>
@@ -135,15 +134,15 @@ td {
 				<div class="col-lg-1" style="color: #2a9fd6;"></div>
 			</div>
 				<c:forEach var="result" items="${ rawglist.getResults()}">
-					<div class="row">
+					<div class="row" style="font-size: 25px">
 						<div class="col-lg-1" style="color: #2a9fd6;"></div>
-						<div class="col-lg-4 padded" ><a href="/details/${result.getId() }"><img src="${result.getBackground_image() }"	style="width:100%; height:auto; border: 5px solid #59A7FF"></a></div>
+						<div class="col-lg-4 padded" ><a href="/details/${result.getId() }"><img src="${result.getBackground_image() }"	alt="gameplay image" style="width:100%; height:auto; border: 5px solid #59A7FF"></a></div>
 						<div class="col-lg-4" style="color: #2a9fd6;"><a class="buttonstyle" href="/details/${result.getId() }" data-toggle="tooltip" data-placement="right" title="View Prices">${result.getName()}</a></div>
 						<div class="col-lg-1" >${result.getRating()}/5</div>
-						<div class="col-lg-2" ><c:forEach var="genre" items="${result.getGenres() }"><font size="5"><a class="tagstyle" href="/searchresults/${genre.getId() }" data-toggle="tooltip" data-placement="right" title="Search for ${genre.getName() } games">${genre.getName() }</a></font> </c:forEach></div>
+						<div class="col-lg-2" ><c:forEach var="genre" items="${result.getGenres() }"><font size="4"><a class="tagstyle" href="/searchresults/${genre.getId() }" data-toggle="tooltip" data-placement="right" title="Search for ${genre.getName() } games">${genre.getName() }</a></font> </c:forEach></div>
 					</div>
 				</c:forEach>
 			</div>
-	</font>
+	
 </body>
 </html>
