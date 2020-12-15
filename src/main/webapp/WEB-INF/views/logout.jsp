@@ -69,7 +69,7 @@ h2 {
 			</form>
 		</div>
 	</nav>
-	<h2>You are now logged out.<br/>Thanks for stopping by!</h2>
+	<h5>You are now logged out.<br/>Thanks for stopping by!</h5>
 
 
 

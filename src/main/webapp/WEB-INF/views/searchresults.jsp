@@ -32,9 +32,18 @@ td {
 	font-weight: bold;
 	line-height: 50px;
 }
+
 .centerednopad {
   text-align: center;
 }	
+
+
+.footer{ 
+       position: fixed;     
+       text-align: left;    
+       bottom: 0px; 
+       width: 100%;
+} 
 
 </style>
 <link rel="stylesheet"
@@ -111,6 +120,6 @@ td {
 		</div>
 	</c:forEach>
 	</font>	
-
+		<div class="footer">Thanks to <a href= "https://rawg.io" data-toggle="tooltip" data-placement="top" title="Leave Crypt and go to RAWG website" target="_blank">RAWG.io</a> for the data</div>
 </body>
 </html>

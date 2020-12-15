@@ -13,6 +13,7 @@
 	integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2"
 	crossorigin="anonymous">
 <style>
+
 	h2 {
 	padding-top: 20px;
 	text-align: center;
@@ -24,6 +25,7 @@
 .centerednopad {
   text-align: center;
 }	
+
 	
 </style>
 </head>

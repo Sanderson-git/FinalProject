@@ -91,6 +91,13 @@
   text-align: center;
 }	
 
+.footer{ 
+       position: fixed;     
+       text-align: left;    
+       bottom: 0px; 
+       width: 100%;
+}
+
 
 <!-- slideshow stuff starts here -->
 
@@ -355,6 +362,9 @@
 	<br />
 	<br />
 	<br />
+
+		<div class="footer">Thanks to <a href= "https://rawg.io" data-toggle="tooltip" data-placement="top" title="Leave Crypt and go to RAWG website" target="_blank">RAWG.io</a> for the data</div>
+
 	
 	
 	
@@ -390,5 +400,6 @@
 	  if (n > slides.length) {slideIndex = 1}
 	</script>
 	
+
 </body>
 </html>
