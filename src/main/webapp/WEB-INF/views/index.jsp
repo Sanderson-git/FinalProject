@@ -68,7 +68,17 @@ td {
        bottom: 0px; 
        width: 100%;
 }  
+.zoom {
 
+  transition: transform .2s; /* Animation */
+
+}
+
+.zoom:hover {
+  transform: scale(1.1); /* (110% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  position:relative;
+  z-index:2;
+}
 
 </style>
 
@@ -155,9 +165,9 @@ td {
 					<div class="row" style="font-size: 25px">
 						<div class="col-lg-1" style="color: #2a9fd6;"></div>
 						<div class="col-lg-4 padded" ><a href="/details/${result.getId() }"><img src="${result.getBackground_image() }"	alt="gameplay image" style="width:100%; height:auto; border: 5px solid #59A7FF"></a></div>
-						<div class="col-lg-4" style="color: #2a9fd6;"><a class="buttonstyle" href="/details/${result.getId() }" data-toggle="tooltip" data-placement="right" title="View Prices">${result.getName()}</a></div>
+						<div class="col-lg-4" style="color: #2a9fd6;"><a class="buttonstyle zoom zoom:hover" href="/details/${result.getId() }" data-toggle="tooltip" data-placement="right" title="View Prices">${result.getName()}</a></div>
 						<div class="col-lg-1" >${result.getRating()}/5</div>
-						<div class="col-lg-2" ><c:forEach var="genre" items="${result.getGenres() }"><font size="4"><a class="tagstyle" href="/searchresults/${genre.getId() }" data-toggle="tooltip" data-placement="right" title="Search for ${genre.getName() } games">${genre.getName() }</a></font> </c:forEach></div>
+						<div class="col-lg-2" ><c:forEach var="genre" items="${result.getGenres() }"><font size="4"><a class="tagstyle zoom zoom:hover" href="/searchresults/${genre.getId() }" data-toggle="tooltip" data-placement="right" title="Search for ${genre.getName() } games">${genre.getName() }</a></font> </c:forEach></div>
 					</div>
 				</c:forEach>
 			</div>

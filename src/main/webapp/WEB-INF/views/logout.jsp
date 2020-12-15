@@ -69,7 +69,14 @@ h2 {
 			</form>
 		</div>
 	</nav>
-	<h5>You are now logged out.<br/>Thanks for stopping by!</h5>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12 centerednopad">
+		<h5>You are now logged out.<br/>Thanks for stopping by!</h5>
+		</div>
+	</div>
+</div>	
+	
 
 
 

@@ -73,7 +73,14 @@
 			</form>
 		</div>
 	</nav>
-	<h2>Sorry, your Email or Password was invalid.<br/>Please try again.</h2>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12 centerednopad">
+			<h2>Sorry, your Email or Password was invalid.<br/>Please try again.</h2>
+		</div>
+	</div>
+</div>	
+	
 
 
 </body>

@@ -18,7 +18,29 @@ h2 {
 }
 .centerednopad {
   text-align: center;
-}	
+}
+.buttonstyle {
+	display: block;
+	background: #2a9fd6;
+	padding: 15px;
+	text-align: center;
+	border-radius: 10px;
+	color: white;
+	font-weight: bold;
+	line-height: 50px;
+}
+
+.zoom {
+
+  transition: transform .2s; /* Animation */
+
+}
+
+.zoom:hover {
+  transform: scale(1.1); /* (110% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  position:relative;
+  z-index:2;
+}
 </style>
 </head>
 <body>
@@ -68,7 +90,14 @@ h2 {
 			</form>
 		</div>
 	</nav>
-	<h5>Welcome ${ user.username },<br/>Thank you for registering.<br/><br/>Time to create a wishlist!</h5>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12 centerednopad">
+		<h5>Welcome ${ user.username },<br/><br/>Thank you for registering.</h5><br/><br/>
+		<div class="col-lg-12 buttonstyle centerednopad zoom zoom:hover"><a href="/" data-toggle="tooltip" data-placement="right" title="Discover New Games"><h5>Time to create a wishlist!</h5></a></div>
+		</div>
+	</div>
+</div>	
 
 
 

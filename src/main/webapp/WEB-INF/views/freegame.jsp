@@ -70,7 +70,18 @@ body {
        text-align: left;    
        bottom: 0px; 
        width: 100%;
-} 
+}
+.zoom {
+
+  transition: transform .2s; /* Animation */
+
+}
+
+.zoom:hover {
+  transform: scale(1.1); /* (110% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  position:relative;
+  z-index:2;
+}
 
 </style>
 
@@ -122,7 +133,16 @@ body {
 		</div>
 	</nav>
 
-	<h5><a href="${ freeurl }">${ freemsg }</a></h5>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-4"></div>
+		<div class="col-lg-4 buttonstyle centerednopad zoom zoom:hover"><h5><a href="${ freeurl }">${ freemsg }</a></h5></div>
+		<div class="col-lg-4"></div>
+	</div>
+</div>
+	
+	
+
 		<div class="footer">Thanks to <a href= "https://rawg.io" data-toggle="tooltip" data-placement="top" title="Leave Crypt and go to RAWG website" target="_blank">RAWG.io</a> for the data</div>
 </body>
 </html>
