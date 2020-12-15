@@ -50,6 +50,18 @@ public class FinalController {
 	@GetMapping("/")
 	private String index(Model model) {
 		RawgResponse rResp = rawgapi.rawgHomeList();
+		
+	
+		
+		List<RawgGame> games = rResp.getResults();
+		
+		Collections.sort(games, new Comparator<RawgGame>() { // sort the array on price so that the lowest price is always first. This should guaruntee that a best fit is found for the budget.
+			@Override
+			public int compare(RawgGame c1, RawgGame c2) {
+				return Double.compare(c2.getRating(), c1.getRating());
+			}
+		});
+		
 		model.addAttribute("rawglist", rResp);
 		return "index";
 	}
@@ -399,9 +411,7 @@ public class FinalController {
 				}
 			}
 		}
-		Collections.sort(wishes, new Comparator<WishList>() { // sort the array on price so that the lowest price is
-																// always first. This should guaruntee that a best fit
-																// is found for the budget.
+		Collections.sort(wishes, new Comparator<WishList>() { // sort the array on price so that the lowest price is always first. This should guaruntee that a best fit is found for the budget.
 			@Override
 			public int compare(WishList c1, WishList c2) {
 				return Double.compare((c2.getDesiredprice() - c2.getPrice()), (c1.getDesiredprice() - c1.getPrice()));
@@ -469,9 +479,7 @@ public class FinalController {
 		}
 
 		List<ListContainer> listOfItemLists = new ArrayList<>();
-		Collections.sort(wishes, new Comparator<WishList>() { // sort the array on price so that the lowest price is
-																// always first. This should guaruntee that a best fit
-																// is found for the budget.
+		Collections.sort(wishes, new Comparator<WishList>() { // sort the array on price so that the lowest price is always first. This should guaruntee that a best fit is found for the budget.
 			@Override
 			public int compare(WishList c1, WishList c2) {
 				return Double.compare(c1.getPrice(), c2.getPrice());
