@@ -7,6 +7,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 
 
@@ -34,7 +35,18 @@ private RestTemplate restTemplate = new RestTemplate();
 		headers.set("User-Agent", "Crypt");
 		HttpEntity<String> entity = new HttpEntity<String>(headers);
 		System.out.println(url);
-		return restTemplate.exchange(url, HttpMethod.GET , entity,RawgResponse.class).getBody();
+		try {
+			return restTemplate.exchange(url, HttpMethod.GET , entity,RawgResponse.class).getBody();
+		}
+		catch(HttpStatusCodeException e) {
+			System.out.println("************************!!!!Error 502 sleeping 2.5sec !!!!!!!************************");
+			try
+				{
+				Thread.sleep(2500);
+			}
+			catch(InterruptedException e2) {}
+			return restTemplate.exchange(url, HttpMethod.GET , entity,RawgResponse.class).getBody();
+		}
 	}
 	
 	public RawgGame rawgGame (Integer gameId) {
@@ -43,7 +55,18 @@ private RestTemplate restTemplate = new RestTemplate();
 		headers.set("User-Agent", "Crypt");
 		HttpEntity<String> entity = new HttpEntity<String>(headers);
 		System.out.println(url);
+		try {
+			return restTemplate.exchange(url, HttpMethod.GET , entity,RawgGame.class).getBody();
+		}
+		catch(HttpStatusCodeException e) {
+			System.out.println("************************!!!!Error 502 sleeping 2.5sec !!!!!!!************************");
+			try
+				{
+				Thread.sleep(2500);
+			}
+			catch(InterruptedException e2) {}
 		return restTemplate.exchange(url, HttpMethod.GET , entity,RawgGame.class).getBody();
+		}
 	}
 	
 
@@ -53,7 +76,18 @@ private RestTemplate restTemplate = new RestTemplate();
 		headers.set("User-Agent", "Crypt");
 		HttpEntity<String> entity = new HttpEntity<String>(headers);
 		System.out.println(url);
+		try {
+			return restTemplate.exchange(url, HttpMethod.GET , entity,GameStoreResponse.class).getBody();
+		}
+		catch(HttpStatusCodeException e) {
+			System.out.println("************************!!!!Error 502 sleeping 2.5sec !!!!!!!************************");
+			try
+				{
+				Thread.sleep(2500);
+			}
+			catch(InterruptedException e2) {}
 		return restTemplate.exchange(url, HttpMethod.GET , entity,GameStoreResponse.class).getBody();
+		}
 	}
 	
 
@@ -67,7 +101,18 @@ private RestTemplate restTemplate = new RestTemplate();
 		headers.set("User-Agent", "Crypt");
 		HttpEntity<String> entity = new HttpEntity<String>(headers);
 		System.out.println(url);
+		try {
+			return restTemplate.exchange(url, HttpMethod.GET , entity,RawgResponse.class).getBody();
+		}
+		catch(HttpStatusCodeException e) {
+			System.out.println("************************!!!!Error 502 sleeping 2.5sec !!!!!!!************************");
+			try
+				{
+				Thread.sleep(2500);
+			}
+			catch(InterruptedException e2) {}
 		return restTemplate.exchange(url, HttpMethod.GET , entity,RawgResponse.class).getBody();
+		}
 	}
 	
 	public RawgResponse popular2019() {	
@@ -76,7 +121,18 @@ private RestTemplate restTemplate = new RestTemplate();
 		headers.set("User-Agent", "Crypt");
 		HttpEntity<String> entity = new HttpEntity<String>(headers);
 		System.out.println(url);
+		try {
+			return restTemplate.exchange(url, HttpMethod.GET , entity,RawgResponse.class).getBody();
+		}
+		catch(HttpStatusCodeException e) {
+			System.out.println("************************!!!!Error 502 sleeping 2.5sec !!!!!!!************************");
+			try
+				{
+				Thread.sleep(2500);
+			}
+			catch(InterruptedException e2) {}
 		return restTemplate.exchange(url, HttpMethod.GET , entity,RawgResponse.class).getBody();
+		}
 	}
 	
 	public RawgResponse rawgGenreList (String genreid) {
@@ -85,7 +141,18 @@ private RestTemplate restTemplate = new RestTemplate();
 		headers.set("User-Agent", "Crypt");
 		HttpEntity<String> entity = new HttpEntity<String>(headers);
 		System.out.println(url);
+		try {
+			return restTemplate.exchange(url, HttpMethod.GET , entity,RawgResponse.class).getBody();
+		}
+		catch(HttpStatusCodeException e) {
+			System.out.println("************************!!!!Error 502 sleeping 2.5sec !!!!!!!************************");
+			try
+				{
+				Thread.sleep(2500);
+			}
+			catch(InterruptedException e2) {}
 		return restTemplate.exchange(url, HttpMethod.GET , entity,RawgResponse.class).getBody();
+		}
 	}
 	
 	public ScreenshotResponse rawgScreenshotList (Integer gameId) {
@@ -94,7 +161,18 @@ private RestTemplate restTemplate = new RestTemplate();
 		headers.set("User-Agent", "Crypt");
 		HttpEntity<String> entity = new HttpEntity<String>(headers);
 		System.out.println(url);
+		try {
+			return restTemplate.exchange(url, HttpMethod.GET , entity, ScreenshotResponse.class).getBody();
+		}
+		catch(HttpStatusCodeException e) {
+			System.out.println("************************!!!!Error 502 sleeping 2.5sec !!!!!!!************************");
+			try
+				{
+				Thread.sleep(2500);
+			}
+			catch(InterruptedException e2) {}
 		return restTemplate.exchange(url, HttpMethod.GET , entity,ScreenshotResponse.class).getBody();
+		}
 	}
 }
 
