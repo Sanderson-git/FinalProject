@@ -76,6 +76,8 @@ text-align: left;
        text-align: left;    
        bottom: 0px; 
        width: 100%;
+       font-size: 11px;
+       font-family: font-family: Arial, Helvetica, sans-serif;
 } 
 .zoom {
 
