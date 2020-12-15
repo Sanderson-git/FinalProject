@@ -44,6 +44,11 @@ td {
        bottom: 0px; 
        width: 100%;
 } 
+.padded {
+  padding-top: 5px;
+  padding-bottom: 5px;
+   float: right;
+}
 
 </style>
 <link rel="stylesheet"
