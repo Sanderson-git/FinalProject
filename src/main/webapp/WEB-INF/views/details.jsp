@@ -1,3 +1,4 @@
+  
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -11,8 +12,8 @@
 	href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cyborg/bootstrap.min.css"
 	integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2"
 	crossorigin="anonymous">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style type="text/css">
-
 .buttonstyle {
 	background: #2a9fd6;
 	padding: 15px;
@@ -22,7 +23,6 @@
 	font-weight: bold;
 	line-height: 50px;
 }
-
 .buttonstyletwo {
 	display: block;
 	background: #2a9fd6;
@@ -33,7 +33,6 @@
 	font-weight: bold;
 	line-height: 40px;
 }
-
 .buttonstylethree {
 	background: #2a9fd6;
 	padding: 5px;
@@ -53,40 +52,30 @@
 	font-weight: bold;
 	line-height: 20px;
 }
-
 .center {
 	margin-left: auto;
 	margin-right: auto;
 }
-
 .padded {
   margin-top: 10px;
   margin-bottom: 15px;
 }
-
 .centered {
   text-align: center;
 }
 .left {
-
 	text-align: left;
-
 }
 .right {
-
 	text-align: right;
-
 }	
 .sidepad{
-
 	margin-right: 10px;
-
 }
 .xtrapad{
-
 	margin-right: 15px;
-
 }
+
 
 <!-- slideshow stuff starts here -->
 
@@ -190,6 +179,13 @@
 
 
 
+</style>
+
+
+	
+
+
+
 </head>
 <body>
 	<!-- Logo -->
@@ -197,7 +193,7 @@
 	<a href="/"><img src="https://drive.google.com/uc?id=1fPjNndqQhYAMUy6HG5YUGc0MUmmhZncH" style=" padding-left: 35%"/></a>
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-		<a class="navbar-brand" href="/" style="font-size: 20px;">Home</a>
+		<a class="navbar-brand" href="/" style="font-size: 16px;">Home</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarColor01" aria-controls="navbarColor01"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -206,16 +202,16 @@
 
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item" style="font-size: 20px;"><a class="nav-link" href="/login">Login		
+				<li class="nav-item" style="font-size: 16px;"><a class="nav-link" href="/login">Login		
 				</a></li>
-				<li class="nav-item" style="font-size: 20px;"><a class="nav-link" href="/wishlist">Wishlist</a>
+				<li class="nav-item" style="font-size: 16px;"><a class="nav-link" href="/wishlist">Wishlist</a>
 				</li>
 
-				<li class="nav-item" style="font-size: 20px;"><a class="nav-link"
+				<li class="nav-item" style="font-size: 16px;"><a class="nav-link"
 					href="/recommendations">Recommendations</a></li>
-				<li class="nav-item" style="font-size: 20px;"><a class="nav-link" href="/about">The
+				<li class="nav-item" style="font-size: 16px;"><a class="nav-link" href="/about">The
 						Crypt Keepers</a></li>
-      		<li class="nav-item" style="font-size: 20px;"><a class="nav-link" href="/popular2019">Most
+      		<li class="nav-item" style="font-size: 16px;"><a class="nav-link" href="/popular2019">Most
 						popular of 2019</a></li>
 			</ul>
 
@@ -330,16 +326,17 @@
 
 	<br />
 	<br />
-	<div class="container">
+<div class="container">
 			<div class="row">
-				<div class="col-lg-12"><h3 class="buttonstyletwo">Description:</h3></div>
+				<div class="col-lg-12 dropdown centered">
+				<button onclick="myFunction()" class="btn btn-outline-secondary"><h3>View Game Description</h3></button>
+    <div id="Demo" class="dropdown-menu tagstyle w3-animate-zoom">
+							<p><font size="4">${rawgDetails.getDescription_raw() }</font></p>
+					</div>
+					</div>
 			</div>
 		</div>
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12"><font size="4"><p>${rawgDetails.getDescription_raw() }</p></font></div>
-		</div>
-	</div>
+
 
 	<br />
 	<br />

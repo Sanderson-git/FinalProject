@@ -1,26 +1,76 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Crypt/Profile</title>
+<title>Free Game</title>
+
+<style type="text/css">
+body {
+	background-image: url(${rawgGame.background_image});
+}
+
+.buttonstyle {
+	display: block;
+	background: #2a9fd6;
+	padding: 15px;
+	text-align: center;
+	border-radius: 10px;
+	color: white;
+	font-weight: bold;
+	line-height: 50px;
+}
+
+.buttonstyletwo {
+	display: block;
+	background: #2a9fd6;
+	padding: 5px;
+	text-align: center;
+	border-radius: 10px;
+	color: white;
+	font-weight: bold;
+	line-height: 40px;
+}
+
+.buttonstylethree {
+	background: #2a9fd6;
+	padding: 5px;
+	text-align: center;
+	border-radius: 10px;
+	color: white;
+	font-weight: bold;
+	line-height: 40px;
+}
+.tagstyle {
+	
+	background: #d3d3d3 ;
+	padding: 2px;
+	text-align: center;
+	border-radius: 5px;
+	color: white;
+	font-weight: bold;
+	line-height: 20px;
+}
+.center {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.oop {
+	padding-left: 30%;
+}
+</style>
+
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cyborg/bootstrap.min.css"
 	integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2"
 	crossorigin="anonymous">
-<style type="text/css">
-
-h2 {
-	padding-top: 35px;
-	text-align: center;
-}
-</style>
 </head>
 <body>
 <!-- Logo -->
 
-	<a href="/"><img src="https://drive.google.com/uc?id=1fPjNndqQhYAMUy6HG5YUGc0MUmmhZncH" style=" padding-left: 35%"/></a>
+	<a href="/"><img src="https://drive.google.com/uc?id=1BmbUr80SogYS3LZdkH3hqBuqZbyyiSkX" style=" padding-left: 35%"/></a>
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 		<a class="navbar-brand" href="/" style="font-size: 16px;">Home</a>
@@ -32,7 +82,7 @@ h2 {
 
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active" style="font-size: 16px;"><a class="nav-link" href="/login">Login		
+				<li class="nav-item" style="font-size: 16px;"><a class="nav-link" href="/login">Login		
 				</a></li>
 				<li class="nav-item" style="font-size: 16px;"><a class="nav-link" href="/wishlist">Wishlist</a>
 				</li>
@@ -47,8 +97,6 @@ h2 {
 				<span class="navbar-brand">${ user.username }</span>
     		<a class="btn navbar-btn btn-default navbar-right pull-right" role="button" href="/logout">Logout</a>
 
-
-<!-- Search function -->
 			<form class="form-inline my-2 my-lg-0" method="post"
 				action="/searchresults">
 				<input class="form-control mr-sm-2" type="text" placeholder="Search"
@@ -57,10 +105,8 @@ h2 {
 			</form>
 		</div>
 	</nav>
-	<h2>Welcome ${ user.username },<br/>Thank you for registering.<br/><br/>Time to create a wishlist!</h2>
 
-
-
+	<h5><a href="${ freeurl }">${ freemsg }</a></h5>
 
 </body>
 </html>

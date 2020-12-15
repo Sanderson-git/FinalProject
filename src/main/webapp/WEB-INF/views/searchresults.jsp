@@ -45,7 +45,7 @@ td {
 	<a href="/"><img src="https://drive.google.com/uc?id=1fPjNndqQhYAMUy6HG5YUGc0MUmmhZncH" style=" padding-left: 35%"/></a>
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-		<a class="navbar-brand" href="/" style="font-size: 20px;">Home</a>
+		<a class="navbar-brand" href="/" style="font-size: 16px;">Home</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarColor01" aria-controls="navbarColor01"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -54,16 +54,16 @@ td {
 
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item" style="font-size: 20px;"><a class="nav-link" href="/login">Login		
+				<li class="nav-item" style="font-size: 16px;"><a class="nav-link" href="/login">Login		
 				</a></li>
-				<li class="nav-item" style="font-size: 20px;"><a class="nav-link" href="/wishlist">Wishlist</a>
+				<li class="nav-item" style="font-size: 16px;"><a class="nav-link" href="/wishlist">Wishlist</a>
 				</li>
 
-				<li class="nav-item" style="font-size: 20px;"><a class="nav-link"
+				<li class="nav-item" style="font-size: 16px;"><a class="nav-link"
 					href="/recommendations">Recommendations</a></li>
-				<li class="nav-item" style="font-size: 20px;"><a class="nav-link" href="/about">The
+				<li class="nav-item" style="font-size: 16px;"><a class="nav-link" href="/about">The
 						Crypt Keepers</a></li>
-      		<li class="nav-item" style="font-size: 20px;"><a class="nav-link" href="/popular2019">Most
+      		<li class="nav-item" style="font-size: 16px;"><a class="nav-link" href="/popular2019">Most
 						popular of 2019</a></li>
 			</ul>
 				<span class="navbar-brand">${ user.username }</span>
@@ -79,33 +79,28 @@ td {
 			</form>
 		</div>
 	</nav>
-
-	<h2>Search Results</h2>
 	
-	<font size="7">
-		<table>
-			<thead>
-				<tr>
-					<th></th>
-					<th style="color: #2a9fd6; font-size: 30px;">Games:</th>
-					<th style="color: #2a9fd6; font-size: 30px;">Rating:</th>
-					<th style="color: #2a9fd6; font-size: 30px;">Genres:</th>
-				</tr>
-			</thead>
-			<tbody>
-
-				<c:forEach var="games" items="${ games }">
-					<tr>
-						<td style="width: 35%;"><img src="${ games.getBackground_image() }"
-							alt="${games.getName()}" style="width: 600px; height: 350px; border: 5px solid #59A7FF"></td>
-						<td><a class="buttonstyle" href="/details/${ games.getId()}">${ games.getName() }</a></td>
-						<td style="width: 10;">${games.getRating()}/ 5</td>
-						<td><c:forEach var="genre" items="${games.getGenres() }"><font size="5"><a class="tagstyle" href="/searchresults/${genre.getId() }">${genre.getName() }</a></font> </c:forEach></td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-	</font>
+	<div class="container">
+	<font size="5">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4" style="color: #2a9fd6;"></div>
+				<div class="col-lg-4" style="color: #2a9fd6;"></div>
+				<div class="col-lg-1" style="color: #2a9fd6;">Rating:</div>
+				<div class="col-lg-3" style="color: #2a9fd6;">Genres:</div>
+			</div>
+		</div>
+	<c:forEach var="game" items="${ games }">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 padded"><a href="/details/${ game.getId()}"><img src="${ game.getBackground_image() }"	alt="${game.getName()}" style="width: 100%; height: auto; border: 5px solid #59A7FF"></a></div>
+				<div class="col-lg-4 padded"><a class="buttonstyle" href="/details/${ game.getId()}" data-toggle="tooltip" data-placement="right" title="View Game Details">${ game.getName() }</a></div>
+				<div class="col-lg-1" style="color: #2a9fd6;">${game.getRating()}/5</div>
+				<div class="col-lg-3"><c:forEach var="genre" items="${game.getGenres() }"><font size="5"><a class="tagstyle" href="/searchresults/${genre.getId() }" data-toggle="tooltip" data-placement="right" title="Search for ${genre.getName() } games">${genre.getName() }</a></font> </c:forEach></div>
+			</div>
+		</div>
+	</c:forEach>
+	</font>	
 
 </body>
 </html>
