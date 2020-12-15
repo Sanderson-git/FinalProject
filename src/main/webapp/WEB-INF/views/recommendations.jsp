@@ -180,7 +180,7 @@ h2{
 	<c:forEach var="game" items="${ games }">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-4 padded"><a href="/details/${ game.getId()}"><img src="${ game.getBackground_image() }"	alt="${game.getName()}" style="width: 100%; height: auto; border: 5px solid #59A7FF"></a></div>
+				<div class="col-lg-4 padded"><a href="/details/${ game.getId()}" data-toggle="tooltip" data-placement="right" title="View Game Details"><img src="${ game.getBackground_image() }"	alt="${game.getName()}" style="width: 100%; height: auto; border: 5px solid #59A7FF"></a></div>
 				<div class="col-lg-4 padded"><a class="buttonstyle zoom zoom:hover" href="/details/${ game.getId()}" data-toggle="tooltip" data-placement="right" title="View Game Details">${ game.getName() }</a></div>
 				<div class="col-lg-1" style="color: #2a9fd6;">${game.getRating()}/5</div>
 				<div class="col-lg-3"><c:forEach var="genre" items="${game.getGenres() }"><font size="5"><a class="tagstyle zoom zoom:hover" href="/searchresults/${genre.getId() }" data-toggle="tooltip" data-placement="right" title="Search for ${genre.getName() } games">${genre.getName() }</a></font> </c:forEach></div>
