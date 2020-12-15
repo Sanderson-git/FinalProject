@@ -57,7 +57,7 @@ h2 {
 			</form>
 		</div>
 	</nav>
-	<h2>Welcome ${ user.username },<br/>Thank you for registering.<br/><br/>Time to create a wishlist!</h2>
+	<h5>Welcome ${ user.username },<br/>Thank you for registering.<br/><br/>Time to create a wishlist!</h5>
 
 
 
