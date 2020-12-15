@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,7 +46,9 @@ h2 {
 						popular of 2019</a></li>
 			</ul>
 				<span class="navbar-brand">${ user.username }</span>
-    		<a class="btn navbar-btn btn-default navbar-right pull-right" role="button" href="/logout">Logout</a>
+    		<c:if test = "${user.username != null}">
+    		<a class="btn navbar-btn btn-default navbar-right pull-right" role="button" href="/logout">Logout</a> 
+			</c:if>
 
 
 <!-- Search function -->
