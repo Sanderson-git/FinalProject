@@ -80,15 +80,26 @@ td {
 	href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cyborg/bootstrap.min.css"
 	integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2"
 	crossorigin="anonymous">
-
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
+<script>
+	function myFunction() {
+		  var x = document.getElementById("Demo");
+		  if (x.className.indexOf("w3-show") == -1) {
+		    x.className += " w3-show";
+		  } else { 
+		    x.className = x.className.replace(" w3-show", "");
+		  }
+		}
+	
+	</script>
 	<!-- Logo -->
 
 	<a href="/"><img src="https://drive.google.com/uc?id=1fPjNndqQhYAMUy6HG5YUGc0MUmmhZncH" style=" padding-left: 35%"/></a>
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-		<a class="navbar-brand" href="/" style="font-size: 20px;">Home</a>
+		<a class="navbar-brand" href="/" style="font-size: 16px;">Home</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarColor01" aria-controls="navbarColor01"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -97,16 +108,16 @@ td {
 
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item" style="font-size: 20px;"><a class="nav-link" href="/login">Login		
+				<li class="nav-item" style="font-size: 16px;"><a class="nav-link" href="/login">Login		
 				</a></li>
-				<li class="nav-item active" style="font-size: 20px;"><a class="nav-link" href="/wishlist">Wishlist</a>
+				<li class="nav-item active" style="font-size: 16px;"><a class="nav-link" href="/wishlist">Wishlist</a>
 				</li>
 
-				<li class="nav-item" style="font-size: 20px;"><a class="nav-link"
+				<li class="nav-item" style="font-size: 16px;"><a class="nav-link"
 					href="/recommendations">Recommendations</a></li>
-				<li class="nav-item" style="font-size: 20px;"><a class="nav-link" href="/about">The
+				<li class="nav-item" style="font-size: 16px;"><a class="nav-link" href="/about">The
 						Crypt Keepers</a></li>
-      		<li class="nav-item" style="font-size: 20px;"><a class="nav-link" href="/popular2019">Most
+      		<li class="nav-item" style="font-size: 16px;"><a class="nav-link" href="/popular2019">Most
 						popular of 2019</a></li>
 			</ul>
 				<span class="navbar-brand">${ user.username }</span>
@@ -124,11 +135,17 @@ td {
 	</nav>
 <div class="container">
 	<div class="row">
-		<div class="col-lg-12 centered padded">
+		<div class="col-lg-6 padded">
 			<form method="post" action="/binpacking">
 			Enter Budget: <input type="number" name="budget" /> 
 			<input type="submit" name="submit" data-toggle="tooltip" data-placement="right" title="Generate Shopping List" />
 			</form>
+		</div>
+		<div class="col-lg-6 right dropdown">
+			<button onclick="myFunction()" class="btn btn-outline-secondary">Get Share Link</button>
+   				 <div id="Demo" class="dropdown-menu tagstyle w3-animate-zoom">
+							<p><font size="2"><a href="/wishlist/${ user.id}/${user.username}">http://crypt-env.eba-96hebjqt.us-east-2.elasticbeanstalk.com/wishlist/${ user.id }/${user.username }</a></font></p>
+					</div>
 		</div>
 	</div>
 	
@@ -137,7 +154,7 @@ td {
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3" style="color: #2a9fd6;"></div>
-				<div class="col-lg-3" style="color: #2a9fd6;">Game:</div>
+				<div class="col-lg-3" style="color: #2a9fd6;"></div>
 				<div class="col-lg-1" style="color: #2a9fd6;">Price:</div>
 				<div class="col-lg-3" style="color: #2a9fd6;">Desired Price:</div>
 				<div class="col-lg-2" style="color: #2a9fd6;"></div>
@@ -148,7 +165,7 @@ td {
 	<c:forEach var="games" items="${ games }">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-3 paddedsm"><img src="${ games.getBackground_image() }" alt="${games.getName()}" style="width: 100%; height: auto; border: 5px solid #59A7FF"></div>
+				<div class="col-lg-3 paddedsm"><a href="/details/${ games.getRawgId()}"><img src="${ games.getBackground_image() }" alt="${games.getName()}" style="width: 100%; height: auto; border: 5px solid #59A7FF"></a></div>
 				<div class="col-lg-3 paddedsm"><a class="buttonstyle" href="/details/${ games.getRawgId()}" data-toggle="tooltip" data-placement="right" title="View Game Details">${ games.getName() }</a><a href="/wishlistdelete/${ games.getWishlistid() }" style="font:normal" data-toggle="tooltip" data-placement="right" title="Remove from Wishlist">delete</a></div>
 				<div class="col-lg-1" >$${games.getPrice() }</div>
 				<div class="col-lg-3"><form method="post" action="/wishlist/setalert/${ games.getWishlistid() }">

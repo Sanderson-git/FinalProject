@@ -70,7 +70,7 @@ td {
 	<a href="/"><img src="https://drive.google.com/uc?id=1fPjNndqQhYAMUy6HG5YUGc0MUmmhZncH" style=" padding-left: 35%"/></a>
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-		<a class="navbar-brand" href="/" style="font-size: 20px;">Home</a>
+		<a class="navbar-brand" href="/" style="font-size: 16px;">Home</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarColor01" aria-controls="navbarColor01"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -80,16 +80,16 @@ td {
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav mr-auto">
 
-				<li class="nav-item" style="font-size: 20px;"><a class="nav-link" href="/login">Login		
+				<li class="nav-item" style="font-size: 16px;"><a class="nav-link" href="/login">Login		
 				</a></li>
-				<li class="nav-item" style="font-size: 20px;"><a class="nav-link" href="/wishlist">Wishlist</a>
+				<li class="nav-item" style="font-size: 16px;"><a class="nav-link" href="/wishlist">Wishlist</a>
 				</li>
 
-				<li class="nav-item" style="font-size: 20px;"><a class="nav-link"
+				<li class="nav-item" style="font-size: 16px;"><a class="nav-link"
 					href="/recommendations">Recommendations</a></li>
-				<li class="nav-item" style="font-size: 20px;"><a class="nav-link" href="/about">The
+				<li class="nav-item" style="font-size: 16px;"><a class="nav-link" href="/about">The
 						Crypt Keepers</a></li>
-      		<li class="nav-item active" style="font-size: 20px;"><a class="nav-link" href="/popular2019">Most
+      		<li class="nav-item active" style="font-size: 16px;"><a class="nav-link" href="/popular2019">Most
 						popular of 2019</a></li>
 
 			</ul>
@@ -112,7 +112,7 @@ td {
 			<div class="col-lg-1">
 			</div>
 			<div class="col-lg-10 center">
-				<h2>Most popular games of 2019!</h2>
+				<h2>Most popular games of 2019</h2>
 			</div>
 			<div class="col-lg-1">
 			</div>
@@ -123,7 +123,7 @@ td {
 			<div class="row">
 				<div class="col-lg-1" style="color: #2a9fd6;"></div>
 				<div class="col-lg-4" style="color: #2a9fd6;"></div>
-				<div class="col-lg-4" style="color: #2a9fd6;">Game:</div>
+				<div class="col-lg-4" style="color: #2a9fd6;"></div>
 				<div class="col-lg-1" style="color: #2a9fd6;">Rating:</div>
 				<div class="col-lg-1" style="color: #2a9fd6;">Genres:</div>
 				<div class="col-lg-1" style="color: #2a9fd6;"></div>

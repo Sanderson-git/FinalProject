@@ -50,6 +50,18 @@ public class FinalController {
 	@GetMapping("/")
 	private String index(Model model) {
 		RawgResponse rResp = rawgapi.rawgHomeList();
+		
+	
+		
+		List<RawgGame> games = rResp.getResults();
+		
+		Collections.sort(games, new Comparator<RawgGame>() { // sort the array on price so that the lowest price is always first. This should guaruntee that a best fit is found for the budget.
+			@Override
+			public int compare(RawgGame c1, RawgGame c2) {
+				return Double.compare(c2.getRating(), c1.getRating());
+			}
+		});
+		
 		model.addAttribute("rawglist", rResp);
 		return "index";
 	}
@@ -165,11 +177,11 @@ public class FinalController {
 		CheapsharkGame sharkGame;
 
 		if (sharkGames.length == 0) {
-			String errormsg = "It looks like the game you've selected is a free game. Please click this link to claim your free game!";
-			String errorurl = "http://store.steampowered.com/app/" + steamId + "/";
-			model.addAttribute("errorurl", errorurl);
-			model.addAttribute("errormessage", errormsg);
-			return "error";
+			String freemsg = "It looks like the game you've selected is a free game. Please click this link to claim your free game!";
+			String freeurl = "http://store.steampowered.com/app/" + steamId + "/";
+			model.addAttribute("freemsg", freemsg);
+			model.addAttribute("freeurl", freeurl);
+			return "freegame";
 		} else {
 			sharkGame = sharkGames[0];
 		}
@@ -403,9 +415,7 @@ public class FinalController {
 				}
 			}
 		}
-		Collections.sort(wishes, new Comparator<WishList>() { // sort the array on price so that the lowest price is
-																// always first. This should guaruntee that a best fit
-																// is found for the budget.
+		Collections.sort(wishes, new Comparator<WishList>() { // sort the array on price so that the lowest price is always first. This should guaruntee that a best fit is found for the budget.
 			@Override
 			public int compare(WishList c1, WishList c2) {
 				return Double.compare((c2.getDesiredprice() - c2.getPrice()), (c1.getDesiredprice() - c1.getPrice()));
@@ -473,9 +483,7 @@ public class FinalController {
 		}
 
 		List<ListContainer> listOfItemLists = new ArrayList<>();
-		Collections.sort(wishes, new Comparator<WishList>() { // sort the array on price so that the lowest price is
-																// always first. This should guaruntee that a best fit
-																// is found for the budget.
+		Collections.sort(wishes, new Comparator<WishList>() { // sort the array on price so that the lowest price is always first. This should guaruntee that a best fit is found for the budget.
 			@Override
 			public int compare(WishList c1, WishList c2) {
 				return Double.compare(c1.getPrice(), c2.getPrice());
@@ -523,6 +531,38 @@ public class FinalController {
 	@GetMapping("/about")
 	public String about() {
 		return "about";
+	}
+	
+	@GetMapping("/wishlist/{id}/{username}")
+	public String viewUserWishlist(@PathVariable Long id,@PathVariable String username, Model model) {
+
+
+		List<WishList> wishes = wishrep.findByUserId(id); // find all wishlist games for a specific user
+
+		for (WishList wish : wishes) {
+			CheapsharkGameDetails gameDetails = csharkapi.cheapSharkGame(wish.getCsharkId().toString());
+			List<Deal> gameDeals = gameDetails.getDeals();
+			wish.setPrice(Double.parseDouble((gameDeals.get(0).getPrice())));
+			for (Deal g : gameDeals) {
+				Double price = Double.parseDouble(g.getPrice());
+				Double wishPrice = wish.getPrice();
+				
+				if (wishPrice >= price) {
+					wish.setPrice(Double.parseDouble(g.getPrice()));
+					wish.setStoreId(g.getStoreID());
+					wish.setDealId(g.getDealID());
+				}
+			}
+		}
+		Collections.sort(wishes, new Comparator<WishList>() { // sort the array on price so that the lowest price is always first. This should guaruntee that a best fit is found for the budget.
+			@Override
+			public int compare(WishList c1, WishList c2) {
+				return Double.compare((c2.getDesiredprice() - c2.getPrice()), (c1.getDesiredprice() - c1.getPrice()));
+			}
+		});
+		model.addAttribute("username",username);
+		model.addAttribute("games", wishes);
+		return "friendwishlist";
 	}
 
 }
