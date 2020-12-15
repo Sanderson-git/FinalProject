@@ -80,6 +80,12 @@ li{
  border: solid; 
  color:  #2a9fd6;
  }
+.tooltip{
+data-toggle="tooltip";
+title="" ;
+data-original-title="Tooltip on bottom" ;
+aria-describedby="tooltip559230";
+}
 
 </style>
 
@@ -91,7 +97,7 @@ li{
 </head>
 <body>
 	<!-- Logo -->
-	<a href="/"><img src="https://drive.google.com/uc?id=1BmbUr80SogYS3LZdkH3hqBuqZbyyiSkX" style=" padding-left: 35%"/></a>
+	<a href="/"><img src="https://drive.google.com/uc?id=1fPjNndqQhYAMUy6HG5YUGc0MUmmhZncH" style=" padding-left: 35%"/></a>
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 		<a class="navbar-brand" href="/" style="font-size: 16px;">Home</a>
@@ -116,8 +122,9 @@ li{
 				</li>
 			</ul>
 				<span class="navbar-brand">${ user.username }</span>
+			<c:if test = "${user.username != null}">
     		<a class="btn navbar-btn btn-default navbar-right pull-right" role="button" href="/logout">Logout</a> 
-	
+			</c:if>
 			<!-- Search function -->
 			<form class="form-inline my-2 my-lg-0" method="post"
 				action="/searchresults">

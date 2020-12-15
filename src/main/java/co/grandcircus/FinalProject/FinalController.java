@@ -223,6 +223,10 @@ public class FinalController {
 
 		String finalreldate = rawgGame.getReleased().substring(0, 4);
 		
+		ScreenshotResponse gameScreenshots = rawgapi.rawgScreenshotList(id);
+		
+		
+		model.addAttribute("gameScreenshots", gameScreenshots);
 		model.addAttribute("releaseDate",finalreldate);
 		model.addAttribute("pricephour", finalpricephour);
 		model.addAttribute("steamid", steamId);
@@ -527,6 +531,38 @@ public class FinalController {
 	@GetMapping("/about")
 	public String about() {
 		return "about";
+	}
+	
+	@GetMapping("/wishlist/{id}/{username}")
+	public String viewUserWishlist(@PathVariable Long id,@PathVariable String username, Model model) {
+
+
+		List<WishList> wishes = wishrep.findByUserId(id); // find all wishlist games for a specific user
+
+		for (WishList wish : wishes) {
+			CheapsharkGameDetails gameDetails = csharkapi.cheapSharkGame(wish.getCsharkId().toString());
+			List<Deal> gameDeals = gameDetails.getDeals();
+			wish.setPrice(Double.parseDouble((gameDeals.get(0).getPrice())));
+			for (Deal g : gameDeals) {
+				Double price = Double.parseDouble(g.getPrice());
+				Double wishPrice = wish.getPrice();
+				
+				if (wishPrice >= price) {
+					wish.setPrice(Double.parseDouble(g.getPrice()));
+					wish.setStoreId(g.getStoreID());
+					wish.setDealId(g.getDealID());
+				}
+			}
+		}
+		Collections.sort(wishes, new Comparator<WishList>() { // sort the array on price so that the lowest price is always first. This should guaruntee that a best fit is found for the budget.
+			@Override
+			public int compare(WishList c1, WishList c2) {
+				return Double.compare((c2.getDesiredprice() - c2.getPrice()), (c1.getDesiredprice() - c1.getPrice()));
+			}
+		});
+		model.addAttribute("username",username);
+		model.addAttribute("games", wishes);
+		return "friendwishlist";
 	}
 
 }
