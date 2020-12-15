@@ -57,6 +57,9 @@ td {
   text-align: center;
   padding: 15px;
 }
+.centerednopad {
+  text-align: center;
+}	
 
 </style>
 
@@ -74,7 +77,11 @@ td {
 <body>
 <!-- Logo -->
 
-	<a href="/"><img src="https://drive.google.com/uc?id=1fPjNndqQhYAMUy6HG5YUGc0MUmmhZncH" style=" padding-left: 35%"/></a>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12 centerednopad"><a href="/"><img src="https://drive.google.com/uc?id=1fPjNndqQhYAMUy6HG5YUGc0MUmmhZncH" /></a></div>
+	</div>
+</div>
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 		<a class="navbar-brand" href="/" style="font-size: 16px;">Home</a>
