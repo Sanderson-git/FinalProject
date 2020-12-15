@@ -57,6 +57,12 @@ td {
   text-align: center;
   padding: 15px;
 }
+.footer{ 
+       position: fixed;     
+       text-align: left;    
+       bottom: 0px; 
+       width: 100%;
+}  
 
 </style>
 
@@ -147,5 +153,7 @@ td {
 				</c:forEach>
 			</div>
 	</font>
+			<div class="footer">Thanks to <a href= "https://rawg.io" data-toggle="tooltip" data-placement="top" title="Leave Crypt and go to RAWG website" target="_blank">RAWG.io</a> for the data</div>
+
 </body>
 </html>

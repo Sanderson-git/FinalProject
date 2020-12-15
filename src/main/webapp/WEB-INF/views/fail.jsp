@@ -13,14 +13,13 @@
 	integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2"
 	crossorigin="anonymous">
 <style>
-	h2 {
-	padding-top: 20px;
-	text-align: center;
-	}
-
-	li {
-	font-size: 20px;
-	}
+h2 {
+padding-top: 20px;
+text-align: center;
+}
+li {
+font-size: 20px;
+}
 	
 </style>
 </head>

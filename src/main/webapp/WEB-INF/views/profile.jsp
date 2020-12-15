@@ -62,7 +62,7 @@ h2 {
 			</form>
 		</div>
 	</nav>
-	<h2>You are now logged in as ${ user.username }</h2>
+	<h5>You are now logged in as ${ user.username }</h5>
 
 
 
