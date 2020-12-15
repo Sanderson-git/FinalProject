@@ -74,15 +74,32 @@ td {
 .right {
 	text-align: right;
 }
+.footer{ 
+       position: fixed;     
+       text-align: left;    
+       bottom: 0px; 
+       width: 100%;
+} 
 </style>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cyborg/bootstrap.min.css"
 	integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2"
 	crossorigin="anonymous">
-
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
+<script>
+	function myFunction() {
+		  var x = document.getElementById("Demo");
+		  if (x.className.indexOf("w3-show") == -1) {
+		    x.className += " w3-show";
+		  } else { 
+		    x.className = x.className.replace(" w3-show", "");
+		  }
+		}
+	
+	</script>
 	<!-- Logo -->
 
 	<a href="/"><img src="https://drive.google.com/uc?id=1fPjNndqQhYAMUy6HG5YUGc0MUmmhZncH" style=" padding-left: 35%"/></a>
@@ -110,7 +127,9 @@ td {
 						popular of 2019</a></li>
 			</ul>
 				<span class="navbar-brand">${ user.username }</span>
-    		<a class="btn navbar-btn btn-default navbar-right pull-right" role="button" href="/logout">Logout</a>
+    		<c:if test = "${user.username != null}">
+    		<a class="btn navbar-btn btn-default navbar-right pull-right" role="button" href="/logout">Logout</a> 
+			</c:if>
 			<!-- Search function -->
 			<form class="form-inline my-2 my-lg-0" method="post"
 				action="/searchresults">
@@ -122,11 +141,17 @@ td {
 	</nav>
 <div class="container">
 	<div class="row">
-		<div class="col-lg-12 centered padded">
+		<div class="col-lg-6 padded">
 			<form method="post" action="/binpacking">
 			Enter Budget: <input type="number" name="budget" /> 
 			<input type="submit" name="submit" data-toggle="tooltip" data-placement="right" title="Generate Shopping List" />
 			</form>
+		</div>
+		<div class="col-lg-6 right dropdown">
+			<button onclick="myFunction()" class="btn btn-outline-secondary">Get Share Link</button>
+   				 <div id="Demo" class="dropdown-menu tagstyle w3-animate-zoom">
+							<p><font size="2"><a href="/wishlist/${ user.id}/${user.username}">http://crypt-env.eba-96hebjqt.us-east-2.elasticbeanstalk.com/wishlist/${ user.id }/${user.username }</a></font></p>
+					</div>
 		</div>
 	</div>
 	
@@ -159,7 +184,6 @@ td {
 
 				</c:forEach>
 	</font>
-
-
+		<div class="footer">Thanks to <a href= "https://rawg.io" data-toggle="tooltip" data-placement="top" title="Leave Crypt and go to RAWG website" target="_blank">RAWG.io</a> for the data</div>
 </body>
 </html>

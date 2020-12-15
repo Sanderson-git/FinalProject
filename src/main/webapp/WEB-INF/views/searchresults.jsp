@@ -32,7 +32,12 @@ td {
 	font-weight: bold;
 	line-height: 50px;
 }
-
+.footer{ 
+       position: fixed;     
+       text-align: left;    
+       bottom: 0px; 
+       width: 100%;
+} 
 </style>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cyborg/bootstrap.min.css"
@@ -67,7 +72,9 @@ td {
 						popular of 2019</a></li>
 			</ul>
 				<span class="navbar-brand">${ user.username }</span>
-    		<a class="btn navbar-btn btn-default navbar-right pull-right" role="button" href="/logout">Logout</a>
+    		<c:if test = "${user.username != null}">
+    		<a class="btn navbar-btn btn-default navbar-right pull-right" role="button" href="/logout">Logout</a> 
+			</c:if>
 
 			<!-- Search function -->
 
@@ -101,6 +108,6 @@ td {
 		</div>
 	</c:forEach>
 	</font>	
-
+		<div class="footer">Thanks to <a href= "https://rawg.io" data-toggle="tooltip" data-placement="top" title="Leave Crypt and go to RAWG website" target="_blank">RAWG.io</a> for the data</div>
 </body>
 </html>
