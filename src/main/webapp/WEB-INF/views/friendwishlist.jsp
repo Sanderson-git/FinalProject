@@ -183,7 +183,7 @@ td {
 	<c:forEach var="games" items="${ games }">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-3 paddedsm"><a href="/details/${ games.getRawgId()}"><img src="${ games.getBackground_image() }" alt="${games.getName()}" style="width: 100%; height: auto; border: 5px solid #59A7FF"></a></div>
+				<div class="col-lg-3 paddedsm"><a href="/details/${ games.getRawgId()}" data-toggle="tooltip" data-placement="right" title="View Game Details"><img src="${ games.getBackground_image() }" alt="${games.getName()}" style="width: 100%; height: auto; border: 5px solid #59A7FF"></a></div>
 				<div class="col-lg-3 paddedsm zoom zoom:hover"><a class="buttonstyle" href="/details/${ games.getRawgId()}" data-toggle="tooltip" data-placement="right" title="View Game Details">${ games.getName() }</a><a href="/wishlistdelete/${ games.getWishlistid() }" style="font:normal" data-toggle="tooltip" data-placement="right" title="Remove from Wishlist">delete</a></div>
 				<div class="col-lg-1" >$${games.getPrice() }</div>
 				<div class="col-lg-3"><form method="post" action="/wishlist/setalert/${ games.getWishlistid() }">

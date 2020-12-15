@@ -164,7 +164,7 @@ td {
 				<c:forEach var="result" items="${ rawglist.getResults()}">
 					<div class="row" style="font-size: 25px">
 						<div class="col-lg-1" style="color: #2a9fd6;"></div>
-						<div class="col-lg-4 padded" ><a href="/details/${result.getId() }"><img src="${result.getBackground_image() }"	alt="gameplay image" style="width:100%; height:auto; border: 5px solid #59A7FF"></a></div>
+						<div class="col-lg-4 padded" data-toggle="tooltip" data-placement="right" title="View Game Details"><a href="/details/${result.getId() }" ><img src="${result.getBackground_image() }"	alt="gameplay image" style="width:100%; height:auto; border: 5px solid #59A7FF"></a></div>
 						<div class="col-lg-4" style="color: #2a9fd6;"><a class="buttonstyle zoom zoom:hover" href="/details/${result.getId() }" data-toggle="tooltip" data-placement="right" title="View Prices">${result.getName()}</a></div>
 						<div class="col-lg-1" >${result.getRating()}/5</div>
 						<div class="col-lg-2" ><c:forEach var="genre" items="${result.getGenres() }"><font size="4"><a class="tagstyle zoom zoom:hover" href="/searchresults/${genre.getId() }" data-toggle="tooltip" data-placement="right" title="Search for ${genre.getName() } games">${genre.getName() }</a></font> </c:forEach></div>
