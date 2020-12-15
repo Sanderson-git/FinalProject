@@ -43,6 +43,8 @@ td {
        text-align: left;    
        bottom: 0px; 
        width: 100%;
+       font-size: 11px;
+       font-family: font-family: Arial, Helvetica, sans-serif;
 } 
 .padded {
   padding-top: 5px;
@@ -104,7 +106,6 @@ td {
 		</div>
 	</nav>
 	
-	<div class="container">
 	<font size="5">
 		<div class="container">
 			<div class="row">

@@ -84,6 +84,8 @@ td {
        text-align: left;    
        bottom: 0px; 
        width: 100%;
+       font-size: 11px;
+       font-family: font-family: Arial, Helvetica, sans-serif;
 } 
 .zoom {
 
@@ -205,6 +207,6 @@ td {
 
 				</c:forEach>
 	</font>
-		<div class="footer">Thanks to <a href= "https://rawg.io" data-toggle="tooltip" data-placement="top" title="Leave Crypt and go to RAWG website" target="_blank">RAWG.io</a> for the data</div>
+		<div class="footer"><font size="1.5" face="sans-serif"> Thanks to <a href= "https://rawg.io" data-toggle="tooltip" data-placement="top" title="Leave Crypt and go to RAWG website" target="_blank" style="color:#2a9fd6">RAWG.io</a> for the data</font></div>
 </body>
 </html>
