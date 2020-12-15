@@ -14,6 +14,17 @@
 	crossorigin="anonymous">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style type="text/css">
+.zoom {
+
+  transition: transform .2s; /* Animation */
+
+}
+
+.zoom:hover {
+  transform: scale(1.25); /* (125% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  position:relative;
+  z-index:2;
+}
 .buttonstyle {
 	background: #2a9fd6;
 	padding: 15px;
@@ -68,6 +79,7 @@
 }
 .right {
 	text-align: right;
+
 }	
 .sidepad{
 	margin-right: 10px;
@@ -85,6 +97,7 @@
 .slideshow-container {
   max-width: 1000px;
   position: relative;
+  z-index:1;
   margin: auto;
 }
 
@@ -233,7 +246,9 @@
 
 <div class="container">
 		<div class="row">
-			<div class="col-lg-12 buttonstyle padded"><h1>${rawgDetails.getName() }</h1></div>
+			<div class="col-lg-12 buttonstyle padded zoom zoom:hover"><button onclick="myFunction()" class="btn " data-toggle="tooltip" data-placement="right" title="Click to View Game Description"><h1>${rawgDetails.getName() }</h1></button>
+				<div id="Demo" class="col-lg-12 dropdown-menu tagstyle w3-animate-zoom"><p><font size="4">${rawgDetails.getDescription_raw() }</font></p></div>
+		</div>
 		</div>
 	</div>
 	
@@ -253,39 +268,53 @@
   					<a class="next" onclick="plusSlides(1)">&#10095;</a>
 				</div>
 			
-	<font size="6">
+	<font size="5">
 		<div class="container">
 			<div class="row">
-					
-					<div class="col-lg-1 centered" style="color: #2a9fd6;">Rating</div>
+				
+					<div class="col-lg-2 centered xtrapad" style="color: #2a9fd6;">Rating</div>
 					<div class="col-lg-2 centered" style="color: #2a9fd6;">Genres</div>
-					<div class="col-lg-2 centered" style="color: #2a9fd6;">Average Playtime:</div>
-					<div class="col-lg-1 centered sidepad" style="color: #2a9fd6;">Retail ($/hr):</div>
-					<div class="col-lg-1 centered xtrapad" style="color: #2a9fd6;">ESRB:</div>
-					<div class="col-lg-1 centered" style="color: #2a9fd6;">Released:</div>
-					<div class="col-lg-3 centered" style="color: #2a9fd6;"></div>
+					<div class="col-lg-2 centered" style="color: #2a9fd6;">Avg Playtime</div>
+					<div class="col-lg-2 centered" style="color: #2a9fd6;">Retail ($/hr)</div>
+					<div class="col-lg-2 centered xtrapad" style="color: #2a9fd6;">ESRB:</div>
+					<div class="col-lg-1 right" style="color: #2a9fd6;">Released:</div>
+					
 
 				</div>
 			</div>
 		</font>
-	<font size="6">
+	<font size="5">
 		<div class="container">
 			<div class="row">
 					
-						
-					<div class="col-lg-1 centered">${rawgDetails.getRating()}/5</div>
+				
+					<div class="col-lg-2 centered xtrapad">${rawgDetails.getRating()}/5</div>
 					<div class="col-lg-2 centered"><c:forEach var="genre" items="${rawgDetails.getGenres() }"><font size="5"><a class="tagstyle" href="/searchresults/${genre.getId() }" data-toggle="tooltip" data-placement="right" title="Search for ${genre.getName() } games">${genre.getName() }</a></font> </c:forEach></div>
 					<div class="col-lg-2 centered">${rawgDetails.getPlaytime() }hrs.</div>
-					<div class="col-lg-1 centered sidepad">$${pricephour }  </div>
-					<div class="col-lg-1 centered xtrapad">  ${rawgDetails.getEsrb_rating().getName() }</div>
-					<div class="col-lg-1 centered">${releaseDate}</div>
-					<div class="col-lg-3 centered"></div>
+					<div class="col-lg-2 centered">$${pricephour }</div>
+					<div class="col-lg-2 centered xtrapad">  ${rawgDetails.getEsrb_rating().getName() }</div>
+					<div class="col-lg-1 right">${releaseDate}</div>
+
 
 				</div>
 			</div>
 		</font>
 	<br />
-
+	<br />
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-2"></div>
+				<div class="col-lg-8 centered">
+					<font size="7">
+						<a class="buttonstylethree" href="/add/${rawgDetails.getId() }/${steamid}/${sharkgame.getGameId()}">Add game to Wishlist
+						</a>
+					</font>
+				</div>
+				<div class="col-lg-2"></div>
+			</div>
+		</div>
+	<br />
+	<br />
 	<font size="7">
 		<div class="container">
 			<div class="row">
@@ -311,23 +340,6 @@
 		</c:forEach>
 	</font>
 	<br />
-
-	<div class="container">
-			<div class="row">
-				<div class="col-lg-2"></div>
-				<div class="col-lg-8 centered">
-					<font size="7">
-						<a class="buttonstylethree" href="/add/${rawgDetails.getId() }/${steamid}/${sharkgame.getGameId()}">Add game to Wishlist
-						</a>
-					</font>
-				</div>
-				<div class="col-lg-2"></div>
-			</div>
-		</div>
-		
-
-	<br />
-	<br />
 	<script>
 	function myFunction() {
 		  var x = document.getElementById("Demo");
@@ -339,17 +351,6 @@
 		}
 	
 	</script>
-<div class="container">
-			<div class="row">
-				<div class="col-lg-12 dropdown centered">
-				<button onclick="myFunction()" class="btn btn-outline-secondary"><h3>View Game Description</h3></button>
-    <div id="Demo" class="dropdown-menu tagstyle w3-animate-zoom">
-							<p><font size="4">${rawgDetails.getDescription_raw() }</font></p>
-					</div>
-					</div>
-			</div>
-		</div>
-
 
 	<br />
 	<br />
