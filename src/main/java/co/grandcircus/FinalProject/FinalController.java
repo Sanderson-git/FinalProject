@@ -223,6 +223,10 @@ public class FinalController {
 
 		String finalreldate = rawgGame.getReleased().substring(0, 4);
 		
+		ScreenshotResponse gameScreenshots = rawgapi.rawgScreenshotList(id);
+		
+		
+		model.addAttribute("gameScreenshots", gameScreenshots);
 		model.addAttribute("releaseDate",finalreldate);
 		model.addAttribute("pricephour", finalpricephour);
 		model.addAttribute("steamid", steamId);

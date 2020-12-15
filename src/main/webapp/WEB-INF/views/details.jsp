@@ -8,6 +8,11 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Crypt/Details</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cyborg/bootstrap.min.css"
+	integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2"
+	crossorigin="anonymous">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style type="text/css">
 .buttonstyle {
 	background: #2a9fd6;
@@ -70,20 +75,122 @@
 .xtrapad{
 	margin-right: 15px;
 }
+
+
+<!-- slideshow stuff starts here -->
+
+* {box-sizing:border-box}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  -webkit-animation-fill-mode: forwards; 
+  animation-name: fade;
+  animation-duration: 1.5s;
+  animation-fill-mode: forwards; 
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
 </style>
 
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cyborg/bootstrap.min.css"
-	integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2"
-	crossorigin="anonymous">
+
+
+</style>
+
+
 	
-	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
 
 </head>
 <body>
 	<!-- Logo -->
 
-	<a href="/"><img src="https://drive.google.com/uc?id=1BmbUr80SogYS3LZdkH3hqBuqZbyyiSkX" style=" padding-left: 35%"/></a>
+	<a href="/"><img src="https://drive.google.com/uc?id=1fPjNndqQhYAMUy6HG5YUGc0MUmmhZncH" style=" padding-left: 35%"/></a>
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 		<a class="navbar-brand" href="/" style="font-size: 16px;">Home</a>
@@ -127,17 +234,34 @@
 			<div class="col-lg-12 buttonstyle padded"><h1>${rawgDetails.getName() }</h1></div>
 		</div>
 	</div>
+	
+				<div class="slideshow-container" >
+					<div class="mySlides fade centered">
+							<img src="${rawgDetails.getBackground_image() }"
+						style="width: 80%; height: auto; border: 5px solid #59A7FF;">
+					</div>
+					
+					<c:forEach var="screenshot" items="${gameScreenshots.getResults() }">
+						<div class="mySlides fade centered">
+						<img src="${screenshot.getImage() }"
+							style="width: 80%; height: auto; border: 5px solid #59A7FF">
+						</div>
+					</c:forEach>
+					<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  					<a class="next" onclick="plusSlides(1)">&#10095;</a>
+				</div>
 			
 	<font size="6">
 		<div class="container">
 			<div class="row">
-					<div class="col-lg-3 centered" style="color: #2a9fd6;"></div>
+					
 					<div class="col-lg-1 centered" style="color: #2a9fd6;">Rating</div>
 					<div class="col-lg-2 centered" style="color: #2a9fd6;">Genres</div>
 					<div class="col-lg-2 centered" style="color: #2a9fd6;">Average Playtime:</div>
 					<div class="col-lg-1 centered sidepad" style="color: #2a9fd6;">Retail ($/hr):</div>
 					<div class="col-lg-1 centered xtrapad" style="color: #2a9fd6;">ESRB:</div>
 					<div class="col-lg-1 centered" style="color: #2a9fd6;">Released:</div>
+					<div class="col-lg-3 centered" style="color: #2a9fd6;"></div>
 
 				</div>
 			</div>
@@ -145,14 +269,15 @@
 	<font size="6">
 		<div class="container">
 			<div class="row">
-					<div class="col-lg-3 centered"><img src="${rawgDetails.getBackground_image() }"
-						style="width: 100%; height: auto; border: 5px solid #59A7FF"></div>
+					
+						
 					<div class="col-lg-1 centered">${rawgDetails.getRating()}/5</div>
 					<div class="col-lg-2 centered"><c:forEach var="genre" items="${rawgDetails.getGenres() }"><font size="5"><a class="tagstyle" href="/searchresults/${genre.getId() }" data-toggle="tooltip" data-placement="right" title="Search for ${genre.getName() } games">${genre.getName() }</a></font> </c:forEach></div>
 					<div class="col-lg-2 centered">${rawgDetails.getPlaytime() }hrs.</div>
 					<div class="col-lg-1 centered sidepad">$${pricephour }  </div>
 					<div class="col-lg-1 centered xtrapad">  ${rawgDetails.getEsrb_rating().getName() }</div>
 					<div class="col-lg-1 centered">${releaseDate}</div>
+					<div class="col-lg-3 centered"></div>
 
 				</div>
 			</div>
@@ -218,6 +343,40 @@
 	<br />
 	<br />
 	<br />
+	
+	
+	
+	<script>
+	var slideIndex = 1;
+	showSlides(slideIndex);
 
+	// Next/previous controls
+	function plusSlides(n) {
+	  showSlides(slideIndex += n);
+	}
+
+	// Thumbnail image controls
+	function currentSlide(n) {
+	  showSlides(slideIndex = n);
+	}
+
+	function showSlides(n) {
+	  var i;
+	  var slides = document.getElementsByClassName("mySlides");
+	  var dots = document.getElementsByClassName("dot");
+	  if (n > slides.length) {slideIndex = 1}
+	  if (n < 1) {slideIndex = slides.length}
+	  for (i = 0; i < slides.length; i++) {
+	      slides[i].style.display = "none";
+	  }
+	  for (i = 0; i < dots.length; i++) {
+	      dots[i].className = dots[i].className.replace(" active", "");
+	  }
+	  slides[slideIndex-1].style.display = "block";
+	  dots[slideIndex-1].className += " active";
+	  }
+	  if (n > slides.length) {slideIndex = 1}
+	</script>
+	
 </body>
 </html>
