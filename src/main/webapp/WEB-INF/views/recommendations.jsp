@@ -79,7 +79,7 @@ h2{
 }
 .footer{ 
        position: fixed;     
-       text-align: right;    
+       text-align: left;    
        bottom: 0px; 
        width: 100%;
 } 
