@@ -93,9 +93,10 @@ td {
 						popular of 2019</a></li>
 
 			</ul>
-			<span class="navbar-brand">${ user.username }</span> <a
-				class="btn navbar-btn btn-default navbar-right pull-right"
-				role="button" href="/logout">Logout</a>
+			<span class="navbar-brand">${ user.username }</span> 
+			<c:if test = "${user.username != null}">
+    		<a class="btn navbar-btn btn-default navbar-right pull-right" role="button" href="/logout">Logout</a> 
+			</c:if>
 
 <!-- Search function -->
 			<form class="form-inline my-2 my-lg-0" method="post"
