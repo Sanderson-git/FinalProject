@@ -170,12 +170,13 @@ td {
 			<input type="submit" name="submit" data-toggle="tooltip" data-placement="right" title="Generate Shopping List" />
 			</form>
 		</div>
-		<div class="col-lg-6 right dropdown">
-			<button onclick="myFunction()" class="btn btn-outline-secondary zoom zoom:hover">Get Share Link</button>
-   				 <div id="Demo" class="dropdown-menu tagstyle w3-animate-zoom">
-							<p><font size="2"><a href="/wishlist/${ user.id}/${user.username}">http://crypt-env.eba-96hebjqt.us-east-2.elasticbeanstalk.com/wishlist/${ user.id }/${user.username }</a></font></p>
+		<div class="col-lg-5 right dropdown padded">
+			<button onclick="myFunction()" class="btn btn-secondary zoom zoom:hover">Get Share Link</button>
+   				 <div id="Demo" class="col-lg-12 dropdown-menu tagstyle w3-animate-zoom">
+							<p class="centered"><font size="2"><a href="/wishlist/${ user.id}/${user.username}">http://crypt-env.eba-96hebjqt.us-east-2.elasticbeanstalk.com/wishlist/${ user.id }/${user.username }</a></font></p>
 					</div>
 		</div>
+		<div class="col-lg-1"></div>
 	</div>
 	
 </div>
@@ -200,7 +201,7 @@ td {
 				<div class="col-lg-3"><form method="post" action="/wishlist/setalert/${ games.getWishlistid() }">
 								<input type="number" placeholder="$${ games.getDesiredprice() }" name="setalert" /> <input type="submit" name="submit" data-toggle="tooltip" data-placement="right" title="Get alerted at this price" />
 							</form></div>
-				<div class="col-lg-2" ><c:if test="${ games.getDesiredprice() >=  games.getPrice() }"><a href="https://www.cheapshark.com/redirect?dealID=${games.getDealId() }" class="buttonstyletwo" target="_blank" data-toggle="tooltip" data-placement="right" title="Open store link in new tab">Buy Now!</a>
+				<div class="col-lg-2" ><c:if test="${ games.getDesiredprice() >=  games.getPrice() }"><a href="https://www.cheapshark.com/redirect?dealID=${games.getDealId() }" class="buttonstyletwo zoom zoom:hover" target="_blank" data-toggle="tooltip" data-placement="right" title="Open store link in new tab">Buy Now!</a>
 							</c:if></div>
 			</div>
 		</div>
