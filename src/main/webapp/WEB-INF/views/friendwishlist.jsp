@@ -164,26 +164,16 @@ td {
 			<div class="col-lg-12 tagstyle"><font size="7">Viewing ${username }'s Wishlist </font></div>
 		</div>
 	</div>
-	
-<div class="container">
-	<div class="row">
-		<div class="col-lg-12 padded centered">
-			<form method="post" action="/binpacking">
-			Enter Budget: <input type="number" name="budget" /> 
-			<input type="submit" name="submit" data-toggle="tooltip" data-placement="right" title="Generate Shopping List" />
-			</form>
-		</div>
+		
 	</div>
-	
-</div>
 	<font size="5">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3" style="color: #2a9fd6;"></div>
 				<div class="col-lg-3" style="color: #2a9fd6;"></div>
-				<div class="col-lg-1" style="color: #2a9fd6;">Price:</div>
-				<div class="col-lg-3" style="color: #2a9fd6;">Desired Price:</div>
+				<div class="col-lg-1" style="color: #2a9fd6;"></div>
 				<div class="col-lg-2" style="color: #2a9fd6;"></div>
+				<div class="col-lg-1" style="color: #2a9fd6;">Price:</div>
 			</div>
 		</div>
 	</font>
@@ -191,14 +181,12 @@ td {
 	<c:forEach var="games" items="${ games }">
 		<div class="container">
 			<div class="row">
+				<div class="col-lg-1"></div>
+				<div class="col-lg-2" ></div>
 				<div class="col-lg-3 paddedsm"><a href="/details/${ games.getRawgId()}" data-toggle="tooltip" data-placement="right" title="View Game Details"><img src="${ games.getBackground_image() }" alt="${games.getName()}" style="width: 100%; height: auto; border: 5px solid #59A7FF"></a></div>
-				<div class="col-lg-3 paddedsm zoom zoom:hover"><a class="buttonstyle" href="/details/${ games.getRawgId()}" data-toggle="tooltip" data-placement="right" title="View Game Details">${ games.getName() }</a><a href="/wishlistdelete/${ games.getWishlistid() }" style="font:normal" data-toggle="tooltip" data-placement="right" title="Remove from Wishlist">delete</a></div>
+				<div class="col-lg-3 paddedsm zoom zoom:hover"><a class="buttonstyle" href="/details/${ games.getRawgId()}" data-toggle="tooltip" data-placement="right" title="View Game Details">${ games.getName() }</a></div>
 				<div class="col-lg-1" >$${games.getPrice() }</div>
-				<div class="col-lg-3"><form method="post" action="/wishlist/setalert/${ games.getWishlistid() }">
-								<input type="number" placeholder="$${ games.getDesiredprice() }" name="setalert" /> <input type="submit" name="submit" data-toggle="tooltip" data-placement="right" title="Get alerted at this price" />
-							</form></div>
-				<div class="col-lg-2" ><c:if test="${ games.getDesiredprice() >=  games.getPrice() }"><a href="https://www.cheapshark.com/redirect?dealID=${games.getDealId() }" class="buttonstyletwo zoom zoom:hover" target="_blank" data-toggle="tooltip" data-placement="right" title="Open store link in new tab">Buy Now!</a>
-							</c:if></div>
+				<div class="col-lg-2" ></div>
 			</div>
 		</div>
 
