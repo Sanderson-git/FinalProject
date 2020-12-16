@@ -144,9 +144,11 @@ body {
 
 <div class="container">
 	<div class="row">
-		<div class="col-lg-3"></div>
-		<div class="col-lg-6 buttonstyle centerednopad zoom zoom:hover"><a href="${ freeurl }"><h5>${ freemsg }</h5></a></div>
-		<div class="col-lg-3"></div>
+
+		<div class="col-lg-4"></div>
+		<div class="col-lg-4 buttonstyle centerednopad zoom zoom:hover"><h5><a href="${ freeurl }" style="color:black;">${ freemsg }</a></h5></div>
+		<div class="col-lg-4"></div>
+
 	</div>
 </div>
 	
