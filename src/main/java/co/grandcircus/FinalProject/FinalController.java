@@ -84,7 +84,9 @@ public class FinalController {
 		User user = userrep.findFirstByUsername(username).orElse(null); // locate user by username
 		if (user == null) {
 			session.invalidate(); // if user isn't found, invalidate session just in case
-			return "fail"; // go to failed login page
+			model.addAttribute("errorurl", "/login");
+			model.addAttribute("errormessage", "Sorry, your email or password was invalid.");
+			return "loginerror"; // go to error page
 		} else {
 
 			if (pwEncoder.matches(password, user.getPassword())) {
@@ -96,7 +98,9 @@ public class FinalController {
 			} 
 		
 		session.invalidate(); // login failed
-		return "fail"; // go to failed login page
+		model.addAttribute("errorurl", "/login");
+		model.addAttribute("errormessage", "Sorry, your email or password was invalid.");
+		return "loginerror"; // go to failed login page
 		
 	}
 
@@ -118,7 +122,7 @@ public class FinalController {
 					} else if (user.getPassword() == "") {
 						model.addAttribute("errormessage", "Sorry, your password can not be blank.");
 					}
-				return "error";
+				return "loginerror";
 			}
 		}
 		
