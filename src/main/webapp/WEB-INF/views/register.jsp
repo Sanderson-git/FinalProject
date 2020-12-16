@@ -94,10 +94,17 @@ h2 {
 	<div class="row">
 		<div class="col-lg-12 centerednopad">
 		<h5>Welcome ${ user.username },<br/><br/>Thank you for registering.</h5><br/><br/>
-		<div class="col-lg-12 buttonstyle centerednopad zoom zoom:hover"><a href="/" data-toggle="tooltip" data-placement="right" title="Discover New Games"><h5>Time to create a wishlist!</h5></a></div>
 		</div>
 	</div>
 </div>	
+<div class="container">
+	<div class="row">
+		<div class="col-lg-4"></div>
+		<div class="col-lg-4 buttonstyle centerednopad zoom zoom:hover"><a href="/" data-toggle="tooltip" data-placement="right" title="Discover New Games"><h5>Time to create a wishlist!</h5></a></div>
+		<div class="col-lg-4"></div>
+	</div>
+</div>
+
 
 
 

@@ -43,7 +43,7 @@ td {
 	background: #d3d3d3;
 	padding: 2px;
 	text-align: center;
-	border-radius: 5px;
+	border-radius: 3px;
 	color: black;
 	font-weight: bold;
 	line-height: 20px;
