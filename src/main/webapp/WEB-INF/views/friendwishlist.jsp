@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,6 +92,14 @@ td {
   position:relative;
   z-index:2;
 }
+.footer{ 
+       position: fixed;     
+       text-align: left;    
+       bottom: 0px; 
+       width: 100%;
+       font-size: 11px;
+       font-family: font-family: Arial, Helvetica, sans-serif;
+} 
 </style>
 
 <link rel="stylesheet"
@@ -128,11 +137,8 @@ td {
 
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item" style="font-size: 16px;"><a class="nav-link" href="/login">Login		
-				</a></li>
 				<li class="nav-item active" style="font-size: 16px;"><a class="nav-link" href="/wishlist">Wishlist</a>
 				</li>
-
 				<li class="nav-item" style="font-size: 16px;"><a class="nav-link"
 					href="/recommendations">Recommendations</a></li>
 				<li class="nav-item" style="font-size: 16px;"><a class="nav-link" href="/about">The
@@ -141,7 +147,14 @@ td {
 						popular of 2019</a></li>
 			</ul>
 				<span class="navbar-brand">${ user.username }</span>
-    		<a class="btn navbar-btn btn-default navbar-right pull-right" role="button" href="/logout">Logout</a>
+    		<c:choose>
+    			<c:when test = "${user.username != null}">
+    				<a class="navbar-brand" style="font-size: 16px;" href="/logout">Logout</a>
+    			</c:when>
+    			<c:otherwise>
+    				<a class="navbar-brand" style="font-size: 16px;" href="/login">Login</a>
+    			</c:otherwise>
+    		</c:choose>
 			<!-- Search function -->
 			<form class="form-inline my-2 my-lg-0" method="post"
 				action="/searchresults">
@@ -156,26 +169,16 @@ td {
 			<div class="col-lg-12 tagstyle"><font size="7">Viewing ${username }'s Wishlist </font></div>
 		</div>
 	</div>
-	
-<div class="container">
-	<div class="row">
-		<div class="col-lg-12 padded centered">
-			<form method="post" action="/binpacking">
-			Enter Budget: <input type="number" name="budget" /> 
-			<input type="submit" name="submit" data-toggle="tooltip" data-placement="right" title="Generate Shopping List" />
-			</form>
-		</div>
+		
 	</div>
-	
-</div>
 	<font size="5">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3" style="color: #2a9fd6;"></div>
 				<div class="col-lg-3" style="color: #2a9fd6;"></div>
-				<div class="col-lg-1" style="color: #2a9fd6;">Price:</div>
-				<div class="col-lg-3" style="color: #2a9fd6;">Desired Price:</div>
+				<div class="col-lg-1" style="color: #2a9fd6;"></div>
 				<div class="col-lg-2" style="color: #2a9fd6;"></div>
+				<div class="col-lg-1" style="color: #2a9fd6;">Price:</div>
 			</div>
 		</div>
 	</font>
@@ -183,20 +186,18 @@ td {
 	<c:forEach var="games" items="${ games }">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-3 paddedsm"><a href="/details/${ games.getRawgId()}"><img src="${ games.getBackground_image() }" alt="${games.getName()}" style="width: 100%; height: auto; border: 5px solid #59A7FF"></a></div>
-				<div class="col-lg-3 paddedsm zoom zoom:hover"><a class="buttonstyle" href="/details/${ games.getRawgId()}" data-toggle="tooltip" data-placement="right" title="View Game Details">${ games.getName() }</a><a href="/wishlistdelete/${ games.getWishlistid() }" style="font:normal" data-toggle="tooltip" data-placement="right" title="Remove from Wishlist">delete</a></div>
+				<div class="col-lg-1"></div>
+				<div class="col-lg-2" ></div>
+				<div class="col-lg-3 paddedsm"><a href="/details/${ games.getRawgId()}" data-toggle="tooltip" data-placement="right" title="View Game Details"><img src="${ games.getBackground_image() }" alt="${games.getName()}" style="width: 100%; height: auto; border: 5px solid #59A7FF"></a></div>
+				<div class="col-lg-3 paddedsm zoom zoom:hover"><a class="buttonstyle" href="/details/${ games.getRawgId()}" data-toggle="tooltip" data-placement="right" title="View Game Details">${ games.getName() }</a></div>
 				<div class="col-lg-1" >$${games.getPrice() }</div>
-				<div class="col-lg-3"><form method="post" action="/wishlist/setalert/${ games.getWishlistid() }">
-								<input type="number" placeholder="$${ games.getDesiredprice() }" name="setalert" /> <input type="submit" name="submit" data-toggle="tooltip" data-placement="right" title="Get alerted at this price" />
-							</form></div>
-				<div class="col-lg-2" ><c:if test="${ games.getDesiredprice() >=  games.getPrice() }"><a href="https://www.cheapshark.com/redirect?dealID=${games.getDealId() }" class="buttonstyletwo zoom zoom:hover" target="_blank" data-toggle="tooltip" data-placement="right" title="Open store link in new tab">Buy Now!</a>
-							</c:if></div>
+				<div class="col-lg-2" ></div>
 			</div>
 		</div>
 
 				</c:forEach>
 	</font>
 
-
+		<div class="footer">Thanks to <a href= "https://rawg.io" data-toggle="tooltip" data-placement="top" title="Leave Crypt and go to RAWG website" target="_blank">RAWG.io</a> for the data</div>
 </body>
 </html>

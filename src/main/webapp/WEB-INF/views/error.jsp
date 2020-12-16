@@ -90,8 +90,6 @@ body {
 
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item" style="font-size: 16px;"><a class="nav-link" href="/login">Login		
-				</a></li>
 				<li class="nav-item" style="font-size: 16px;"><a class="nav-link" href="/wishlist">Wishlist</a>
 				</li>
 
@@ -103,9 +101,14 @@ body {
 						popular of 2019</a></li>
 			</ul>
 				<span class="navbar-brand">${ user.username }</span>
-    		<c:if test = "${user.username != null}">
-    		<a class="btn navbar-btn btn-default navbar-right pull-right" role="button" href="/logout">Logout</a> 
-			</c:if>
+    		<c:choose>
+    			<c:when test = "${user.username != null}">
+    				<a class="navbar-brand" style="font-size: 16px;" href="/logout">Logout</a>
+    			</c:when>
+    			<c:otherwise>
+    				<a class="navbar-brand" style="font-size: 16px;" href="/login">Login</a>
+    			</c:otherwise>
+    		</c:choose>
 
 			<form class="form-inline my-2 my-lg-0" method="post"
 				action="/searchresults">
@@ -118,8 +121,7 @@ body {
 <div class="container">
 	<div class="row">
 		<div class="col-lg-12 centerednopad">
-			<h2><a href="${errorurl }">${errormessage }</a></h2>
-			<img class="oop" src="https://csshint.com/wp-content/uploads/2019/06/HTML-Funny-404-Pages.gif"/>
+			<h5>Sorry, Rawg is running slowly at the moment.</h5>
 		</div>
 	</div>
 </div>	

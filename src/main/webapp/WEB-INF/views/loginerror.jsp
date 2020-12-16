@@ -1,36 +1,79 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Crypt/FailedLogin</title>
+<title>Login Error</title>
 
+<style type="text/css">
+body {
+	background-image: url(${rawgGame.background_image});
+}
+
+.buttonstyle {
+	display: block;
+	background: #2a9fd6;
+	padding: 15px;
+	text-align: center;
+	border-radius: 10px;
+	color: white;
+	font-weight: bold;
+	line-height: 50px;
+}
+
+.buttonstyletwo {
+	display: block;
+	background: #2a9fd6;
+	padding: 5px;
+	text-align: center;
+	border-radius: 10px;
+	color: white;
+	font-weight: bold;
+	line-height: 40px;
+}
+
+.buttonstylethree {
+	background: #2a9fd6;
+	padding: 5px;
+	text-align: center;
+	border-radius: 10px;
+	color: white;
+	font-weight: bold;
+	line-height: 40px;
+}
+.tagstyle {
+	
+	background: #d3d3d3 ;
+	padding: 2px;
+	text-align: center;
+	border-radius: 5px;
+	color: white;
+	font-weight: bold;
+	line-height: 20px;
+}
+.center {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.oop {
+	padding-left: 30%;
+}
+.centerednopad {
+  text-align: center;
+}	
+</style>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cyborg/bootstrap.min.css"
 	integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2"
 	crossorigin="anonymous">
-<style>
-
-	h2 {
-	padding-top: 20px;
-	text-align: center;
-	}
-
-	li {
-	font-size: 20px;
-	}
-.centerednopad {
-  text-align: center;
-}	
-
-	
-</style>
 </head>
 <body>
-	<!-- Logo -->
+<!-- Logo -->
 
 <div class="container">
 	<div class="row">
@@ -48,8 +91,6 @@
 
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active" style="font-size: 16px;"><a class="nav-link" href="/login">Login		
-				</a></li>
 				<li class="nav-item" style="font-size: 16px;"><a class="nav-link" href="/wishlist">Wishlist</a>
 				</li>
 
@@ -61,10 +102,15 @@
 						popular of 2019</a></li>
 			</ul>
 				<span class="navbar-brand">${ user.username }</span>
-    		<c:if test = "${user.username != null}">
-    		<a class="btn navbar-btn btn-default navbar-right pull-right" role="button" href="/logout">Logout</a> 
-			</c:if>
-
+    		<span class="navbar-brand">${ user.username }</span>
+    		<c:choose>
+    			<c:when test = "${user.username != null}">
+    				<a class="navbar-brand" style="font-size: 16px;" href="/logout">Logout</a>
+    			</c:when>
+    			<c:otherwise>
+    				<a class="navbar-brand" style="font-size: 16px;" href="/login">Login</a>
+    			</c:otherwise>
+    		</c:choose>
 			<form class="form-inline my-2 my-lg-0" method="post"
 				action="/searchresults">
 				<input class="form-control mr-sm-2" type="text" placeholder="Search"
@@ -76,12 +122,12 @@
 <div class="container">
 	<div class="row">
 		<div class="col-lg-12 centerednopad">
-			<h2>Sorry, your Email or Password was invalid.<br/>Please try again.</h2>
+			<h5><a href="${errorurl }">${errormessage }</a></h5>
 		</div>
 	</div>
 </div>	
 	
-
-
+	
+	
 </body>
 </html>

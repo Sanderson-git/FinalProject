@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,6 +72,8 @@ body {
        text-align: left;    
        bottom: 0px; 
        width: 100%;
+       font-size: 11px;
+       font-family: font-family: Arial, Helvetica, sans-serif;
 }
 .zoom {
 
@@ -109,8 +113,6 @@ body {
 
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item" style="font-size: 16px;"><a class="nav-link" href="/login">Login		
-				</a></li>
 				<li class="nav-item" style="font-size: 16px;"><a class="nav-link" href="/wishlist">Wishlist</a>
 				</li>
 
@@ -122,7 +124,14 @@ body {
 						popular of 2019</a></li>
 			</ul>
 				<span class="navbar-brand">${ user.username }</span>
-    		<a class="btn navbar-btn btn-default navbar-right pull-right" role="button" href="/logout">Logout</a>
+    		<c:choose>
+    			<c:when test = "${user.username != null}">
+    				<a class="navbar-brand" style="font-size: 16px;" href="/logout">Logout</a>
+    			</c:when>
+    			<c:otherwise>
+    				<a class="navbar-brand" style="font-size: 16px;" href="/login">Login</a>
+    			</c:otherwise>
+    		</c:choose>
 
 			<form class="form-inline my-2 my-lg-0" method="post"
 				action="/searchresults">
@@ -135,9 +144,11 @@ body {
 
 <div class="container">
 	<div class="row">
+
 		<div class="col-lg-4"></div>
 		<div class="col-lg-4 buttonstyle centerednopad zoom zoom:hover"><h5><a href="${ freeurl }" style="color:black;">${ freemsg }</a></h5></div>
 		<div class="col-lg-4"></div>
+
 	</div>
 </div>
 	

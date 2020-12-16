@@ -108,6 +108,8 @@
        text-align: left;    
        bottom: 0px; 
        width: 100%;
+       font-size: 10px;
+       font-family: font-family: Arial, Helvetica, sans-serif;
 }
 
 
@@ -232,8 +234,6 @@
 
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item" style="font-size: 16px;"><a class="nav-link" href="/login">Login		
-				</a></li>
 				<li class="nav-item" style="font-size: 16px;"><a class="nav-link" href="/wishlist">Wishlist</a>
 				</li>
 
@@ -244,12 +244,15 @@
       		<li class="nav-item" style="font-size: 16px;"><a class="nav-link" href="/popular2019">Most
 						popular of 2019</a></li>
 			</ul>
-
 				<span class="navbar-brand">${ user.username }</span>
-    		<c:if test = "${user.username != null}">
-    		<a class="btn navbar-btn btn-default navbar-right pull-right" role="button" href="/logout">Logout</a> 
-			</c:if>
-
+    		<c:choose>
+    			<c:when test = "${user.username != null}">
+    				<a class="navbar-brand" style="font-size: 16px;" href="/logout">Logout</a>
+    			</c:when>
+    			<c:otherwise>
+    				<a class="navbar-brand" style="font-size: 16px;" href="/login">Login</a>
+    			</c:otherwise>
+    		</c:choose>
 			<!-- Search function -->
 
 			<form class="form-inline my-2 my-lg-0" method="post"
@@ -375,9 +378,7 @@
 	<br />
 	<br />
 
-		<div class="footer">Thanks to <a href= "https://rawg.io" data-toggle="tooltip" data-placement="top" title="Leave Crypt and go to RAWG website" target="_blank">RAWG.io</a> for the data</div>
-
-	
+		<div class="footer"><font size="1.5" face="sans-serif"> Thanks to <a href= "https://rawg.io" data-toggle="tooltip" data-placement="top" title="Leave Crypt and go to RAWG website" target="_blank" style="color:#2a9fd6">RAWG.io</a> for the data</font></div>
 	
 	
 	<script>

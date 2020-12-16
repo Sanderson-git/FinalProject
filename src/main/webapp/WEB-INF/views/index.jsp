@@ -43,7 +43,7 @@ td {
 	background: #d3d3d3;
 	padding: 2px;
 	text-align: center;
-	border-radius: 5px;
+	border-radius: 3px;
 	color: black;
 	font-weight: bold;
 	line-height: 20px;
@@ -67,6 +67,8 @@ td {
        text-align: left;    
        bottom: 0px; 
        width: 100%;
+       font-size: 11px;
+       font-family: font-family: Arial, Helvetica, sans-serif;
 }  
 .zoom {
 
@@ -112,11 +114,8 @@ td {
 
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item" style="font-size: 16px;"><a class="nav-link" href="/login">Login		
-				</a></li>
 				<li class="nav-item" style="font-size: 16px;"><a class="nav-link" href="/wishlist">Wishlist</a>
 				</li>
-
 				<li class="nav-item" style="font-size: 16px;"><a class="nav-link"
 					href="/recommendations">Recommendations</a></li>
 				<li class="nav-item" style="font-size: 16px;"><a class="nav-link" href="/about">The
@@ -125,10 +124,15 @@ td {
 						popular of 2019</a></li>
 			</ul>
 				<span class="navbar-brand">${ user.username }</span>
-    		<c:if test = "${user.username != null}">
-    		<a class="btn navbar-btn btn-default navbar-right pull-right" role="button" href="/logout">Logout</a> 
-			</c:if> 
-
+    		<c:choose>
+    			<c:when test = "${user.username != null}">
+    				<a class="navbar-brand" style="font-size: 16px;" href="/logout">Logout</a>
+    			</c:when>
+    			<c:otherwise>
+    				<a class="navbar-brand" style="font-size: 16px;" href="/login">Login</a>
+    			</c:otherwise>
+    		</c:choose>
+    		
 			<!-- Search function -->
 
 			<form class="form-inline my-2 my-lg-0" method="post"
@@ -164,7 +168,7 @@ td {
 				<c:forEach var="result" items="${ rawglist.getResults()}">
 					<div class="row" style="font-size: 25px">
 						<div class="col-lg-1" style="color: #2a9fd6;"></div>
-						<div class="col-lg-4 padded" ><a href="/details/${result.getId() }"><img src="${result.getBackground_image() }"	alt="gameplay image" style="width:100%; height:auto; border: 5px solid #59A7FF"></a></div>
+						<div class="col-lg-4 padded" data-toggle="tooltip" data-placement="right" title="View Game Details"><a href="/details/${result.getId() }" ><img src="${result.getBackground_image() }"	alt="gameplay image" style="width:100%; height:auto; border: 5px solid #59A7FF"></a></div>
 						<div class="col-lg-4" style="color: #2a9fd6;"><a class="buttonstyle zoom zoom:hover" href="/details/${result.getId() }" data-toggle="tooltip" data-placement="right" title="View Prices">${result.getName()}</a></div>
 						<div class="col-lg-1" >${result.getRating()}/5</div>
 						<div class="col-lg-2" ><c:forEach var="genre" items="${result.getGenres() }"><font size="4"><a class="tagstyle zoom zoom:hover" href="/searchresults/${genre.getId() }" data-toggle="tooltip" data-placement="right" title="Search for ${genre.getName() } games">${genre.getName() }</a></font> </c:forEach></div>

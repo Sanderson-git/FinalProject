@@ -88,6 +88,8 @@ h2{
        text-align: left;    
        bottom: 0px; 
        width: 100%;
+       font-size: 11px;
+       font-family: font-family: Arial, Helvetica, sans-serif;
 } 
 .zoom {
 
@@ -134,8 +136,6 @@ h2{
 
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item" style="font-size: 16px;"><a class="nav-link" href="/login">Login	
-				</a></li>
 				<li class="nav-item" style="font-size: 16px;"><a class="nav-link" href="/wishlist">Wishlist</a>
 				</li>
 				<li class="nav-item active" style="font-size: 16px;"><a class="nav-link" href="/recommendations">Recommendations<span class="sr-only">(current)</span></a>
@@ -146,9 +146,14 @@ h2{
 						popular of 2019</a></li>
 			</ul>
 			<span class="navbar-brand">${ user.username }</span>
-    		<c:if test = "${user.username != null}">
-    		<a class="btn navbar-btn btn-default navbar-right pull-right" role="button" href="/logout">Logout</a> 
-			</c:if>
+    		<c:choose>
+    			<c:when test = "${user.username != null}">
+    				<a class="navbar-brand" style="font-size: 16px;" href="/logout">Logout</a>
+    			</c:when>
+    			<c:otherwise>
+    				<a class="navbar-brand" style="font-size: 16px;" href="/login">Login</a>
+    			</c:otherwise>
+    		</c:choose>
 
 			<!-- Search function -->
 
@@ -180,7 +185,7 @@ h2{
 	<c:forEach var="game" items="${ games }">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-4 padded"><a href="/details/${ game.getId()}"><img src="${ game.getBackground_image() }"	alt="${game.getName()}" style="width: 100%; height: auto; border: 5px solid #59A7FF"></a></div>
+				<div class="col-lg-4 padded"><a href="/details/${ game.getId()}" data-toggle="tooltip" data-placement="right" title="View Game Details"><img src="${ game.getBackground_image() }"	alt="${game.getName()}" style="width: 100%; height: auto; border: 5px solid #59A7FF"></a></div>
 				<div class="col-lg-4 padded"><a class="buttonstyle zoom zoom:hover" href="/details/${ game.getId()}" data-toggle="tooltip" data-placement="right" title="View Game Details">${ game.getName() }</a></div>
 				<div class="col-lg-1">${game.getRating()}/5</div>
 				<div class="col-lg-3"><c:forEach var="genre" items="${game.getGenres() }"><font size="5"><a class="tagstyle zoom zoom:hover" href="/searchresults/${genre.getId() }" data-toggle="tooltip" data-placement="right" title="Search for ${genre.getName() } games">${genre.getName() }</a></font> </c:forEach></div>
