@@ -118,8 +118,7 @@ body {
 <div class="container">
 	<div class="row">
 		<div class="col-lg-12 centerednopad">
-			<h2><a href="${errorurl }">${errormessage }</a></h2>
-			<img class="oop" src="https://csshint.com/wp-content/uploads/2019/06/HTML-Funny-404-Pages.gif"/>
+			<h5>Sorry, Rawg is running slowly at the moment.</h5>
 		</div>
 	</div>
 </div>	
