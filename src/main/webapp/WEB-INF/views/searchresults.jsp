@@ -52,6 +52,18 @@ td {
    float: right;
 }
 
+.zoom {
+
+  transition: transform .2s; /* Animation */
+
+}
+
+.zoom:hover {
+  transform: scale(1.1); /* (110% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  position:relative;
+  z-index:2;
+}
+
 </style>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cyborg/bootstrap.min.css"
@@ -122,7 +134,7 @@ td {
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-4 padded"><a href="/details/${ game.getId()}" data-toggle="tooltip" data-placement="right" title="View Game Details"><img src="${ game.getBackground_image() }"	alt="${game.getName()}" style="width: 100%; height: auto; border: 5px solid #59A7FF"></a></div>
-				<div class="col-lg-4 padded"><a class="buttonstyle" href="/details/${ game.getId()}" data-toggle="tooltip" data-placement="right" title="View Game Details">${ game.getName() }</a></div>
+				<div class="col-lg-4 padded"><a class="buttonstyle zoom zoom:hover" href="/details/${ game.getId()}" data-toggle="tooltip" data-placement="right" title="View Game Details">${ game.getName() }</a></div>
 				<div class="col-lg-1" >${game.getRating()}/5</div>
 				<div class="col-lg-3"><c:forEach var="genre" items="${game.getGenres() }"><font size="5"><a class="tagstyle" href="/searchresults/${genre.getId() }" data-toggle="tooltip" data-placement="right" title="Search for ${genre.getName() } games">${genre.getName() }</a></font> </c:forEach></div>
 			</div>
